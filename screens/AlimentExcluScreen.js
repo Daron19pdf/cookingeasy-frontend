@@ -23,8 +23,6 @@ export default function IngredientExclu({ navigation }) {
     setIngredients("");
   }
 
-
-
    const newIngredient = TabIngredients.map((data, i) => {
     return (
       <View key={i} style={styles.item} >
