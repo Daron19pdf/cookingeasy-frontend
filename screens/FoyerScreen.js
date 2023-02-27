@@ -50,3 +50,38 @@ export default function FoyerScreen({ navigation }) {
     </KeyboardAvoidingView>
     );
    }
+
+   const styles = StyleSheet.create({
+   title: {
+    display: 'flex',
+    width: '80%',
+    fontSize: 35,
+    fontWeight: '600',
+    justifyContent: 'center',
+    marginTop: 50,
+    },
+    Number: {
+      fontSize: 30,
+    },
+    Button: {
+      justifyContent: 'space-around',
+      flexDirection: 'row',
+      width: 100,
+    },
+    buttonMax: {
+      width: 100,
+      marginRight: 20,
+    },
+    buttonMin: {
+      width: 150,
+      marginLeft: 20,
+  
+    },
+    botomButon: {
+      flexDirection: 'row',
+      alignItems: 'space-around',
+      marginRight: 20,
+      marginLeft: 20,
+    },
+  });
+  
