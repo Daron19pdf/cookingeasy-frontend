@@ -1,9 +1,12 @@
-import { StyleSheet, Text, View } from 'react-native';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import * as Progress from 'react-native-progress';
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { addIngredientToStore, removeIngredientToStore } from '../reducers/ingredient';
+import { StyleSheet, Text, View } from "react-native";
+import FontAwesome from "react-native-vector-icons/FontAwesome";
+import * as Progress from "react-native-progress";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addIngredientToStore,
+  removeIngredientToStore,
+} from "../reducers/ingredient";
 import {
   Platform,
   Image,
@@ -14,6 +17,7 @@ import {
 
 export default function IngredientExclu({ navigation }) {
 
+  const BACKEND_ADDRESS = 'https://cookingeasy-backend.vercel.app';
   const dispatch = useDispatch();
   const TabIngredients = useSelector((state) => state.ingredient.value);
   const [ingredients, setIngredients] = useState("");
@@ -25,8 +29,26 @@ export default function IngredientExclu({ navigation }) {
   //click sur le bouton ok pour ajouter l'ingrédient dans le store
   const handleClick = () => {
     dispatch(addIngredientToStore(ingredients));
+
+    fetch(`${BACKEND_ADDRESS}/preferences/alimentexclus`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        exclus: TabIngredients,
+        Token : 'rUGYiizO7gbAB0OEpNwrkiP2TexkVjoB',
+      })
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log(data);
+    })
+    .catch(error => {
+      console.error(error);
+    });
     setIngredients("");
-  }
+  };
 
   //affichage des ingrédients du store
   let newIngredient = <Text style={styles.exemple}>Exemples : Oeuf, ail, fruits sec, etc ...</Text> 
@@ -87,21 +109,20 @@ export default function IngredientExclu({ navigation }) {
                 <Progress.Bar width={250} borderWidth={1} progress={0.8} height={15} color={'#FA8C8E'} indeterminateAnimationDuration={2000} />
              </View>
     </KeyboardAvoidingView>
-    
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+    backgroundColor: "white",
+    alignItems: "center",
+    justifyContent: "space-between",
   },
   title: {
     marginTop: 40,
     fontSize: 20,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   inputContainer: {
       justifyContent: 'center',
@@ -117,21 +138,22 @@ const styles = StyleSheet.create({
     height: 250,
   },
   next: {
-    flexDirection: 'row',
-    backgroundColor: '#FA8C8E',
-    boxShadow: '0px 1px 2px rgba(0, 0, 0, 0.16), 0px 2px 4px rgba(0, 0, 0, 0.12), 0px 1px 8px rgba(0, 0, 0, 0.1)',
+    flexDirection: "row",
+    backgroundColor: "#FA8C8E",
+    boxShadow:
+      "0px 1px 2px rgba(0, 0, 0, 0.16), 0px 2px 4px rgba(0, 0, 0, 0.12), 0px 1px 8px rgba(0, 0, 0, 0.1)",
     width: 100,
     height: 50,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
   botomButon: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-	  alignItems: 'center',
-    width: '100%',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    width: "100%",
     paddingHorizontal: 20,
-    margin:30,
+    margin: 30,
   },
   buttonText: {
     marginRight: 10,
@@ -148,15 +170,15 @@ const styles = StyleSheet.create({
   previous: {
     width: 40,
     height: 40,
-    backgroundColor: '#E3C7F9',
+    backgroundColor: "#E3C7F9",
     borderRadius: 50,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
   },
-   botomContainer: {
-    width: '100%',
-    alignItems: 'center',
-    justifyContent: 'center',
+  botomContainer: {
+    width: "100%",
+    alignItems: "center",
+    justifyContent: "center",
     marginBottom: 20,
   },
   validateContainer: {

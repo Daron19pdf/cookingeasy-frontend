@@ -7,6 +7,7 @@ import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
 import ingredient from './reducers/ingredient';
 
+
 //navigation attente//
 import AlimentExcluScreen from './screens/AlimentExcluScreen';
 import RegimeScreen from './screens/RegimeScreen';
