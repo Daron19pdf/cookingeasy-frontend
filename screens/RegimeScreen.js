@@ -6,11 +6,13 @@ import BouncyCheckbox from "react-native-bouncy-checkbox";
 //import CheckBox from '@react-native-community/checkbox';
 
 export default function RegimeScreen({ navigation }) {
+  const BACKEND_ADDRESS = 'https://cookingeasy-backend.vercel.app';
 
   const [isVegan, setVegan] = useState(false);
   const [isVegetarien, setVegetarien] = useState(false);
   const [isPescetarien, setPescetarien] = useState(false);
   const [isPorc, setPorc] = useState(false);
+  const [isLactose, setLactose] = useState(false);
   const [isGluten, setGluten] = useState(false);
   const [isAlcool, setAlcool] = useState(false);
   const [isNone, setNone] = useState(false);
@@ -78,23 +80,24 @@ export default function RegimeScreen({ navigation }) {
           marginBottom={15}
           iconStyle={{ borderColor: "red" }}
           textStyle={{ textDecorationLine: 'none' }}
-          onPress={(isChecked: boolean) => { }}
+          onPress={() => setPescetarien(true)}
         />
         <BouncyCheckbox
-          text="Sans porc"
-          fillColor="red"
-          marginBottom={15}
-          iconStyle={{ borderColor: "red" }}
-          textStyle={{ textDecorationLine: 'none' }}
-        onPress={(isChecked: boolean) => { }}
-      />
-      <BouncyCheckbox
           text="Sans gluten"
           fillColor="red"
           marginBottom={15}
           iconStyle={{ borderColor: "red" }}
           textStyle={{ textDecorationLine: 'none' }}
-          onPress={(isChecked: boolean) => { }}
+        
+        onPress={() => setGluten(true)}
+      />
+      <BouncyCheckbox
+          text="Sans porc" 
+          fillColor="red"
+          marginBottom={15}
+          iconStyle={{ borderColor: "red" }}
+          textStyle={{ textDecorationLine: 'none' }}
+          onPress={() => setPorc(true)}
       />
       <BouncyCheckbox
           text="Sans lactose"
@@ -102,7 +105,7 @@ export default function RegimeScreen({ navigation }) {
           marginBottom={15}
           iconStyle={{ borderColor: "red" }}
           textStyle={{ textDecorationLine: 'none' }}
-          onPress={(isChecked: boolean) => { }}
+          onPress={() => setLactose(true)}
       />
       <BouncyCheckbox
           text="Sans alcool"
@@ -110,14 +113,14 @@ export default function RegimeScreen({ navigation }) {
           marginBottom={15}
           iconStyle={{ borderColor: "red" }}
           textStyle={{ textDecorationLine: 'none' }}
-         onPress={(isChecked: boolean) => { }}
+          onPress={() => setAlcool(true)}
       />
       <BouncyCheckbox
           text="Sans régime particulier"
           fillColor="red"
           iconStyle={{ borderColor: "red" }}
           textStyle={{ textDecorationLine: 'none' }}
-          onPress={(isChecked: boolean) => { }}
+          onPress={() => setNone(true)}
       />
         </View>
       <View style={styles.botomButon}>
@@ -127,7 +130,7 @@ export default function RegimeScreen({ navigation }) {
 
         <TouchableOpacity style={styles.next}
           title="Suivant"
-          onPress={() => navigation.navigate('AlimentExcluScreen')} >
+          onPress={ handleNextPress} >
           <Text style={styles.Suivant}>Suivant</Text>
         </TouchableOpacity>
       </View>
@@ -169,13 +172,6 @@ const styles = StyleSheet.create({
   BouncyCheckbox: {
     size: 20,
     unfillColor: "white",
-<<<<<<< HEAD
-
-=======
-    borderColor: "red",
-    borderWidth: 2,
-    textDecorationLine: 'none'
->>>>>>> ca87774b5df81aba89c7dba879d70228023f7a4f
   },
   //Style du bouton Suivant
   next: {
