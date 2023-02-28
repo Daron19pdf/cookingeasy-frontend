@@ -70,7 +70,7 @@ export default function RegimeScreen({ navigation }) {
           marginBottom={15}
           iconStyle={{ borderColor: "red" }}
           textStyle={{ textDecorationLine: 'none' }}
-          onPress={() => setVegetarien { }}
+          onPress={() => setVegetarien(true)}
       />
       <BouncyCheckbox
           text="Péscétarien"
