@@ -87,7 +87,7 @@ export default function IngredientExclu({ navigation }) {
         <Progress.Bar
           width={250}
           borderWidth={1}
-          progress={0.8}
+          progress={1}
           height={15}
           color={"#FA8C8E"}
           indeterminateAnimationDuration={2000}
