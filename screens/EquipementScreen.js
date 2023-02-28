@@ -4,7 +4,7 @@ import * as Progress from 'react-native-progress';
 
 const BACKEND_ADDRESS = 'http://BACKEND_IP:3000';
 
-const MyImage = () => {
+export default function EquipementScreen () {
   return (
     <View style={styles.container}>
 
@@ -68,7 +68,6 @@ const MyImage = () => {
   );
 };
 
-export default MyImage;
 
 const styles = StyleSheet.create({
   title: {
@@ -77,7 +76,7 @@ const styles = StyleSheet.create({
     marginTop: 65,
     marginBottom: 20,
     textAlign: 'center',
-    fontFamily: 'Helvetica'
+    fontFamily: 'Helvetica',
   },
 
   four: {

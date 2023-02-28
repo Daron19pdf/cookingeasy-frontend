@@ -3,7 +3,7 @@ import { StyleSheet, Text, TextInput, View } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import React, { useEffect, useState } from 'react';
 
-export default function InscriptionScreen() {
+export default function InscriptionScreen({ navigation}) {
     
   const [pseudo, setPseudo] = useState('');
   const [nom, setNom] = useState('');
@@ -14,7 +14,7 @@ export default function InscriptionScreen() {
   return (
     <View style={styles.container}>
     <View style={styles.header}>
-    <FontAwesome name='arrow-left' size='20' color='#FA8C8E' style={styles.icon}/>
+    <FontAwesome name='arrow-left' size={20} color='#FA8C8E' style={styles.icon}/>
     <Text style={styles.headerText}>Inscription</Text>
     </View>
     <View style={styles.inputContainer}>

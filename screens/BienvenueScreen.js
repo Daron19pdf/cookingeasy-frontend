@@ -1,7 +1,6 @@
 import {
   Image,
   ImageBackground,
-  KeyboardAvoidingView,
   Platform,
   StyleSheet,
   Text,
@@ -11,7 +10,7 @@ import {
 } from 'react-native';
 
 
-export default function BienvenueScreen () {
+export default function BienvenueScreen ({ navigation}) {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Bienvenue</Text>
@@ -31,6 +30,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: 'white',
   },
 background: {
   width: '100%',

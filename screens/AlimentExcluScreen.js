@@ -17,13 +17,12 @@ export default function IngredientExclu({ navigation }) {
   const dispatch = useDispatch();
   const TabIngredients = useSelector((state) => state.ingredient.value);
   const [ingredients, setIngredients] = useState("");
+  console.log(TabIngredients);
 
   const handleClick = () => {
     dispatch(addIngredientToStore(ingredients));
     setIngredients("");
   }
-
-
 
    const newIngredient = TabIngredients.map((data, i) => {
     return (
