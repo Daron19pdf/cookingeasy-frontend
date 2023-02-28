@@ -7,6 +7,7 @@ import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
 import ingredient from './reducers/ingredient';
 
+
 //navigation attente//
 import AlimentExcluScreen from './screens/AlimentExcluScreen';
 import RegimeScreen from './screens/RegimeScreen';
@@ -38,7 +39,7 @@ export default function App() {
   return (
     <Provider store={store}>
       <NavigationContainer style={styles.container}>
-       <Stack.Navigator screenOptions={{ headerShown: true }}>
+       <Stack.Navigator screenOptions={{ headerShown: false }}>
        <Stack.Screen name="Index" component={Index} />
        <Stack.Screen name="AlimentExcluScreen" component={AlimentExcluScreen} /> 
         <Stack.Screen name="RegimeScreen" component={RegimeScreen} />
