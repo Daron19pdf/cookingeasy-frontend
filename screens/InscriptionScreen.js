@@ -2,9 +2,10 @@ import { StyleSheet, Text, TextInput, View, TouchableOpacity } from 'react-nativ
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { useDispatch, useSelector, useEffect } from 'react-redux';
 import { useState } from 'react';
-import { login, logout  } from '../reducers/ingredient';
+import { login, logout  } from '../reducers/user';
 
 export default function InscriptionScreen({ navigation }) {
+  const BACKEND_ADDRESS = 'https://cookingeasy-backend.vercel.app/';
   const dispatch = useDispatch();
 
   const [pseudo, setPseudo] = useState('');
@@ -23,7 +24,7 @@ export default function InscriptionScreen({ navigation }) {
   };
 
   const handleValidation = () => {
-    fetch('http://localhost:3000/user/signup', {
+    fetch(`${BACKEND_ADDRESS}/user/signup`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -38,12 +39,13 @@ export default function InscriptionScreen({ navigation }) {
     })
     .then(response => response.json())
     .then(data => {
-      dispatch(login({ pseudo: pseudo, token: data.token }));
+      dispatch(login({ pseudo: pseudo, nom: nom, prenom: prenom, password: password, email: email, token: data.token }));
           setPseudo('');
           setNom('');
           setPrenom('');
           setPassword('');
           setEmail('');
+        navigation.navigate("InfoScreen");
       console.log(data);
     })
     .catch(error => {
