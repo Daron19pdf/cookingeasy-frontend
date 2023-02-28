@@ -120,7 +120,7 @@ const styles = StyleSheet.create({
     marginTop: 40,
     marginBottom: 20,
     textAlign: 'center',
-    fontFamily: 'Helvetica'
+    fontFamily: 'Helvetica',
   },
 
   four: {
