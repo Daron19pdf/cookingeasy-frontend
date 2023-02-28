@@ -1,15 +1,57 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, TextInput, View } from 'react-native';
+import { StyleSheet, Text, TextInput, View, TouchableOpacity } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector, useEffect } from 'react-redux';
+import { useState } from 'react';
+import { login, logout  } from '../reducers/ingredient';
 
-export default function InscriptionScreen({ navigation}) {
-    
+export default function InscriptionScreen({ navigation }) {
+  const dispatch = useDispatch();
+
   const [pseudo, setPseudo] = useState('');
   const [nom, setNom] = useState('');
-  const [Prenom, setPrenom] = useState('');
+  const [prenom, setPrenom] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
+  const [focusedInput, setFocusedInput] = useState('');
+
+  const handleFocus = (inputName) => {
+    setFocusedInput(inputName);
+  };
+
+  const handleBlur = () => {
+    setFocusedInput('');
+  };
+
+  const handleValidation = () => {
+    fetch('http://localhost:3000/user/signup', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        pseudo: pseudo,
+        nom: nom,
+        prenom: prenom,
+        password: password,
+        email: email
+      })
+    })
+    .then(response => response.json())
+    .then(data => {
+      dispatch(login({ pseudo: pseudo, token: data.token }));
+          setPseudo('');
+          setNom('');
+          setPrenom('');
+          setPassword('');
+          setEmail('');
+      console.log(data);
+    })
+    .catch(error => {
+      console.error(error);
+    });
+  }
+  
+ 
 
   return (
     <View style={styles.container}>
@@ -21,35 +63,70 @@ export default function InscriptionScreen({ navigation}) {
     <TextInput 
             placeholder="Pseudo"
             onChangeText={(value) => setPseudo(value)}
+            onFocus={() => handleFocus('pseudo')}
+            onBlur={handleBlur}
             value={pseudo}
-            style={styles.input}
+            style={[
+          styles.input,
+          focusedInput === 'pseudo' && styles.focusedInput,]
+        }
       />
       <TextInput 
             placeholder="Nom"
             onChangeText={(value) => setNom(value)}
+            onFocus={() => handleFocus('nom')}
+            onBlur={handleBlur}
             value={nom}
-            style={styles.input}
+            style={[
+                styles.input,
+                focusedInput === 'nom' && styles.focusedInput,
+              ]}
       />
       <TextInput 
             placeholder="Prenom"
             onChangeText={(value) => setPrenom(value)}
-            value={Prenom}
-            style={styles.input}
+            onFocus={() => handleFocus('prenom')}
+            onBlur={handleBlur}
+            value={prenom}
+            style={[
+                styles.input,
+                focusedInput === 'prenom' && styles.focusedInput,
+              ]}
       />
       <TextInput 
             placeholder="Mot de passe"
             onChangeText={(value) => setPassword(value)}
+            onFocus={() => handleFocus('password')}
+            onBlur={handleBlur}
             value={password}
-            style={styles.input}
+            style={[
+                styles.input,
+                focusedInput === 'password' && styles.focusedInput,
+              ]}
       />
       <TextInput 
             placeholder="Email"
             onChangeText={(value) => setEmail(value)}
+            onFocus={() => handleFocus('email')}
+            onBlur={handleBlur}
             value={email}
-            style={styles.input}
+            style={[
+                styles.input,
+                focusedInput === 'email' && styles.focusedInput,
+              ]}
       />
     </View>
+    <TouchableOpacity onPress={handleValidation} style={[styles.button2, { width: 150 }]}>
+          <Text style={styles.buttonText2}>Valider</Text>
+    </TouchableOpacity>
+    <TouchableOpacity style={[styles.button, { width: 300 }]}>
+          <Text style={styles.buttonText}>Se connecter avec Facebook</Text>
+    </TouchableOpacity>
+    <TouchableOpacity style={[styles.button, { width: 300 }]}>
+          <Text style={styles.buttonText}>Se connecter avec Google</Text>
+    </TouchableOpacity>
     </View>
+    
   );
 }
 
@@ -62,48 +139,91 @@ const styles = StyleSheet.create({
     elevation: 6,
     backgroundColor: 'white',
     marginTop: 6,
+    marginBottom: 20,
     shadowColor: 'rgba(0, 0, 0, 0.1)',
     shadowOpacity: 0.8,
     shadowRadius: 5,
     shadowOffset : { width: 1, height: 13}
   },
   headerText: {
-    marginLeft: 60,
+    marginLeft: 70,
     marginTop: -25,
     fontFamily: 'Helvetica',
     fontWeight: 'bold',
-    fontSize: 27,
+    color: '#636363',
+    fontSize: 25,
   },
   icon: {
     marginTop: 35,
     marginLeft: 20,
-
   },
   container: {
     flex:1,
     padding: 0,
+    alignItems: 'center',
   },
   inputContainer: {
-    marginTop:20,
-    marginLeft:10,
-    marginRight:10,
-    marginBottom: 20,
-    borderLeftWidth: 2,
-    borderRightWidth: 2,
-    borderBottomWidth:2,
-    borderRadius:4,
-    height: 45,
-    width: 350,
-    borderColor:'#FA8C8E',
-    borderTopWidth: 2,
-    zIndex: 1,
-    overflow: 'visible',
+    marginVertical: 10,
+    width: 365,
   },
   input: {
-    height: 50, 
-    fontSize: 14, 
-    color: '#000', 
-    marginLeft: 20,
+    backgroundColor: 'white',
+    height: 45,
+    borderRadius: 10,
+    paddingHorizontal: 10,
+    paddingVertical: 8,
+    margin: 8,
+    fontSize: 16,
+  },
+  focusedInput: {
+    borderColor: '#FA8C8E',
+    borderWidth: 1.5,
+  },
+  button: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 12,
+    borderRadius: 4,
+    elevation: 3,
+    backgroundColor: 'white',
+    marginTop: 30,
+    shadowColor: 'rgba(0, 0, 0, 0.1)',
+    shadowOpacity: 0.8,
+    shadowRadius: 5 ,
+    shadowOffset : { width: 1, height: 13}
+  },
+  button2: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 12,
+    borderRadius: 4,
+    elevation: 3,
+    backgroundColor: '#FA8C8E',
+    marginTop: 30,
+    shadowColor: 'rgba(0, 0, 0, 0.1)',
+    shadowOpacity: 0.8,
+    shadowRadius: 5 ,
+    shadowOffset : { width: 1, height: 13}
+  },
+  buttonText: {
+    fontSize: 16,
+    lineHeight: 21,
+    fontWeight: 'bold',
+    letterSpacing: 0.25,
+    color: '#FA8C8E',
+  },
+  buttonText2: {
+    fontSize: 16,
+    lineHeight: 21,
+    fontWeight: 'bold',
+    letterSpacing: 0.25,
+    color: 'white',
+  },
+  checkboxContainer: {
+    flexDirection: 'row',
     marginBottom: 20,
-  }
+  },
+  checkbox: {
+    alignSelf: 'center',
+}
 });
