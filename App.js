@@ -6,6 +6,7 @@ import Index from './screens/index';
 import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
 import ingredient from './reducers/ingredient';
+import user from './reducers/user';
 
 
 //navigation attente//
@@ -30,7 +31,7 @@ import ProfilScreen from './screens/ProfilScreen';
 const Stack = createNativeStackNavigator();
 
 const store = configureStore({
-  reducer: {ingredient},
+  reducer: {ingredient, user},
  });
 
 export default function App() {

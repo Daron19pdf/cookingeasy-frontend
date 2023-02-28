@@ -5,7 +5,7 @@ import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { useState } from 'react'; 
 
 
-const BACKEND_ADDRESS = 'https://cookingeasy-backend-9uhxvln09-daron19pdf.vercel.app';
+const BACKEND_ADDRESS = 'https://cookingeasy-backend.vercel.app';
 
 export default function EquipementScreen ({navigation}) {
   const [isFourClicked, setIsFourClicked] = useState(false); // Ajout d'un état local pour indiquer si l'image du four a été cliquée ou non

@@ -70,7 +70,7 @@ export default function RegimeScreen({ navigation }) {
           marginBottom={15}
           iconStyle={{ borderColor: "red" }}
           textStyle={{ textDecorationLine: 'none' }}
-          onPress={(isChecked: boolean) => { }}
+          onPress={() => setVegetarien { }}
       />
       <BouncyCheckbox
           text="Péscétarien"
@@ -169,7 +169,13 @@ const styles = StyleSheet.create({
   BouncyCheckbox: {
     size: 20,
     unfillColor: "white",
+<<<<<<< HEAD
 
+=======
+    borderColor: "red",
+    borderWidth: 2,
+    textDecorationLine: 'none'
+>>>>>>> ca87774b5df81aba89c7dba879d70228023f7a4f
   },
   //Style du bouton Suivant
   next: {
