@@ -98,8 +98,8 @@ export default function EquipementScreen ({navigation}) {
             <FontAwesome name="arrow-left" size={15} color="white"/>
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={handleNextPress} style={styles.suivant} activeOpacity={0.8}>
-              <Text style={styles.textButton}>Suivant</Text>
+          <TouchableOpacity style={styles.suivant} activeOpacity={0.8}>
+            <Text style={styles.textButton}>Suivant</Text>
       </TouchableOpacity>
 
       </View>
@@ -138,73 +138,73 @@ const styles = StyleSheet.create({
     //shadowRadius: 10,
     shadowOpacity: 0.8,
     shadowRadius: 5,
-    shadowOffset : { width: 1, height: 13}
-    },
+    shadowOffset: { width: 1, height: 13 }
+  },
 
-    friteuseClicked: { // Ajout du style pour la bordure ombrée
-      borderColor: '#E3C7F9',
-      borderWidth: 2,
-      borderRadius: 10,
-      shadowColor: '#E3C7F9',
-      //shadowOffset: { width: 5, height: 5 },
-      //shadowOpacity: 0.8,
-      //shadowRadius: 10,
-      shadowOpacity: 0.8,
-      shadowRadius: 5,
-      shadowOffset : { width: 1, height: 13}
-      },
+  friteuseClicked: { // Ajout du style pour la bordure ombrée
+    borderColor: '#E3C7F9',
+    borderWidth: 2,
+    borderRadius: 10,
+    shadowColor: '#E3C7F9',
+    //shadowOffset: { width: 5, height: 5 },
+    //shadowOpacity: 0.8,
+    //shadowRadius: 10,
+    shadowOpacity: 0.8,
+    shadowRadius: 5,
+    shadowOffset: { width: 1, height: 13 }
+  },
 
-      microOndesClicked: { // Ajout du style pour la bordure ombrée
-        borderColor: '#E3C7F9',
-        borderWidth: 2,
-        borderRadius: 10,
-        shadowColor: '#E3C7F9',
-        //shadowOffset: { width: 5, height: 5 },
-        //shadowOpacity: 0.8,
-        //shadowRadius: 10,
-        shadowOpacity: 0.8,
-        shadowRadius: 5,
-        shadowOffset : { width: 1, height: 13}
-        },
+  microOndesClicked: { // Ajout du style pour la bordure ombrée
+    borderColor: '#E3C7F9',
+    borderWidth: 2,
+    borderRadius: 10,
+    shadowColor: '#E3C7F9',
+    //shadowOffset: { width: 5, height: 5 },
+    //shadowOpacity: 0.8,
+    //shadowRadius: 10,
+    shadowOpacity: 0.8,
+    shadowRadius: 5,
+    shadowOffset: { width: 1, height: 13 }
+  },
 
-        MixeurClicked: { // Ajout du style pour la bordure ombrée
-          borderColor: '#E3C7F9',
-          borderWidth: 2,
-          borderRadius: 10,
-          shadowColor: '#E3C7F9',
-          //shadowOffset: { width: 5, height: 5 },
-          //shadowOpacity: 0.8,
-          //shadowRadius: 10,
-          shadowOpacity: 0.8,
-          shadowRadius: 5,
-          shadowOffset : { width: 1, height: 13}
-          },
+  MixeurClicked: { // Ajout du style pour la bordure ombrée
+    borderColor: '#E3C7F9',
+    borderWidth: 2,
+    borderRadius: 10,
+    shadowColor: '#E3C7F9',
+    //shadowOffset: { width: 5, height: 5 },
+    //shadowOpacity: 0.8,
+    //shadowRadius: 10,
+    shadowOpacity: 0.8,
+    shadowRadius: 5,
+    shadowOffset: { width: 1, height: 13 }
+  },
 
-          PlaqueClicked: { // Ajout du style pour la bordure ombrée
-            borderColor: '#E3C7F9',
-            borderWidth: 2,
-            borderRadius: 10,
-            shadowColor: '#E3C7F9',
-            //shadowOffset: { width: 5, height: 5 },
-            //shadowOpacity: 0.8,
-            //shadowRadius: 10,
-            shadowOpacity: 0.8,
-            shadowRadius: 5,
-            shadowOffset : { width: 1, height: 13}
-            },
+  PlaqueClicked: { // Ajout du style pour la bordure ombrée
+    borderColor: '#E3C7F9',
+    borderWidth: 2,
+    borderRadius: 10,
+    shadowColor: '#E3C7F9',
+    //shadowOffset: { width: 5, height: 5 },
+    //shadowOpacity: 0.8,
+    //shadowRadius: 10,
+    shadowOpacity: 0.8,
+    shadowRadius: 5,
+    shadowOffset: { width: 1, height: 13 }
+  },
 
-            RobotClicked: { // Ajout du style pour la bordure ombrée
-              borderColor: '#E3C7F9',
-              borderWidth: 2,
-              borderRadius: 10,
-              shadowColor: '#E3C7F9',
-              //shadowOffset: { width: 5, height: 5 },
-              //shadowOpacity: 0.8,
-              //shadowRadius: 10,
-              shadowOpacity: 0.8,
-              shadowRadius: 5,
-              shadowOffset : { width: 1, height: 13}
-              },
+  RobotClicked: { // Ajout du style pour la bordure ombrée
+    borderColor: '#E3C7F9',
+    borderWidth: 2,
+    borderRadius: 10,
+    shadowColor: '#E3C7F9',
+    //shadowOffset: { width: 5, height: 5 },
+    //shadowOpacity: 0.8,
+    //shadowRadius: 10,
+    shadowOpacity: 0.8,
+    shadowRadius: 5,
+    shadowOffset: { width: 1, height: 13 }
+  },
 
   friteuse: {
     width: 150,
@@ -233,8 +233,8 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
   },
   equipement: {
- flexDirection: 'row',
- flexWrap: 'wrap',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: 25,
@@ -242,7 +242,7 @@ const styles = StyleSheet.create({
   },
 
   container: {
-    flex:1,
+    flex: 1,
     backgroundColor: 'white',
     alignItems: 'center',
   },
@@ -266,7 +266,7 @@ const styles = StyleSheet.create({
     color: 'white',
     padding: 10,
     fontFamily: 'Helvetica',
-    },
+  },
   previous: {
     width: 40,
     height: 40,
@@ -290,6 +290,6 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
 
-  });
+});
 
 
