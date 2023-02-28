@@ -11,7 +11,6 @@ export const ingredientSlice = createSlice({
  reducers: {
    addIngredientToStore: (state, action) => {
      state.value.push(action.payload);
-     console.log(action.payload);
    },
    removeIngredientToStore: (state, action) => {
     state.value = state.value.filter((item) => item !== action.payload);

@@ -89,6 +89,7 @@ const styles = StyleSheet.create({
     unfillColor: "white",
     borderColor: "red",
     borderWidth: 2,
+    textDecorationLine: 'none'
   },
   //Style du bouton Suivant
   next: {
