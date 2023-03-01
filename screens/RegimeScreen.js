@@ -3,10 +3,15 @@ import * as Progress from 'react-native-progress';
 import { useState } from 'react'; 
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import BouncyCheckbox from "react-native-bouncy-checkbox";
+import { useSelector } from 'react-redux';
+import user from '../reducers/user';
+
 //import CheckBox from '@react-native-community/checkbox';
 
 export default function RegimeScreen({ navigation }) {
 
+  const user = useSelector((state) => state.user.value);
+  console.log(user)
   const [isVegan, setVegan] = useState(false);
   const [isVegetarien, setVegetarien] = useState(false);
   const [isPescetarien, setPescetarien] = useState(false);
@@ -15,19 +20,20 @@ export default function RegimeScreen({ navigation }) {
   const [isAlcool, setAlcool] = useState(false);
   const [isNone, setNone] = useState(false);
 
-  const handleNextPress = () => {
-    const selectedRegime = [];
+  // const handleNextPress = () => {
+  //   const selectedRegime = [];
 
-    if (isVegan) selectedRegime.push('Vegan');
-    if (isVegetarien) selectedRegime.push('Végétarien');
-    if (isPescetarien) selectedRegime.push('Péscétarien');
-    if (isPorc) selectedRegime.push('Sans Porc');
-    if (isGluten) selectedRegime.push('Sans Gluten');
-    if (isAlcool) selectedRegime.push('sans Alcool');
-    if (isNone) selectedRegime.push('None');
+  //   if (isVegan) selectedRegime.push('Vegan');
+  //   if (isVegetarien) selectedRegime.push('Végétarien');
+  //   if (isPescetarien) selectedRegime.push('Péscétarien');
+  //   if (isPorc) selectedRegime.push('Sans Porc');
+  //   if (isGluten) selectedRegime.push('Sans Gluten');
+  //   if (isAlcool) selectedRegime.push('sans Alcool');
+  //   if (isNone) selectedRegime.push('None');
+  // }
 
-    // Envoi des données au backend
-    fetch(`${BACKEND_ADDRESS}/preferences/regime`, {
+    const handleValidation = () => {
+    fetch('http://192.168.0.12:3000/preferences/regime', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -40,17 +46,19 @@ export default function RegimeScreen({ navigation }) {
         Gluten: isGluten,
         Alcool: isAlcool,
         None: isNone,
+        token: user.token
       })
     })
     .then(response => response.json())
     .then(data => {
       console.log(data);
-      navigation.navigate("AlimentExcluScreen");
+      navigation.navigate('AlimentExcluScreen')
     })
     .catch(error => {
       console.error(error);
     });
   };
+
   return (
     <KeyboardAvoidingView style={styles.container} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
       <Text style={styles.title}>Mon Régime Alimentaire</Text>
@@ -78,7 +86,7 @@ export default function RegimeScreen({ navigation }) {
           marginBottom={15}
           iconStyle={{ borderColor: "red" }}
           textStyle={{ textDecorationLine: 'none' }}
-          onPress={(isChecked: boolean) => { }}
+          onPress={() => setPescetarien(true)}
         />
         <BouncyCheckbox
           text="Sans porc"
@@ -86,7 +94,7 @@ export default function RegimeScreen({ navigation }) {
           marginBottom={15}
           iconStyle={{ borderColor: "red" }}
           textStyle={{ textDecorationLine: 'none' }}
-        onPress={(isChecked: boolean) => { }}
+        onPress={() => setPorc(true)}
       />
       <BouncyCheckbox
           text="Sans gluten"
@@ -94,15 +102,7 @@ export default function RegimeScreen({ navigation }) {
           marginBottom={15}
           iconStyle={{ borderColor: "red" }}
           textStyle={{ textDecorationLine: 'none' }}
-          onPress={(isChecked: boolean) => { }}
-      />
-      <BouncyCheckbox
-          text="Sans lactose"
-          fillColor="red"
-          marginBottom={15}
-          iconStyle={{ borderColor: "red" }}
-          textStyle={{ textDecorationLine: 'none' }}
-          onPress={(isChecked: boolean) => { }}
+          onPress={() => setGluten(true)}
       />
       <BouncyCheckbox
           text="Sans alcool"
@@ -110,24 +110,24 @@ export default function RegimeScreen({ navigation }) {
           marginBottom={15}
           iconStyle={{ borderColor: "red" }}
           textStyle={{ textDecorationLine: 'none' }}
-         onPress={(isChecked: boolean) => { }}
+         onPress={() => setAlcool(true)}
       />
       <BouncyCheckbox
           text="Sans régime particulier"
           fillColor="red"
           iconStyle={{ borderColor: "red" }}
           textStyle={{ textDecorationLine: 'none' }}
-          onPress={(isChecked: boolean) => { }}
+          onPress={() => setNone(true)}
       />
         </View>
-      <View style={styles.botomButon}>
+      <View style={styles.bottomButton}>
         <TouchableOpacity style={styles.previous} onPress={() => navigation.navigate('EquipementScreen')}>
           <FontAwesome name='arrow-left' size={15} color='#ffff' />
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.next}
           title="Suivant"
-          onPress={() => navigation.navigate('AlimentExcluScreen')} >
+          onPress={handleValidation} >
           <Text style={styles.Suivant}>Suivant</Text>
         </TouchableOpacity>
       </View>
@@ -169,13 +169,9 @@ const styles = StyleSheet.create({
   BouncyCheckbox: {
     size: 20,
     unfillColor: "white",
-<<<<<<< HEAD
-
-=======
     borderColor: "red",
     borderWidth: 2,
     textDecorationLine: 'none'
->>>>>>> ca87774b5df81aba89c7dba879d70228023f7a4f
   },
   //Style du bouton Suivant
   next: {
@@ -201,7 +197,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   //Style des boutons inférieurs
-  botomButon: {
+  bottomButton: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',

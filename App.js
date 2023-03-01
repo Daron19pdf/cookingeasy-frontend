@@ -8,7 +8,6 @@ import { configureStore } from '@reduxjs/toolkit';
 import ingredient from './reducers/ingredient';
 import user from './reducers/user';
 
-
 //navigation attente//
 import AlimentExcluScreen from './screens/AlimentExcluScreen';
 import RegimeScreen from './screens/RegimeScreen';

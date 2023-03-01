@@ -3,19 +3,21 @@ import { Image, View, StyleSheet,Text, TouchableOpacity } from 'react-native';
 import * as Progress from 'react-native-progress';
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { useState } from 'react'; 
+import { useSelector } from 'react-redux';
 
 
 const BACKEND_ADDRESS = 'https://cookingeasy-backend.vercel.app';
 
 export default function EquipementScreen ({navigation}) {
+
   const [isFourClicked, setIsFourClicked] = useState(false); // Ajout d'un état local pour indiquer si l'image du four a été cliquée ou non
   const [isFriteuseClicked, setIsFriteuseClicked] = useState(false);  
   const [isMicroOndesClicked, setIsMicroOndesClicked] = useState(false); 
   const [isMixeurClicked, setIsMixeurClicked] = useState(false);  
   const [isPlaqueClicked, setIsPlaqueClicked] = useState(false);  
   const [isRobotClicked, setIsRobotClicked] = useState(false);  
+  const user = useSelector((state) => state.user.value);
 
-  const handleNextPress = () => {
     const selectedEquipements = [];
 
     if (isFourClicked) selectedEquipements.push('four');
@@ -25,8 +27,8 @@ export default function EquipementScreen ({navigation}) {
     if (isPlaqueClicked) selectedEquipements.push('plaque');
     if (isRobotClicked) selectedEquipements.push('robot');
 
-    // Envoi des données au backend
-    fetch(`${BACKEND_ADDRESS}/preferences/equipement`, {
+  const handleNextPress = () => {
+    fetch('http://192.168.0.12:3000/preferences/equipement', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -37,7 +39,8 @@ export default function EquipementScreen ({navigation}) {
         plaque: isPlaqueClicked,
         friteuse: isFriteuseClicked,
         robot: isRobotClicked,
-        microondes: isMicroOndesClicked
+        microondes: isMicroOndesClicked,
+        token: user.token
       })
     })
     .then(response => response.json())
@@ -98,7 +101,7 @@ export default function EquipementScreen ({navigation}) {
             <FontAwesome name="arrow-left" size={15} color="white"/>
       </TouchableOpacity>
 
-          <TouchableOpacity style={styles.suivant} activeOpacity={0.8}>
+          <TouchableOpacity style={styles.suivant} activeOpacity={0.8} onPress={handleNextPress}>
             <Text style={styles.textButton}>Suivant</Text>
       </TouchableOpacity>
 
@@ -106,7 +109,7 @@ export default function EquipementScreen ({navigation}) {
       </View>
 
       <View> 	
-        <Progress.Bar width={250} borderWidth={1} progress={0.2} height={15} color={'#FA8C8E'} indeterminateAnimationDuration={2000} />
+        <Progress.Bar width={250} borderWidth={1} progress={0.3} height={15} color={'#FA8C8E'} indeterminateAnimationDuration={2000} />
       </View>
 
     </View>

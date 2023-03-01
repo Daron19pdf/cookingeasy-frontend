@@ -2,12 +2,39 @@ import { StyleSheet, Text, View , TouchableOpacity, KeyboardAvoidingView, Platfo
 import * as Progress from 'react-native-progress';
 import { useState } from 'react'; 
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import { useSelector } from 'react-redux';
 
 
 export default function FoyerScreen({ navigation }) {
   const [count1, setCount1] = useState(0);
   const [count2, setCount2] = useState(0);
 
+  const user = useSelector((state) => state.user.value);
+  console.log(user)
+
+  const handleValidationFoyer = () => {
+    fetch('http://192.168.0.12:3000/preferences/foyer', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        nombrePersonne: count1,
+        nombreRecette: count2,
+        token : user.token
+      })
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log(data);
+          setCount1('');
+          setCount2('');
+        navigation.navigate("EquipementScreen");
+    })
+    .catch(error => {
+      console.error(error);
+    });
+  }
     return (
         <KeyboardAvoidingView style={styles.container} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
         <Text style={styles.title}>Mon Foyer</Text>
@@ -49,7 +76,7 @@ export default function FoyerScreen({ navigation }) {
 
         <TouchableOpacity style={styles.next}
             title="Suivant"
-            onPress={() => navigation.navigate('EquipementScreen')} >
+            onPress={handleValidationFoyer} >
             <Text style={styles.Suivant}>Suivant</Text>
             </TouchableOpacity>
         </View>
