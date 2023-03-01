@@ -15,45 +15,53 @@ import {
   KeyboardAvoidingView,
 } from 'react-native';
 
-export default function IngredientExclu({ navigation }) {
+export default function AlimentExcluScreen({ navigation }) {
 
   const BACKEND_ADDRESS = 'https://cookingeasy-backend.vercel.app';
+  const User = useSelector((state) => state.user.value);
   const dispatch = useDispatch();
   const TabIngredients = useSelector((state) => state.ingredient.value);
   const [ingredients, setIngredients] = useState("");
   const [suggestions, setSuggestions] = useState([]);
-
+  console.log(TabIngredients);
+  
   //ligne de data pour test autocomplete
   const data = ["pomme","poire","banane","citron","orange","kiwi","ananas","mangue","pêche","fraise","framboise","cerise","raisin","melon","pastèque","tomate","courgette","aubergine","poivron","carotte","oignon","ail","poireau","chou","brocoli","champignon","pomme de terre","haricot","laitue","salade","choux","chou-fleur","navet","betterave","radis","concombre","asperge","épinard","cresson","mâche","endive","chicorée","cresson","ciboulette","persil","basilic","thym","romarin","sauge","menthe","coriandre","piment","poivre","sel","sucre","farine","riz","pâtes","pâte"];
   
   //click sur le bouton ok pour ajouter l'ingrédient dans le store
   const handleClick = () => {
     dispatch(addIngredientToStore(ingredients));
+    setIngredients("");
+  };
+  
+  const next = () => {
+    const listIngredients = TabIngredients.join();
 
     fetch(`${BACKEND_ADDRESS}/preferences/alimentexclus`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        exclus: TabIngredients,
-        Token : 'rUGYiizO7gbAB0OEpNwrkiP2TexkVjoB',
+        exclus: listIngredients,
+        token : User.token
       })
     })
     .then(response => response.json())
     .then(data => {
-      console.log(data);
+      console.log(data);      
     })
     .catch(error => {
       console.error(error);
     });
-    setIngredients("");
-  };
+
+    navigation.navigate('HomeScreen');
+  }
+
 
   //affichage des ingrédients du store
   let newIngredient = <Text style={styles.exemple}>Exemples : Oeuf, ail, fruits sec, etc ...</Text> 
       if (TabIngredients.length > 0) {
         newIngredient = TabIngredients.map((data, i) => {
+          console.log(data)
           return (
             <TouchableOpacity key={i} style={styles.item}  onPress={() => dispatch(removeIngredientToStore(data))} >
               <View>
@@ -101,7 +109,7 @@ export default function IngredientExclu({ navigation }) {
              <TouchableOpacity style={styles.previous} onPress={() => navigation.navigate('RegimeScreen')}>
                 <FontAwesome name='arrow-left' size={15} color={'#fff'} />
              </TouchableOpacity>
-                 <TouchableOpacity style={styles.next} onPress={() => navigation.navigate('HomeScreen')}>
+                 <TouchableOpacity style={styles.next} onPress={() => next()}>
                  <Text style={styles.buttonText}>Fin</Text>
                  <FontAwesome name='arrow-right' size={15} color={'#fff'}/>
              </TouchableOpacity>
