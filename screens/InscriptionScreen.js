@@ -3,8 +3,12 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { useDispatch, useSelector, useEffect } from 'react-redux';
 import { useState } from 'react';
 import { login } from '../reducers/user';
+// Grabbed from emailregex.com
+const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
 
 export default function InscriptionScreen({ navigation }) {
+  
   const BACKEND_ADDRESS = 'https://cookingeasy-backend.vercel.app/';
   const dispatch = useDispatch();
 
@@ -14,6 +18,8 @@ export default function InscriptionScreen({ navigation }) {
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const [focusedInput, setFocusedInput] = useState('');
+  const [emailError, setEmailError] = useState(false);
+  const [formValid, setFormValid] = useState(true);
 
   const handleFocus = (inputName) => {
     setFocusedInput(inputName);
@@ -24,7 +30,7 @@ export default function InscriptionScreen({ navigation }) {
   };
 
   const handleValidation = () => {
-    fetch('http://192.168.10.148:3000/user/signup', {
+    fetch('http://192.168.0.12:3000/user/signup', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
@@ -44,19 +50,31 @@ export default function InscriptionScreen({ navigation }) {
           setPrenom('');
           setPassword('');
           setEmail('');
-        navigation.navigate("InfoScreen");
+        if (!EMAIL_REGEX.test(email)) {
+          setEmailError(true)
+        } else {
+          navigation.navigate("InfoScreen");
+        }
     })
     .catch(error => {
       console.error(error);
     });
   }
   
- 
+  const handleFormValidation = () => {
+    if (!pseudo || !nom || !prenom || !password || !email) {
+      setFormValid(false);
+      alert("Tous les champs doivent être remplis");
+    } else {
+      setFormValid(true);
+      handleValidation();
+    }
+  }
 
   return (
     <View style={styles.container}>
     <View style={styles.header}>
-    <FontAwesome name='arrow-left' size={20} color='#FA8C8E' style={styles.icon}/>
+    <FontAwesome name='arrow-left' size={20} color='#FA8C8E' style={styles.icon} onPress={() => navigation.navigate('BienvenueScreen')}/>
     <Text style={styles.headerText}>Inscription</Text>
     </View>
     <View style={styles.inputContainer}>
@@ -103,6 +121,7 @@ export default function InscriptionScreen({ navigation }) {
                 styles.input,
                 focusedInput === 'password' && styles.focusedInput,
               ]}
+            secureTextEntry={true}
       />
       <TextInput 
             placeholder="Email"
@@ -116,7 +135,13 @@ export default function InscriptionScreen({ navigation }) {
               ]}
       />
     </View>
-    <TouchableOpacity onPress={handleValidation} style={[styles.button2, { width: 150 }]}>
+    {emailError && <Text style={styles.error}>Invalid email address</Text>}
+    <TouchableOpacity onPress={handleFormValidation}
+        style={[
+          styles.button2,
+          { width: 150 },
+          !formValid && { opacity: 0.5, backgroundColor: 'grey' }
+        ]}>
           <Text style={styles.buttonText2}>Valider</Text>
     </TouchableOpacity>
     <TouchableOpacity style={[styles.button, { width: 300 }]}>
@@ -225,5 +250,9 @@ const styles = StyleSheet.create({
   },
   checkbox: {
     alignSelf: 'center',
-}
+},
+  error: {
+  marginTop: 10,
+  color: 'red',
+},
 });

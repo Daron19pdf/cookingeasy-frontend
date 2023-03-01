@@ -35,7 +35,7 @@ export default function RegimeScreen({ navigation }) {
   // }
 
     const handleValidation = () => {
-    fetch('http://192.168.10.148:3000/preferences/regime', {
+    fetch('http://192.168.0.12:3000/preferences/regime', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
