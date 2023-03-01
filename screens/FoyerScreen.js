@@ -13,7 +13,7 @@ export default function FoyerScreen({ navigation }) {
   console.log(user)
 
   const handleValidationFoyer = () => {
-    fetch('http://192.168.0.12:3000/preferences/foyer', {
+    fetch('http://192.168.10.148:3000/preferences/foyer', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
