@@ -47,6 +47,7 @@ export default function InscriptionScreen({ navigation }) {
           setEmail('');
         navigation.navigate("InfoScreen");
       console.log(data);
+      console.log(token);
     })
     .catch(error => {
       console.error(error);
