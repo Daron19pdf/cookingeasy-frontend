@@ -24,7 +24,7 @@ export default function InscriptionScreen({ navigation }) {
   };
 
   const handleValidation = () => {
-    fetch('http://192.168.0.12:3000/user/signup', {
+    fetch('http://192.168.10.148:3000/user/signup', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
