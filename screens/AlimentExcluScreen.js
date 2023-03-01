@@ -18,6 +18,8 @@ import {
 export default function IngredientExclu({ navigation }) {
 
   const BACKEND_ADDRESS = 'https://cookingeasy-backend.vercel.app';
+  const User = useSelector((state) => state.user.value);
+  console.log(User.token);
   const dispatch = useDispatch();
   const TabIngredients = useSelector((state) => state.ingredient.value);
   const [ingredients, setIngredients] = useState("");
@@ -30,15 +32,15 @@ export default function IngredientExclu({ navigation }) {
   const handleClick = () => {
     dispatch(addIngredientToStore(ingredients));
 
+    const test = {
+      exclus: TabIngredients,
+      token : User.token
+    }
+
     fetch(`${BACKEND_ADDRESS}/preferences/alimentexclus`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        exclus: TabIngredients,
-        Token : 'rUGYiizO7gbAB0OEpNwrkiP2TexkVjoB',
-      })
+      headers: {'Content-Type': 'application/json' },
+      body: JSON.stringify({test})
     })
     .then(response => response.json())
     .then(data => {

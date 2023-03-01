@@ -123,7 +123,6 @@ const styles = StyleSheet.create({
     marginTop: 40,
     marginBottom: 20,
     textAlign: 'center',
-    fontFamily: 'Helvetica',
   },
 
   four: {
@@ -268,8 +267,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: 'white',
     padding: 10,
-    fontFamily: 'Helvetica',
-  },
+    },
   previous: {
     width: 40,
     height: 40,

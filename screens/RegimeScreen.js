@@ -9,6 +9,7 @@ import user from '../reducers/user';
 //import CheckBox from '@react-native-community/checkbox';
 
 export default function RegimeScreen({ navigation }) {
+  const BACKEND_ADDRESS = 'https://cookingeasy-backend.vercel.app';
 
   const user = useSelector((state) => state.user.value);
   console.log(user)
@@ -16,6 +17,7 @@ export default function RegimeScreen({ navigation }) {
   const [isVegetarien, setVegetarien] = useState(false);
   const [isPescetarien, setPescetarien] = useState(false);
   const [isPorc, setPorc] = useState(false);
+  const [isLactose, setLactose] = useState(false);
   const [isGluten, setGluten] = useState(false);
   const [isAlcool, setAlcool] = useState(false);
   const [isNone, setNone] = useState(false);

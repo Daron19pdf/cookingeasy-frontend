@@ -10,7 +10,7 @@ export default function InfoScreen({navigation}) {
       <Text style={styles.mainText}>Vous vous apprêtez à compléter un formulaire en 4 étapes. Cela ne prendra pas plus d'une minute !</Text>
       <TouchableOpacity
             style={styles.previousButton} onPress={() => navigation.navigate("InscriptionScreen")}>
-            <FontAwesome name="arrow-left" size="15" color="white"/>
+            <FontAwesome name="arrow-left" size={15} color="white"/>
       </TouchableOpacity>
         <TouchableOpacity style={styles.button2} onPress={() => navigation.navigate("FoyerScreen")}>
           <Text style={styles.buttonText2}>Suivant</Text>
@@ -31,7 +31,6 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 45,
     fontWeight: '600',
-    fontFamily: 'Helvetica',
     marginBottom: 40,
     alignItems: "center",
     textAlign: "center",
