@@ -26,7 +26,7 @@ export default function EquipementScreen ({navigation}) {
     if (isRobotClicked) selectedEquipements.push('robot');
 
     // Envoi des données au backend
-    fetch(`${BACKEND_ADDRESS}/preferences/equipement`, {
+    fetch(`http://localhost:3000/preferences/equipement`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -43,11 +43,12 @@ export default function EquipementScreen ({navigation}) {
     .then(response => response.json())
     .then(data => {
       console.log(data);
-      navigation.navigate("RegimeScreen");
     })
     .catch(error => {
       console.error(error);
     });
+
+    navigation.navigate("RegimeScreen");
   };
 
   return (
@@ -98,7 +99,7 @@ export default function EquipementScreen ({navigation}) {
             <FontAwesome name="arrow-left" size={15} color="white"/>
       </TouchableOpacity>
 
-          <TouchableOpacity style={styles.suivant} activeOpacity={0.8}>
+          <TouchableOpacity style={styles.suivant} activeOpacity={0.8} onPress={() => navigation.navigate("AlimentExcluScreen")}>
             <Text style={styles.textButton}>Suivant</Text>
       </TouchableOpacity>
 

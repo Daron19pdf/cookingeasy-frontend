@@ -19,11 +19,12 @@ export default function IngredientExclu({ navigation }) {
 
   const BACKEND_ADDRESS = 'https://cookingeasy-backend.vercel.app';
   const User = useSelector((state) => state.user.value);
-  console.log(User.token);
+  console.log(User);
   const dispatch = useDispatch();
   const TabIngredients = useSelector((state) => state.ingredient.value);
   const [ingredients, setIngredients] = useState("");
   const [suggestions, setSuggestions] = useState([]);
+  console.log(TabIngredients);
 
   //ligne de data pour test autocomplete
   const data = ["pomme","poire","banane","citron","orange","kiwi","ananas","mangue","pêche","fraise","framboise","cerise","raisin","melon","pastèque","tomate","courgette","aubergine","poivron","carotte","oignon","ail","poireau","chou","brocoli","champignon","pomme de terre","haricot","laitue","salade","choux","chou-fleur","navet","betterave","radis","concombre","asperge","épinard","cresson","mâche","endive","chicorée","cresson","ciboulette","persil","basilic","thym","romarin","sauge","menthe","coriandre","piment","poivre","sel","sucre","farine","riz","pâtes","pâte"];
@@ -32,25 +33,26 @@ export default function IngredientExclu({ navigation }) {
   const handleClick = () => {
     dispatch(addIngredientToStore(ingredients));
 
-    const test = {
-      exclus: TabIngredients,
-      token : User.token
-    }
-
-    fetch(`${BACKEND_ADDRESS}/preferences/alimentexclus`, {
+    fetch(`http://192.168.10.148:3000/preferences/alimentexclus`, {
       method: 'POST',
-      headers: {'Content-Type': 'application/json' },
-      body: JSON.stringify({test})
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        exclus: "oignon",
+        Token : User.token
+      })
     })
     .then(response => response.json())
     .then(data => {
       console.log(data);
+      setIngredients("");
+        
     })
     .catch(error => {
       console.error(error);
     });
-    setIngredients("");
   };
+  
+
 
   //affichage des ingrédients du store
   let newIngredient = <Text style={styles.exemple}>Exemples : Oeuf, ail, fruits sec, etc ...</Text> 

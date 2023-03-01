@@ -24,11 +24,9 @@ export default function InscriptionScreen({ navigation }) {
   };
 
   const handleValidation = () => {
-    fetch(`${BACKEND_ADDRESS}/user/signup`, {
+    fetch('http://192.168.10.148:3000/user/signup', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
+      headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
         pseudo: pseudo,
         nom: nom,
@@ -47,7 +45,6 @@ export default function InscriptionScreen({ navigation }) {
           setEmail('');
         navigation.navigate("InfoScreen");
       console.log(data);
-      console.log(token);
     })
     .catch(error => {
       console.error(error);
