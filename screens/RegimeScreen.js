@@ -39,6 +39,7 @@ export default function RegimeScreen({ navigation }) {
         Vegetarien: isVegetarien,
         Pescetarien: isPescetarien,
         Porc: isPorc,
+        Lactose: isLactose,
         Gluten: isGluten,
         Alcool: isAlcool,
         None: isNone,
