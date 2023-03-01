@@ -37,7 +37,7 @@ export default function AlimentExcluScreen({ navigation }) {
   const next = () => {
     const listIngredients = TabIngredients.join();
 
-    fetch(`http://192.168.10.148:3000/preferences/alimentexclus`, {
+    fetch(`${BACKEND_ADDRESS}/preferences/alimentexclus`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({

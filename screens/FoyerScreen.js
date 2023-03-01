@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 
 
 export default function FoyerScreen({ navigation }) {
+  const BACKEND_ADDRESS = 'https://cookingeasy-backend.vercel.app/';
   const [count1, setCount1] = useState(0);
   const [count2, setCount2] = useState(0);
 
@@ -13,7 +14,7 @@ export default function FoyerScreen({ navigation }) {
   console.log(user)
 
   const handleValidationFoyer = () => {
-    fetch('http://192.168.10.148:3000/preferences/foyer', {
+    fetch(`${BACKEND_ADDRESS}/preferences/foyer`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

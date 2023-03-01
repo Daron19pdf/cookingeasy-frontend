@@ -28,7 +28,7 @@ export default function EquipementScreen ({navigation}) {
     if (isRobotClicked) selectedEquipements.push('robot');
 
   const handleNextPress = () => {
-    fetch('http://192.168.10.148:3000/preferences/equipement', {
+    fetch(`${BACKEND_ADDRESS}/preferences/equipement`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
