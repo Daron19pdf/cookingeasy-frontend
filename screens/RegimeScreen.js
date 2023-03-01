@@ -41,13 +41,14 @@ export default function RegimeScreen({ navigation }) {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        Vegan: isVegan,
-        Vegetarien: isVegetarien,
-        Pescetarien: isPescetarien,
-        Porc: isPorc,
-        Gluten: isGluten,
-        Alcool: isAlcool,
-        None: isNone,
+        vegetarien: isVegetarien,
+        vegan: isVegan,
+        pescetarien: isPescetarien,
+        gluten: isGluten,
+        porc: isPorc, 
+        alcool: isAlcool,
+        lactose: isLactose, 
+        sansRegimeParticulier : isNone,
         token: user.token
       })
     })
@@ -97,6 +98,14 @@ export default function RegimeScreen({ navigation }) {
           iconStyle={{ borderColor: "red" }}
           textStyle={{ textDecorationLine: 'none' }}
         onPress={() => setPorc(true)}
+      />
+      <BouncyCheckbox
+          text="Sans lactose"
+          fillColor="red"
+          marginBottom={15}
+          iconStyle={{ borderColor: "red" }}
+          textStyle={{ textDecorationLine: 'none' }}
+        onPress={() => setLactose(true)}
       />
       <BouncyCheckbox
           text="Sans gluten"

@@ -15,11 +15,11 @@ import {
   KeyboardAvoidingView,
 } from 'react-native';
 
-export default function IngredientExclu({ navigation }) {
+export default function AlimentExcluScreen({ navigation }) {
 
   const BACKEND_ADDRESS = 'https://cookingeasy-backend.vercel.app';
-  const User = useSelector((state) => state.user.value);
-  console.log(User);
+  const user = useSelector((state) => state.user.value);
+  console.log(user);
   const dispatch = useDispatch();
   const TabIngredients = useSelector((state) => state.ingredient.value);
   const [ingredients, setIngredients] = useState("");
@@ -37,8 +37,8 @@ export default function IngredientExclu({ navigation }) {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        exclus: "oignon",
-        Token : User.token
+        exclus: TabIngredients,
+        token : user.token
       })
     })
     .then(response => response.json())
