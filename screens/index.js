@@ -17,6 +17,9 @@ import {
         <TouchableOpacity style={styles.next} onPress={() => navigation.navigate('AlimentExcluScreen')}>
           <Text style={styles.buttonText}>AlimentExcluScreen</Text>
         </TouchableOpacity>
+        <TouchableOpacity style={styles.next} onPress={() => navigation.navigate('ConnectionScreen')}>
+          <Text style={styles.buttonText}>ConnectionScreen</Text>
+        </TouchableOpacity>
         <TouchableOpacity style={styles.next} onPress={() => navigation.navigate('FoyerScreen')}>
           <Text style={styles.buttonText}>Foyer  Screen</Text>
         </TouchableOpacity>

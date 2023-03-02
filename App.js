@@ -24,6 +24,7 @@ import MenuScreen from './screens/MenuScreen';
 import NewRecetteScreen from './screens/NewRecetteScreen';
 import PrefSemaineScreen from './screens/PrefSemaineScreen';
 import ProfilScreen from './screens/ProfilScreen';
+import ConnectionScreen from './screens/ConnectionScreen';
 
 
 
@@ -41,6 +42,7 @@ export default function App() {
       <NavigationContainer style={styles.container}>
        <Stack.Navigator screenOptions={{ headerShown: false }}>
        <Stack.Screen name="Index" component={Index} />
+       <Stack.Screen name="ConnectionScreen" component={ConnectionScreen} /> 
        <Stack.Screen name="AlimentExcluScreen" component={AlimentExcluScreen} /> 
         <Stack.Screen name="RegimeScreen" component={RegimeScreen} />
         <Stack.Screen name="BienvenueScreen" component={BienvenueScreen} />
