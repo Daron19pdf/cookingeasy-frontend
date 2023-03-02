@@ -1,6 +1,6 @@
 import {ScrollView, StyleSheet, Text, View , TouchableOpacity, Image } from 'react-native';
 import React from 'react';
-import Menu from '../component/menu';
+import Menu from '../component/header';
 
 export default function FelicitationScreen({ navigation}) {
   return (

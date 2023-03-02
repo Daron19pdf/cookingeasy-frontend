@@ -2,6 +2,7 @@ import { View, Text, StyleSheet } from 'react-native'
 import React from 'react'
 import Menu from '../component/header';
 
+export default function PrefSemaineScreen({ navigation}) {
   return (
     <ScrollView style={styles.container}>
       <Menu />
