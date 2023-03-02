@@ -16,7 +16,7 @@ export default function InfoScreen({navigation}) {
           <Text style={styles.buttonText2}>Suivant</Text>
           </TouchableOpacity>
       <View style={{ padding: 30,}}> 	
-        <Progress.Bar width={250} borderWidth={1} progress={0.1} height={15} color={'#FA8C8E'} indeterminateAnimationDuration={2000}/>
+        <Progress.Bar width={250} borderWidth={1} progress={0} height={15} color={'#FA8C8E'} indeterminateAnimationDuration={2000}/>
       </View>
     </View>
   )
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     flex:1,
     paddingTop: 100,
     alignItems: 'center',
-    backgroundColor: 'white'
+    backgroundColor: 'white',
   },
   title: {
     fontSize: 45,

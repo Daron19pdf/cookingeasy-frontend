@@ -4,14 +4,44 @@ import { Header } from 'react-native-elements'
 import { useState } from 'react';
 import Modal from 'react-native-modal';
 import FontAwesome from "react-native-vector-icons/FontAwesome";
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
+import { logout } from '../reducers/user';
 
 
 export default function Menu() {
+  const BACKEND_ADDRESS = 'https://cookingeasy-backend.vercel.app/';
   const navigation = useNavigation();
   const User = useSelector((state) => state.user.value);
   const [isModalVisible, setModalVisible] = useState(false);
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    dispatch(logout());
+    navigation.navigate('BienvenueScreen');
+    setModalVisible(false);
+  };
+
+  const handleDeleteAccount = () => {
+    const token = User.token;
+    fetch(`${BACKEND_ADDRESS}/user/${token}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => response.json())
+    .then(data => {
+    console.log(data.message); 
+    dispatch(logout());
+    navigation.navigate('BienvenueScreen');
+    setModalVisible(false);
+    })
+    .catch(error => {
+      console.error(error);
+    });
+  };
+  
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
@@ -22,6 +52,8 @@ export default function Menu() {
         leftComponent={{ icon: 'menu', color: '#fff' , onPress:(toggleModal) }} 
         centerComponent={{ text: 'Cooking Easy', style: { color: '#fff' } , img: require('../assets/COOKING_EASY.png'), imgStyle: {width: 100, height: 100} , onPress: () => navigation.navigate('HomeScreen') }}
      />
+     <View style={styles.container}>
+    </View>
     <View style={styles.container}>
       <ScrollView>
         <Modal 
@@ -43,7 +75,7 @@ export default function Menu() {
             <Text style={{fontSize: 20, fontWeight: 'bold', margin: 15, textAlign: 'center'}}>Mon tableau de bord</Text>
             <View style={styles.align}>
             <FontAwesome name='home' size={20} color='#FA8C8E' style={styles.icon}/>
-            <Text style={{fontSize: 15, fontWeight: 'bold', margin:15}} onPress={() =>navigation.navigate('HomeScreen')} >Accueil</Text>
+            <Text style={{fontSize: 15, fontWeight: 'bold', margin:15}}  onPress={() =>navigation.navigate('HomeScreen')} >Accueil</Text>
             </View>
             <View style={styles.align} >
             <FontAwesome name='spoon' size={20} color='#FA8C8E' style={styles.icon}/>
@@ -64,11 +96,11 @@ export default function Menu() {
 
           </View>
           <View style={styles.bottomContainer}>
-            <Image source={require('../assets/cute.jpg')} style={{width: 200, height: 100}} />
+            <Text style={{fontSize: 20, fontWeight: 'bold', margin: 15}}>Mon profil</Text>
             </View>
             <View style={styles.deco}>
-              <Text style={{fontSize: 15, margin:5}}>Deconnexion</Text>
-              <Text style={{fontSize: 15,  margin:5}}>Supprimer votre compte</Text>
+              <Text style={{fontSize: 15, margin:5}} onPress={handleLogout}>Deconnexion</Text>
+              <Text style={{fontSize: 15,  margin:5}} onPress={handleDeleteAccount}>Supprimer votre compte</Text>
             </View>
           </View>
         </Modal>
@@ -93,6 +125,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  
   imgContainer: {
     padding: 10,
     margin: 5,
@@ -103,6 +136,7 @@ const styles = StyleSheet.create({
     borderColor: '#f4511e',
     borderWidth: 2,
   },
+
   sommaireContainer: {
     padding: 10,
     borderColor: '#f4511e',
@@ -114,6 +148,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 10,
   },
+
   containerModal: {
     flex: 1,
     justifyContent: 'center',
@@ -130,7 +165,6 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     margin: 5,
     borderRadius: 10,
-    alignItems: 'center',
   },
   deco: {
     justifyContent: 'center',

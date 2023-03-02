@@ -26,7 +26,12 @@ import NewRecetteScreen from './screens/NewRecetteScreen';
 import PrefSemaineScreen from './screens/PrefSemaineScreen';
 import ProfilScreen from './screens/ProfilScreen';
 import ConnectionScreen from './screens/ConnectionScreen';
-import Menu from './component/menu';
+import Menu from './component/header';
+import CuisineEtape1Screen from './screens/CuisineEtape1Screen';
+import CuisineEtape2Screen from './screens/CuisineEtape2Screen';
+import CuisineEtape3Screen from './screens/CuisineEtape3Screen';
+
+
 
 
 const Stack = createNativeStackNavigator();
@@ -60,6 +65,9 @@ export default function App() {
         <Stack.Screen name="NewRecetteScreen" component={NewRecetteScreen} />
         <Stack.Screen name="PrefSemaineScreen" component={PrefSemaineScreen} />
         <Stack.Screen name="ProfilScreen" component={ProfilScreen} />
+        <Stack.Screen name="CuisineEtape1Screen" component={CuisineEtape1Screen} />
+        <Stack.Screen name="CuisineEtape2Screen" component={CuisineEtape2Screen} />
+        <Stack.Screen name="CuisineEtape3Screen" component={CuisineEtape3Screen} />
        </Stack.Navigator>
        </NavigationContainer>
       </Provider>

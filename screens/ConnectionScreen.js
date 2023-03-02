@@ -85,6 +85,7 @@ export default function ConnectionScreen({ navigation }) {
       />
       
     </View>
+    
     <TouchableOpacity onPress={handleFormValidation}
         style={[
           styles.button2,
