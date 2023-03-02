@@ -4,14 +4,39 @@ import { Header } from 'react-native-elements'
 import { useState } from 'react';
 import Modal from 'react-native-modal';
 import FontAwesome from "react-native-vector-icons/FontAwesome";
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 
 
 export default function Menu() {
+  const BACKEND_ADDRESS = 'https://cookingeasy-backend.vercel.app/';
   const navigation = useNavigation();
   const User = useSelector((state) => state.user.value);
   const [isModalVisible, setModalVisible] = useState(false);
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    dispatch(logout());
+    navigation.navigate('BienvenueScreen')
+  };
+
+  const handleDeleteAccount = () => {
+    fetch(`${BACKEND_ADDRESS}/user/delete`, {
+      method: 'DELETE',
+    headers: {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer ' + User.token, 
+  },
+})
+  .then(response => response.json())
+  .then(data => {
+    console.log(data); 
+    handleLogout();
+  })
+  .catch(error => {
+    console.error(error);
+  });
+  };
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
@@ -67,7 +92,7 @@ export default function Menu() {
             <Image source={require('../assets/cute.jpg')} style={{width: 200, height: 100}} />
             </View>
             <View style={styles.deco}>
-              <Text style={{fontSize: 15, margin:5}}>Deconnexion</Text>
+              <Text style={{fontSize: 15, margin:5}} onPress={handleLogout}>Deconnexion</Text>
               <Text style={{fontSize: 15,  margin:5}}>Supprimer votre compte</Text>
             </View>
           </View>
