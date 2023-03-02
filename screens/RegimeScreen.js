@@ -22,18 +22,6 @@ export default function RegimeScreen({ navigation }) {
   const [isAlcool, setAlcool] = useState(false);
   const [isNone, setNone] = useState(false);
 
-  // const handleNextPress = () => {
-  //   const selectedRegime = [];
-
-  //   if (isVegan) selectedRegime.push('Vegan');
-  //   if (isVegetarien) selectedRegime.push('Végétarien');
-  //   if (isPescetarien) selectedRegime.push('Péscétarien');
-  //   if (isPorc) selectedRegime.push('Sans Porc');
-  //   if (isGluten) selectedRegime.push('Sans Gluten');
-  //   if (isAlcool) selectedRegime.push('sans Alcool');
-  //   if (isNone) selectedRegime.push('None');
-  // }
-
     const handleValidation = () => {
     fetch(`${BACKEND_ADDRESS}/preferences/regime`, {
       method: 'POST',
