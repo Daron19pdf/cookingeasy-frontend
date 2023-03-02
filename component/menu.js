@@ -6,6 +6,7 @@ import Modal from 'react-native-modal';
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
+import { logout } from '../reducers/user';
 
 
 export default function Menu() {
@@ -21,22 +22,24 @@ export default function Menu() {
   };
 
   const handleDeleteAccount = () => {
-    fetch(`${BACKEND_ADDRESS}/user/delete`, {
+    const token = User.token;
+    fetch(`${BACKEND_ADDRESS}/user/${token}`, {
       method: 'DELETE',
-    headers: {
-    'Content-Type': 'application/json',
-    'Authorization': 'Bearer ' + User.token, 
-  },
-})
-  .then(response => response.json())
-  .then(data => {
-    console.log(data); 
-    handleLogout();
-  })
-  .catch(error => {
-    console.error(error);
-  });
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => response.json())
+    .then(data => {
+    console.log(data.message); 
+    dispatch(logout());
+    navigation.navigate('BienvenueScreen')
+    })
+    .catch(error => {
+      console.error(error);
+    });
   };
+  
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
@@ -93,7 +96,7 @@ export default function Menu() {
             </View>
             <View style={styles.deco}>
               <Text style={{fontSize: 15, margin:5}} onPress={handleLogout}>Deconnexion</Text>
-              <Text style={{fontSize: 15,  margin:5}}>Supprimer votre compte</Text>
+              <Text style={{fontSize: 15,  margin:5}} onPress={handleDeleteAccount}>Supprimer votre compte</Text>
             </View>
           </View>
         </Modal>
