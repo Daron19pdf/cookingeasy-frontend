@@ -23,7 +23,6 @@ export default function Menu() {
         centerComponent={{ text: 'Cooking Easy', style: { color: '#fff' } , img: require('../assets/COOKING_EASY.png'), imgStyle: {width: 100, height: 100} , onPress: () => navigation.navigate('HomeScreen') }}
      />
      <View style={styles.container}>
-      <Text>Bonjour {User.pseudo} !</Text>
     </View>
     <View style={styles.container}>
       <ScrollView>
@@ -92,10 +91,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+
   centeredView: {
     justifyContent: 'center',
     alignItems: 'center',
   },
+
   imgContainer: {
     padding: 10,
     margin: 5,
@@ -106,6 +107,7 @@ const styles = StyleSheet.create({
     borderColor: '#f4511e',
     borderWidth: 2,
   },
+
   sommaireContainer: {
     padding: 10,
     borderColor: '#f4511e',
@@ -117,6 +119,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 10,
   },
+
   containerModal: {
     flex: 1,
     justifyContent: 'center',
@@ -134,10 +137,12 @@ const styles = StyleSheet.create({
     margin: 5,
     borderRadius: 10,
   },
+  
   deco: {
     justifyContent: 'center',
     alignItems: 'center',
   },
+
   align: {
     flexDirection: 'row',
     alignItems: 'center',
