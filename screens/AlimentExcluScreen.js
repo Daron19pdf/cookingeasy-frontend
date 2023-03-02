@@ -114,7 +114,7 @@ export default function AlimentExcluScreen({ navigation }) {
                  <FontAwesome name='arrow-right' size={15} color={'#fff'}/>
              </TouchableOpacity>
              </View>
-                <Progress.Bar width={250} borderWidth={1} progress={0.8} height={15} color={'#FA8C8E'} indeterminateAnimationDuration={2000} />
+                <Progress.Bar width={250} borderWidth={1} progress={1} height={15} color={'#FA8C8E'} indeterminateAnimationDuration={2000} />
              </View>
     </KeyboardAvoidingView>
   );

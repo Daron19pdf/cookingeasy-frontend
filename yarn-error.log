@@ -3,6 +3,10 @@ Arguments:
 
 PATH: 
   C:\Users\daron\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\daron\bin;C:\Python311\Scripts;C:\Python311;C:\Python310\Scripts;C:\Python310;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Windows\System32\OpenSSH;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\ProgramData\chocolatey\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\WINDOWS\System32\OpenSSH;C:\Program Files\nodejs;C:\Program Files\Git\cmd;C:\Users\daron\AppData\Local\Programs\Eclipse Adoptium\jdk-17.0.3.7-hotspot\bin;C:\Users\daron\AppData\Local\Microsoft\WindowsApps;C:\Users\daron\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\daron\AppData\Roaming\npm;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl
+  /usr/local/bin/node /usr/local/bin/yarn install
+
+PATH: 
+  /usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin
 
 Yarn version: 
   1.22.19
@@ -11,18 +15,18 @@ Node version:
   18.12.1
 
 Platform: 
-  win32 x64
+  darwin x64
 
 Trace: 
-  SyntaxError: Unknown token: { line: 5111, col: 1, type: 'INVALID', value: undefined } 5111:1 in C:\Users\daron\Desktop\CookingEasy\frontend\yarn.lock
-      at Parser.unexpected (C:\Users\daron\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:63491:11)
-      at Parser.parse (C:\Users\daron\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:63622:14)
-      at parse (C:\Users\daron\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:63696:21)
-      at module.exports.exports.default (C:\Users\daron\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:63258:96)
-      at Function.<anonymous> (C:\Users\daron\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:3068:63)
+  SyntaxError: Unknown token: { line: 5111, col: 1, type: 'INVALID', value: undefined } 5111:1 in /Users/narcisse/MBC/cookingeasy-frontend/yarn.lock
+      at Parser.unexpected (/usr/local/lib/node_modules/yarn/lib/cli.js:63491:11)
+      at Parser.parse (/usr/local/lib/node_modules/yarn/lib/cli.js:63622:14)
+      at parse (/usr/local/lib/node_modules/yarn/lib/cli.js:63696:21)
+      at module.exports.exports.default (/usr/local/lib/node_modules/yarn/lib/cli.js:63258:96)
+      at Function.<anonymous> (/usr/local/lib/node_modules/yarn/lib/cli.js:3068:63)
       at Generator.next (<anonymous>)
-      at step (C:\Users\daron\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:310:30)
-      at C:\Users\daron\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:321:13
+      at step (/usr/local/lib/node_modules/yarn/lib/cli.js:310:30)
+      at /usr/local/lib/node_modules/yarn/lib/cli.js:321:13
 
 npm manifest: 
   {

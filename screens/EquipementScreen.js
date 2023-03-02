@@ -12,8 +12,8 @@ export default function EquipementScreen ({navigation}) {
 
   const [isFourClicked, setIsFourClicked] = useState(false); // Ajout d'un état local pour indiquer si l'image du four a été cliquée ou non
   const [isFriteuseClicked, setIsFriteuseClicked] = useState(false);  
-  const [isMicroOndesClicked, setIsMicroOndesClicked] = useState(false); 
-  const [isMixeurClicked, setIsMixeurClicked] = useState(false);  
+  const [isMicroOndesClicked, setIsMicroOndesClicked] = useState(false);
+  const [isMixeurClicked, setIsMixeurClicked] = useState(false);
   const [isPlaqueClicked, setIsPlaqueClicked] = useState(false);  
   const [isRobotClicked, setIsRobotClicked] = useState(false);  
   const user = useSelector((state) => state.user.value);
@@ -110,7 +110,7 @@ export default function EquipementScreen ({navigation}) {
       </View>
 
       <View> 	
-        <Progress.Bar width={250} borderWidth={1} progress={0.3} height={15} color={'#FA8C8E'} indeterminateAnimationDuration={2000} />
+        <Progress.Bar width={250} borderWidth={1} progress={0.5} height={15} color={'#FA8C8E'} indeterminateAnimationDuration={2000} />
       </View>
 
     </View>
