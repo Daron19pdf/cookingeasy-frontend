@@ -1,10 +1,12 @@
 import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { useSelector } from 'react-redux';
-import Menu from '../component/menu';
+import Menu from '../component/header';
 
 export default function HomeScreen({ navigation}) {
   const User = useSelector((state) => state.user.value);
+
+  
   return (
     <View style={styles.container}>
       <Menu  />

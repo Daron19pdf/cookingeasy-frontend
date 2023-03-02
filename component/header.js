@@ -43,7 +43,7 @@ export default function Menu() {
             <Text style={{fontSize: 20, fontWeight: 'bold', margin: 15, textAlign: 'center'}}>Mon tableau de bord</Text>
             <View style={styles.align}>
             <FontAwesome name='home' size={20} color='#FA8C8E' style={styles.icon}/>
-            <Text style={{fontSize: 15, fontWeight: 'bold', margin:15}} onPress={() =>navigation.navigate('HomeScreen')} >Accueil</Text>
+            <Text style={{fontSize: 15, fontWeight: 'bold', margin:15}}  onPress={() =>navigation.navigate('HomeScreen')} >Accueil</Text>
             </View>
             <View style={styles.align} >
             <FontAwesome name='spoon' size={20} color='#FA8C8E' style={styles.icon}/>
