@@ -28,8 +28,6 @@ export default function FoyerScreen({ navigation }) {
     .then(response => response.json())
     .then(data => {
       console.log(data);
-          setCount1('');
-          setCount2('');
         navigation.navigate("EquipementScreen");
     })
     .catch(error => {

@@ -6,8 +6,9 @@ export default function MenuScreen({ navigation}) {
   return (
     <View style={styles.container}>
       <Menu  />
+      <Text>Menu de la semaine</Text>
      <View style={styles.container}>
-      <Text>Favoris</Text>
+      <Text style={styles.title}>Bonjour !</Text>
       </View>
     </View>
   )
