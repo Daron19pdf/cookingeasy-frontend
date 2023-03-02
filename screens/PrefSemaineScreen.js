@@ -1,6 +1,15 @@
-import { View, Text, StyleSheet } from 'react-native'
-import React from 'react'
+import {ScrollView, StyleSheet, Text, View , TouchableOpacity, Image } from 'react-native';
+import React from 'react';
+import { useState } from 'react'; 
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Menu from '../component/header';
+import { useSelector } from 'react-redux';
+
+export default function PrefSemaineScreen({ navigation }) {
+  const BACKEND_ADDRESS = 'https://cookingeasy-backend.vercel.app/';
+  const [time, setTime] = useState(0);
+  const [difficult, setDifficult] = useState(0);
+  const user = useSelector((state) => state.user.value);
 
 export default function PrefSemaineScreen({ navigation}) {
   return (
@@ -146,7 +155,7 @@ const styles = StyleSheet.create({
 
   assiette: {
       width: 120,
-      height: 120,
+      height: 10,
     marginTop: 20,
   },
   previous: {
