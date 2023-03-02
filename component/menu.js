@@ -18,7 +18,8 @@ export default function Menu() {
 
   const handleLogout = () => {
     dispatch(logout());
-    navigation.navigate('BienvenueScreen')
+    navigation.navigate('BienvenueScreen');
+    setModalVisible(false);
   };
 
   const handleDeleteAccount = () => {
@@ -33,7 +34,8 @@ export default function Menu() {
     .then(data => {
     console.log(data.message); 
     dispatch(logout());
-    navigation.navigate('BienvenueScreen')
+    navigation.navigate('BienvenueScreen');
+    setModalVisible(false);
     })
     .catch(error => {
       console.error(error);
