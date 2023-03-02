@@ -173,7 +173,6 @@ const styles = StyleSheet.create({
   headerText: {
     marginLeft: 70,
     marginTop: -25,
-    fontFamily: 'Helvetica',
     fontWeight: 'bold',
     color: '#636363',
     fontSize: 25,

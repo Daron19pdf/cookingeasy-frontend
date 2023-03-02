@@ -8,6 +8,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import ingredient from './reducers/ingredient';
 import user from './reducers/user';
 
+
 //navigation attente//
 import AlimentExcluScreen from './screens/AlimentExcluScreen';
 import RegimeScreen from './screens/RegimeScreen';
@@ -25,7 +26,7 @@ import NewRecetteScreen from './screens/NewRecetteScreen';
 import PrefSemaineScreen from './screens/PrefSemaineScreen';
 import ProfilScreen from './screens/ProfilScreen';
 import ConnectionScreen from './screens/ConnectionScreen';
-
+import Menu from './component/menu';
 
 
 const Stack = createNativeStackNavigator();
@@ -42,6 +43,7 @@ export default function App() {
       <NavigationContainer style={styles.container}>
        <Stack.Navigator screenOptions={{ headerShown: false }}>
        <Stack.Screen name="Index" component={Index} />
+       <Stack.Screen name="Menu" component={Menu} />
        <Stack.Screen name="ConnectionScreen" component={ConnectionScreen} /> 
        <Stack.Screen name="AlimentExcluScreen" component={AlimentExcluScreen} /> 
         <Stack.Screen name="RegimeScreen" component={RegimeScreen} />
