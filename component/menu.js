@@ -91,12 +91,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-
   centeredView: {
     justifyContent: 'center',
     alignItems: 'center',
   },
-
+  
   imgContainer: {
     padding: 10,
     margin: 5,
@@ -137,12 +136,10 @@ const styles = StyleSheet.create({
     margin: 5,
     borderRadius: 10,
   },
-  
   deco: {
     justifyContent: 'center',
     alignItems: 'center',
   },
-
   align: {
     flexDirection: 'row',
     alignItems: 'center',

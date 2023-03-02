@@ -27,6 +27,7 @@ export default function FoyerScreen({ navigation }) {
     })
     .then(response => response.json())
     .then(data => {
+      console.log(data);
         navigation.navigate("EquipementScreen");
     })
     .catch(error => {

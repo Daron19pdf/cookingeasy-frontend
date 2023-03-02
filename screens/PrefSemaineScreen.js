@@ -88,7 +88,7 @@ export default function PrefSemaineScreen({ navigation }) {
         </TouchableOpacity>
               </View>
         </View>
-        <Image style={styles.assiette} source={require('../assets/excluAssiette.png')} />
+        <Image style={styles.assiette} source={require('../assets/logo-prefSemaine.png')} />
       <TouchableOpacity style={styles.previous} onPress={() => navigation.navigate('MenuScreen')}>
           <FontAwesome name='arrow-right' size={15} color='#ffff' />
       </TouchableOpacity>

@@ -15,10 +15,10 @@ export default function BienvenueScreen ({ navigation }) {
     <View style={styles.container}>
       <Text style={styles.title}>Bienvenue</Text>
         <Image style={styles.image} source={require('../assets/Bienvenue.jpg')} />
-        <TouchableOpacity style={styles.button1}>
+        <TouchableOpacity style={styles.button1} onPress={() => navigation.navigate('ConnectionScreen')}>
           <Text style={styles.text}>Se connecter</Text>
           </TouchableOpacity>
-        <TouchableOpacity style={styles.button2}>
+        <TouchableOpacity style={styles.button2} onPress={() => navigation.navigate('InscriptionScreen')}>
           <Text style={styles.text2}>S'inscrire</Text>
           </TouchableOpacity>
     </View>

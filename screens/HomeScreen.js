@@ -1,4 +1,4 @@
-import { StyleSheet, View, Text, Image, ScrollView } from 'react-native'
+import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { useSelector } from 'react-redux';
 import Menu from '../component/menu';
@@ -8,15 +8,26 @@ export default function HomeScreen({ navigation}) {
   return (
     <View style={styles.container}>
       <Menu  />
+      
      <View style={styles.container}>
-      <Text>Bonjour {User.pseudo} !</Text>
+      <Text style={styles.title}>Bonjour {User.pseudo} !</Text>
+      <TouchableOpacity style={styles.butomTop} onPress={() => navigation.navigate("PrefSemaineScreen")}>
+        <Text style={styles.topText}>Créer un nouveau menu</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.butomMiddle} onPress={() => navigation.navigate("MenuScreen")}>
+        <Text style={styles.middleText}>Mon menu enregistré</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.butomMiddle} onPress={() => navigation.navigate("PrefSemaineScreen")}>
+        <Text style={styles.middleText}>Ma liste de course</Text>
+      </TouchableOpacity>
+      <View >
+        <Image style={styles.image} source={require('../assets/penne.jpg')} />
       </View>
+      </View>
+
     
      
-        
-    
-    
-      
+         
     </View>
    
   )
@@ -25,60 +36,61 @@ export default function HomeScreen({ navigation}) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 0.6,
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  centeredView: {
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  imgContainer: {
-    padding: 10,
-    margin: 5,
-    width: "90%",
-    backgroundColor: '#fff',
-    alignItems: 'center',
+  }, 
+  butomMiddle: {
+    backgroundColor: '#f4511e',
+    margin: 22,
+    width: 200,
+    height: 50,
     borderRadius: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 20,
+  },
+  butomTop: {
+    margin: 22,
+    width: 200,
+    height: 50,
+    borderRadius: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 20,
     borderColor: '#f4511e',
-    borderWidth: 2,
+    borderWidth: 1,
   },
-  sommaireContainer: {
-    padding: 10,
-    borderColor: '#f4511e',
-    width: "90%",
-    borderWidth: 2,
-    margin: 5,
-    zIndex: 0,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    borderRadius: 10,
+  title: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    margin: 15,
+    textAlign: 'center',
   },
-  containerModal: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#fff',
-    borderRadius: 10,
-    width: '80%',
-
-  },
-  bottomContainer: {
-    padding: 10,
-    borderColor: '#f4511e',
-    width: "90%",
-    borderWidth: 2,
-    margin: 5,
-    borderRadius: 10,
-  },
-  deco: {
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  align: {
-    flexDirection: 'row',
+  image: {
+    margin:20,
+    marginTop: 60,
     alignItems: 'center',
     justifyContent: 'center',
+    width: 300,
+    height: '100%',
+    borderRadius: 20,
+    borderTopLeftRadius: 100,
+    borderBottomRightRadius: 100,
+  },
+  middleText: {
+    fontSize: 15,
+    fontWeight: 'bold',
+    margin: 15,
+    textAlign: 'center',
+    color: 'white',
+  },
+  topText: {
+    fontSize: 15,
+    fontWeight: 'bold',
+    margin: 15,
+    textAlign: 'center',
+    color: '#f4511e',
   },
 });
 
