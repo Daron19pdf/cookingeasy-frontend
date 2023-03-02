@@ -50,6 +50,8 @@ export default function Menu() {
         leftComponent={{ icon: 'menu', color: '#fff' , onPress:(toggleModal) }} 
         centerComponent={{ text: 'Cooking Easy', style: { color: '#fff' } , img: require('../assets/COOKING_EASY.png'), imgStyle: {width: 100, height: 100} , onPress: () => navigation.navigate('HomeScreen') }}
      />
+     <View style={styles.container}>
+    </View>
     <View style={styles.container}>
       <ScrollView>
         <Modal 
@@ -92,7 +94,7 @@ export default function Menu() {
 
           </View>
           <View style={styles.bottomContainer}>
-            <Image source={require('../assets/cute.jpg')} style={{width: 200, height: 100}} />
+            <Text style={{fontSize: 20, fontWeight: 'bold', margin: 15}}>Mon profil</Text>
             </View>
             <View style={styles.deco}>
               <Text style={{fontSize: 15, margin:5}} onPress={handleLogout}>Deconnexion</Text>
@@ -121,6 +123,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  
   imgContainer: {
     padding: 10,
     margin: 5,
@@ -131,6 +134,7 @@ const styles = StyleSheet.create({
     borderColor: '#f4511e',
     borderWidth: 2,
   },
+
   sommaireContainer: {
     padding: 10,
     borderColor: '#f4511e',
@@ -142,6 +146,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 10,
   },
+
   containerModal: {
     flex: 1,
     justifyContent: 'center',
@@ -158,7 +163,6 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     margin: 5,
     borderRadius: 10,
-    alignItems: 'center',
   },
   deco: {
     justifyContent: 'center',

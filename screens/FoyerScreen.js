@@ -40,31 +40,31 @@ export default function FoyerScreen({ navigation }) {
         {/* Ajout du nombre de personnes*/}
         <Text style={styles.h1}>Nombre de personnes pour mes recettes :</Text>
       <View style={styles.Button}>
-      <TouchableOpacity style={styles.buttonMax}
-          title= "+"
-            onPress={() => setCount1(count1 + 1)} >
-          <Text style={styles.Operator}>+</Text>
-          </TouchableOpacity>
-        <Text style={styles.Number}>{count1}</Text>
       <TouchableOpacity style={styles.buttonMin}
           title= "-"
             onPress={() => (count1 > 0 && setCount1(count1 - 1))} >
             <Text style={styles.Operator}>-</Text>
           </TouchableOpacity>
+        <Text style={styles.Number}>{count1}</Text>
+      <TouchableOpacity style={styles.buttonMax}
+          title= "+"
+            onPress={() => setCount1(count1 + 1)} >
+          <Text style={styles.Operator}>+</Text>
+          </TouchableOpacity>
         </View>
         {/* Ajout du nombre de recette*/}
       <Text style={styles.h1} >Nombre de recettes pour la semaine :</Text>
       <View style={styles.Button}>
-          <TouchableOpacity style={styles.buttonMax}
-          title= "+"
-            onPress={() => setCount2(count2 + 1)} >
-          <Text style={styles.Operator}>+</Text>
-          </TouchableOpacity>
-      <Text style={styles.Number}>{count2}</Text>
       <TouchableOpacity style={styles.buttonMin}
           title= "-"
             onPress={() => (count2 > 0 && setCount2(count2 - 1))} >
             <Text style={styles.Operator}>-</Text>
+          </TouchableOpacity>
+      <Text style={styles.Number}>{count2}</Text>
+          <TouchableOpacity style={styles.buttonMax}
+          title= "+"
+            onPress={() => setCount2(count2 + 1)} >
+          <Text style={styles.Operator}>+</Text>
           </TouchableOpacity>
         </View>
           {/* Ajout des boutons Suivant et Retour*/}
@@ -80,7 +80,7 @@ export default function FoyerScreen({ navigation }) {
             </TouchableOpacity>
         </View>
 
-         <Progress.Bar width={250} borderWidth={1} progress={0.5} height={15} color={'#FA8C8E'} indeterminateAnimationDuration={2000} />
+         <Progress.Bar width={250} borderWidth={1} progress={0.25} height={15} color={'#FA8C8E'} indeterminateAnimationDuration={2000} />
     </KeyboardAvoidingView>
     );
    }
@@ -129,7 +129,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#FA8C8E',
     borderRadius: 60,
     width: 40,
-    marginRight: 10,
+    marginLeft: 10,
   },
 //Style du Bouton -
   buttonMin: {
@@ -138,7 +138,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#FA8C8E',
     borderRadius: 60,
     width: 40,
-    marginLeft: 10,
+    marginRight: 10,
+    
   },
 //Style du bouton Suivant
   next: {
