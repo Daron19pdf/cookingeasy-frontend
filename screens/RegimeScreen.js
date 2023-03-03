@@ -13,8 +13,9 @@ export default function RegimeScreen({ navigation }) {
 
   const user = useSelector((state) => state.user.value);
   console.log(user)
-  const [isVegan, setVegan] = useState(false);
+  const [isVegetalien, setVegetalien] = useState(false);
   const [isVegetarien, setVegetarien] = useState(false);
+  const [isVegetalien, setVegetalien] = useState(false);
   const [isPescetarien, setPescetarien] = useState(false);
   const [isPorc, setPorc] = useState(false);
   const [isLactose, setLactose] = useState(false);
@@ -30,7 +31,7 @@ export default function RegimeScreen({ navigation }) {
       },
       body: JSON.stringify({
         vegetarien: isVegetarien,
-        vegan: isVegan,
+        vegetalien: isVegetalien,
         pescetarien: isPescetarien,
         gluten: isGluten,
         porc: isPorc, 
@@ -56,23 +57,24 @@ export default function RegimeScreen({ navigation }) {
       <Text style={styles.h1}>Sélectionnez votre régime alimentaire :</Text>
       <View style={styles.CheckBoxContainer}>
         <BouncyCheckbox
-          text="Vegan"
+          text="Vegetalien"
           fillColor="red"
           marginBottom={15}
           iconStyle={{ borderColor: "red" }}
           textStyle={{ textDecorationLine: 'none' }}
-          onPress={() => setVegan(true)}
+          onPress={() => setVegetalien(true)}
       />
-      <BouncyCheckbox
-          text="Végétarien"
+        <BouncyCheckbox
+          text="Vegetalien"
           fillColor="red"
           marginBottom={15}
           iconStyle={{ borderColor: "red" }}
           textStyle={{ textDecorationLine: 'none' }}
-          onPress={() => setVegetarien(true)}
+          onPress={() => setVegetalien(true)}
       />
+      
       <BouncyCheckbox
-          text="Péscétarien"
+          text="Pescetarien"
           fillColor="red"
           marginBottom={15}
           iconStyle={{ borderColor: "red" }}
@@ -164,6 +166,7 @@ const styles = StyleSheet.create({
   CheckBoxContainer: {
     justifyContent: 'space-between',
   },
+
   //Style des CheckBox
   BouncyCheckbox: {
     size: 20,
@@ -172,6 +175,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     textDecorationLine: 'none'
   },
+
   //Style du bouton Suivant
   next: {
     width: '40%',
@@ -180,12 +184,14 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     backgroundColor: '#FA8C8E',
   },
+
   //Style du text "suivant"
   Suivant: {
     fontSize: 20,
     color: '#ffffff',
     padding: 10,
   },
+
   //Style du bouton précedent
   previous: {
     width: 40,
@@ -195,6 +201,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+
   //Style des boutons inférieurs
   bottomButton: {
     flexDirection: 'row',
