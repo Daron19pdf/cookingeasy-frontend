@@ -85,7 +85,9 @@ export default function ConnectionScreen({ navigation }) {
       />
       
     </View>
-    
+    <TouchableOpacity style={styles.ForgotPasswordContainer}>
+      <Text style={styles.ForgotPassword}>Mot de passe oublié ?</Text>
+    </TouchableOpacity>
     <TouchableOpacity onPress={handleFormValidation}
         style={[
           styles.button2,
@@ -191,6 +193,15 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     letterSpacing: 0.25,
     color: 'white',
+  },
+  ForgotPassword: {
+    fontSize: 11,
+    color: "#D3D3D3", 
+    textDecorationLine: 'underline'
+  },
+  ForgotPasswordContainer: {
+    alignSelf: "flex-end",
+    paddingEnd: 20,
   },
   checkboxContainer: {
     flexDirection: 'row',

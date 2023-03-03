@@ -15,6 +15,7 @@ export default function RegimeScreen({ navigation }) {
   console.log(user)
   const [isVegetalien, setVegetalien] = useState(false);
   const [isVegetarien, setVegetarien] = useState(false);
+  const [isVegetalien, setVegetalien] = useState(false);
   const [isPescetarien, setPescetarien] = useState(false);
   const [isPorc, setPorc] = useState(false);
   const [isLactose, setLactose] = useState(false);
@@ -63,16 +64,17 @@ export default function RegimeScreen({ navigation }) {
           textStyle={{ textDecorationLine: 'none' }}
           onPress={() => setVegetalien(true)}
       />
-      <BouncyCheckbox
-          text="Végétarien"
+        <BouncyCheckbox
+          text="Vegetalien"
           fillColor="red"
           marginBottom={15}
           iconStyle={{ borderColor: "red" }}
           textStyle={{ textDecorationLine: 'none' }}
-          onPress={() => setVegetarien(true)}
+          onPress={() => setVegetalien(true)}
       />
+      
       <BouncyCheckbox
-          text="Péscétarien"
+          text="Pescetarien"
           fillColor="red"
           marginBottom={15}
           iconStyle={{ borderColor: "red" }}
