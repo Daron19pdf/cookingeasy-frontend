@@ -2,7 +2,7 @@ import {ScrollView, StyleSheet, Text, View , TouchableOpacity, Image } from 'rea
 import React from 'react';
 import { useState } from 'react'; 
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import Menu from '../component/header';
+import Menu from '../component/menu';
 import { useSelector } from 'react-redux';
 
 export default function PrefSemaineScreen({ navigation }) {

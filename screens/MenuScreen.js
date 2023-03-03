@@ -1,64 +1,42 @@
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native'
-import React from 'react'
-import Menu from '../component/header';
+import React, {useEffect, useState} from 'react'
+import Menu from '../component/menu';
 import Recette from '../component/recette';
+import { removeRecette } from "../reducers/recette";
 
 export default function MenuScreen({ navigation}) {
 
+    const [recette, setRecette] = useState([]);
+ 
+useEffect(() => {
+fetch('http://192.168.10.143:3000/user/user/?token=yVdFZY5_i_LLMB1lvOcRGXoOBwS1MzwK')
+.then((response) => response.json())
+.then(() => {
+    fetch(`http://192.168.10.143:3000/menu/recettes?userId=6400daf1ffdb77e94203c1eb`)
+    .then((response) => response.json())
+    .then((data) => { 
+      for (let i = 0; i < data.recettes.length; i++) {
+        const recettes = {
+          title: data.recettes[i].title,
+          photo: data.recettes[i].photo,
+      }
+      if (recette.find((recette) => recette.title === recettes.title)) {
+        console.log("recette déjà dans le menu");
+      } else {
+        setRecette((recette) => [...recette, recettes]);
+      }
+    }
+    })
+.catch((error) => {
+    console.error(error);
+});
+})
+}, [NewRecettes]);
 
-  const recette = [
-    {
-        id: 1,
-        title: "Lasagnes Bolognaise",
-        image: require("../assets/plats/lasagnes-bolo.jpg"),
-        user: 4,
-        refresh: 0,
-        heart: 0,
-    },
-    {
-        id: 2,
-        title: "Lasagnes Bolognaise",
-        image: require("../assets/plats/lasagnes-bolo.jpg"),
-        user: 4,
-        refresh: 0,
-        heart: 0,
-    },
-    {
-        id: 3,
-        title: "Lasagnes Bolognaise",
-        image: require("../assets/plats/lasagnes-bolo.jpg"),
-        user: 4,
-        refresh: 0,
-        heart: 0,
-    },
-    {
-        id: 4,
-        title: "Lasagnes Bolognaise",
-        image: require("../assets/plats/lasagnes-bolo.jpg"),
-        user: 4,
-        refresh: 0,
-        heart: 0,
-    },
-    // {
-    //     id: 5,
-    //     title: "Lasagnes Bolognaise",
-    //     image: require("../assets/plats/lasagnes-bolo.jpg"),
-    //     user: 4,
-    //     refresh: 0,
-    //     heart: 0,
-    // },
-    // {
-    //     id: 6,
-    //     title: "Lasagnes Bolognaise",
-    //     image: require("../assets/plats/lasagnes-bolo.jpg"),
-    //     user: 4,
-    //     refresh: 0,
-    //     heart: 0,
-    // },
-];
 
 const NewRecettes = recette.map((data, i) => {
-    return <Recette key={i} data={data} />;
+  console.log(data);
+    return <Recette key={i} title={data.title}  photo={data.photo} />;
 });
 
   return (

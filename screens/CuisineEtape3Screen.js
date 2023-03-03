@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet } from 'react-native'
 import React from 'react'
-import Menu from '../component/header';
+import Menu from '../component/menu';
 
 export default function CuisineEtape3Screen({ navigation}) {
   return (
