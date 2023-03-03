@@ -13,7 +13,7 @@ export default function RegimeScreen({ navigation }) {
 
   const user = useSelector((state) => state.user.value);
   console.log(user)
-  const [isVegan, setVegan] = useState(false);
+  const [isVegetalien, setVegetalien] = useState(false);
   const [isVegetarien, setVegetarien] = useState(false);
   const [isPescetarien, setPescetarien] = useState(false);
   const [isPorc, setPorc] = useState(false);
@@ -30,7 +30,7 @@ export default function RegimeScreen({ navigation }) {
       },
       body: JSON.stringify({
         vegetarien: isVegetarien,
-        vegan: isVegan,
+        vegetalien: isVegetalien,
         pescetarien: isPescetarien,
         gluten: isGluten,
         porc: isPorc, 
@@ -56,12 +56,12 @@ export default function RegimeScreen({ navigation }) {
       <Text style={styles.h1}>Sélectionnez votre régime alimentaire :</Text>
       <View style={styles.CheckBoxContainer}>
         <BouncyCheckbox
-          text="Vegan"
+          text="Vegetalien"
           fillColor="red"
           marginBottom={15}
           iconStyle={{ borderColor: "red" }}
           textStyle={{ textDecorationLine: 'none' }}
-          onPress={() => setVegan(true)}
+          onPress={() => setVegetalien(true)}
       />
       <BouncyCheckbox
           text="Végétarien"
