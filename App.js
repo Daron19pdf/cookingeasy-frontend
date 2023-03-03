@@ -26,7 +26,7 @@ import NewRecetteScreen from './screens/NewRecetteScreen';
 import PrefSemaineScreen from './screens/PrefSemaineScreen';
 import ProfilScreen from './screens/ProfilScreen';
 import ConnectionScreen from './screens/ConnectionScreen';
-import Menu from './component/header';
+import Menu from './component/menu';
 import CuisineEtape1Screen from './screens/CuisineEtape1Screen';
 import CuisineEtape2Screen from './screens/CuisineEtape2Screen';
 import CuisineEtape3Screen from './screens/CuisineEtape3Screen';

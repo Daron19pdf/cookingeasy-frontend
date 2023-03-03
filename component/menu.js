@@ -96,7 +96,7 @@ export default function Menu() {
 
           </View>
           <View style={styles.bottomContainer}>
-            <Text style={{fontSize: 20, fontWeight: 'bold', margin: 15}}>Mon profil</Text>
+            <Image style={styles.img} source={require('../assets/cute.jpg')}  />
             </View>
             <View style={styles.deco}>
               <Text style={{fontSize: 15, margin:5}} onPress={handleLogout}>Deconnexion</Text>
@@ -174,6 +174,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  img: {
+    width: 200,
+    height: 100,
+    borderRadius: 5,
+    margin: 10,
+    alignItems: 'center',
   },
 });
 
