@@ -45,7 +45,7 @@ export default function Recette(props) {
         
         //test pour ajouter une image depuis le props
         const test = props.photo;
-        
+
 
         
     return (
