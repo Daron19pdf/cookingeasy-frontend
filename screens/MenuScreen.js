@@ -9,12 +9,14 @@ export default function MenuScreen({ navigation}) {
     const [recette, setRecette] = useState([]);
  
 useEffect(() => {
-fetch('http://192.168.10.143:3000/user/user/?token=yVdFZY5_i_LLMB1lvOcRGXoOBwS1MzwK')
+fetch('http://192.168.10.143:3000/user/user/?token=FRtMxr4qfwowrV26PEGkbS5qNJcKK6Xq')
 .then((response) => response.json())
-.then(() => {
-    fetch(`http://192.168.10.143:3000/menu/recettes?userId=6400daf1ffdb77e94203c1eb`)
+.then((data) => {
+  console.log(data.data.preference._id);
+    fetch(`http://192.168.10.143:3000/menu/recettes?userId=${data.data.preference._id}`)
     .then((response) => response.json())
     .then((data) => { 
+      console.log(data);
       for (let i = 0; i < data.recettes.length; i++) {
         const recettes = {
           title: data.recettes[i].title,
