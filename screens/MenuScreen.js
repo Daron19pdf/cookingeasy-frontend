@@ -9,11 +9,11 @@ export default function MenuScreen({ navigation}) {
     const [recette, setRecette] = useState([]);
  
 useEffect(() => {
-fetch('http://192.168.10.143:3000/user/user/?token=FRtMxr4qfwowrV26PEGkbS5qNJcKK6Xq')
+fetch('http://192.168.10.142:19000/user/user/?token=1tf7nhhbfEg-lyfNUNiU4s1rmrIb3NOH')
 .then((response) => response.json())
 .then((data) => {
   console.log(data.data.preference._id);
-    fetch(`http://192.168.10.143:3000/menu/recettes?userId=${data.data.preference._id}`)
+    fetch(`http://192.168.10.142:19000/menu/recettes?userId=${data.data.preference._id}`)
     .then((response) => response.json())
     .then((data) => { 
       console.log(data);

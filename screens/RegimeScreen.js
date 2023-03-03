@@ -13,7 +13,6 @@ export default function RegimeScreen({ navigation }) {
 
   const user = useSelector((state) => state.user.value);
   console.log(user)
-  const [isVegetalien, setVegetalien] = useState(false);
   const [isVegetarien, setVegetarien] = useState(false);
   const [isVegetalien, setVegetalien] = useState(false);
   const [isPescetarien, setPescetarien] = useState(false);
@@ -62,7 +61,7 @@ export default function RegimeScreen({ navigation }) {
           marginBottom={15}
           iconStyle={{ borderColor: "red" }}
           textStyle={{ textDecorationLine: 'none' }}
-          onPress={() => setVegetalien(true)}
+          onPress={() => setVegetarien(true)}
       />
         <BouncyCheckbox
           text="Vegetalien"
