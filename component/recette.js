@@ -1,27 +1,30 @@
 import React from "react";
 import { StyleSheet, View, Text, Image, TouchableOpacity, Modal, TextInput } from "react-native";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import {Picker} from "@react-native-picker/picker";
+import { removeRecette } from "../reducers/recette";
 
-export default function Recette() {
+export default function Recette(props) {
+    const dispatch = useDispatch();
+    const Recette = useSelector((state) => state.recette.value);
     const navigation = useNavigation();
     const User = useSelector((state) => state.user.value);
-    const [likedMovies, setlikedMovies] = useState(false)
+    const [likedRecipe, setlikedRecipe] = useState(false)
     const [modalVisible, setModalVisible] = useState(false);
     const [selectedValue, setSelectedValue] = useState("2");
 
      // like coeur 
     const handleLike = () => {
-        if(likedMovies) {
-        setlikedMovies(!likedMovies)
+        if(likedRecipe) {
+        setlikedRecipe(!likedRecipe)
     } else {
-        setlikedMovies(!likedMovies)
+        setlikedRecipe(!likedRecipe)
     }
     };
-    if (likedMovies) {
+    if (likedRecipe) {
         var likeHeart = 'heart'
         var colors = 'red'
     } else {
@@ -40,9 +43,14 @@ export default function Recette() {
         setModalVisible(!modalVisible);
         }
         
+        //test pour ajouter une image depuis le props
+        const test = props.photo;
+        
+
+        
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Lasagnes Bolognaise</Text>
+            <Text style={styles.title}>{props.title}</Text>
             <Image style={styles.image} source={require('../assets/plats/lasagnes-bolo.jpg')} />
             <View style={styles.bottomContainer}>
                 <TouchableOpacity style={styles.userContainer} onPress={ () => toggleModal()}>
@@ -55,7 +63,7 @@ export default function Recette() {
                 <TouchableOpacity style={styles.userContainer} onPress={() => handleLike()}>
                     <FontAwesome name={likeHeart} size={16} color={colors} style={styles.icon}/>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.userContainer}>
+                <TouchableOpacity style={styles.userContainer} onPress={() => dispatch(removeRecette())}>
                     <FontAwesome name='close' size={16} color='#000' style={styles.icon}/>
                 </TouchableOpacity>
                 <Modal 
@@ -91,7 +99,7 @@ export default function Recette() {
 const styles = StyleSheet.create({
     container: {
         width: 180,
-        height: 250,
+        height: 270,
         alignItems: "center",
         backgroundColor:'#fff',
         opacity: 0.8,
@@ -107,6 +115,8 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 15,
         marginTop: 5,
+        height: 42,
+        textAlign: "center",
     },
     bottomContainer: {
         flexDirection: "row",

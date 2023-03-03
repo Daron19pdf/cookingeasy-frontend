@@ -7,6 +7,7 @@ import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
 import ingredient from './reducers/ingredient';
 import user from './reducers/user';
+import recette from './reducers/recette';
 
 
 //navigation attente//
@@ -37,7 +38,7 @@ import CuisineEtape3Screen from './screens/CuisineEtape3Screen';
 const Stack = createNativeStackNavigator();
 
 const store = configureStore({
-  reducer: {ingredient, user},
+  reducer: {ingredient, user, recette},
  });
 
 export default function App() {

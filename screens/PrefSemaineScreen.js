@@ -1,8 +1,36 @@
-import { View, Text, StyleSheet } from 'react-native'
-import React from 'react'
+import {ScrollView, StyleSheet, Text, View , TouchableOpacity, Image } from 'react-native';
+import React from 'react';
+import { useState } from 'react'; 
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Menu from '../component/menu';
+import { useSelector } from 'react-redux';
 
-export default function MenuScreen({ navigation}) {
+export default function PrefSemaineScreen({ navigation }) {
+  const BACKEND_ADDRESS = 'https://cookingeasy-backend.vercel.app/';
+  const [time, setTime] = useState(0);
+  const [difficult, setDifficult] = useState(0);
+  const user = useSelector((state) => state.user.value);
+  const handleValidationThisWeek = () => {
+    fetch(`${BACKEND_ADDRESS}/preferences/thisWeek`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        duration: time,
+        difficulty: difficult,
+        token : user.token
+      })
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log(data);
+        navigation.navigate("MenuScreen");
+    })
+    .catch(error => {
+      console.error(error);
+    });
+  };
 
   return (
     <ScrollView style={styles.container}>
@@ -78,7 +106,7 @@ export default function MenuScreen({ navigation}) {
               </View>
         </View>
         <Image style={styles.assiette} source={require('../assets/logo-prefSemaine.png')} />
-      <TouchableOpacity style={styles.previous} onPress={() => navigation.navigate('MenuScreen')}>
+      <TouchableOpacity style={styles.previous} onPress={handleValidationThisWeek}>
           <FontAwesome name='arrow-right' size={15} color='#ffff' />
       </TouchableOpacity>
       
@@ -147,7 +175,7 @@ const styles = StyleSheet.create({
 
   assiette: {
       width: 120,
-      height: 120,
+      height: 10,
     marginTop: 20,
   },
   previous: {
