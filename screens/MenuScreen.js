@@ -8,13 +8,13 @@ export default function MenuScreen({ navigation}) {
 
     const [recette, setRecette] = useState([]);
  
-useEffect(() => {
-fetch('http://192.168.10.143:3000/user/user/?token=FRtMxr4qfwowrV26PEGkbS5qNJcKK6Xq')
+useEffect(() => { 
+  fetch('http://192.168.10.143:3000/user/user/?token=FRtMxr4qfwowrV26PEGkbS5qNJcKK6Xq')
 .then((response) => response.json())
 .then((data) => {
   console.log(data.data.preference._id);
-    fetch(`http://192.168.10.143:3000/menu/recettes?userId=${data.data.preference._id}`)
-    .then((response) => response.json())
+  fetch(`http://192.168.10.143:3000/menu/recettes?userId=${data.data.preference._id}`)
+   .then((response) => response.json())
     .then((data) => { 
       console.log(data);
       for (let i = 0; i < data.recettes.length; i++) {
