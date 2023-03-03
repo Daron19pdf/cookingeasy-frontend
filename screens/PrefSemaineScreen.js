@@ -2,7 +2,7 @@ import {ScrollView, StyleSheet, Text, View , TouchableOpacity, Image } from 'rea
 import React from 'react';
 import { useState } from 'react'; 
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import Menu from '../component/header';
+import Menu from '../component/menu';
 import { useSelector } from 'react-redux';
 
 export default function PrefSemaineScreen({ navigation }) {
@@ -10,6 +10,27 @@ export default function PrefSemaineScreen({ navigation }) {
   const [time, setTime] = useState(0);
   const [difficult, setDifficult] = useState(0);
   const user = useSelector((state) => state.user.value);
+  const handleValidationThisWeek = () => {
+    fetch(`${BACKEND_ADDRESS}/preferences/thisWeek`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        duration: time,
+        difficulty: difficult,
+        token : user.token
+      })
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log(data);
+        navigation.navigate("MenuScreen");
+    })
+    .catch(error => {
+      console.error(error);
+    });
+  };
 
   return (
     <ScrollView style={styles.container}>
@@ -85,7 +106,7 @@ export default function PrefSemaineScreen({ navigation }) {
               </View>
         </View>
         <Image style={styles.assiette} source={require('../assets/logo-prefSemaine.png')} />
-      <TouchableOpacity style={styles.previous} onPress={() => navigation.navigate('MenuScreen')}>
+      <TouchableOpacity style={styles.previous} onPress={handleValidationThisWeek}>
           <FontAwesome name='arrow-right' size={15} color='#ffff' />
       </TouchableOpacity>
       

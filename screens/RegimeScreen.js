@@ -164,6 +164,7 @@ const styles = StyleSheet.create({
   CheckBoxContainer: {
     justifyContent: 'space-between',
   },
+
   //Style des CheckBox
   BouncyCheckbox: {
     size: 20,
@@ -172,6 +173,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     textDecorationLine: 'none'
   },
+
   //Style du bouton Suivant
   next: {
     width: '40%',
@@ -180,12 +182,14 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     backgroundColor: '#FA8C8E',
   },
+
   //Style du text "suivant"
   Suivant: {
     fontSize: 20,
     color: '#ffffff',
     padding: 10,
   },
+
   //Style du bouton précedent
   previous: {
     width: 40,
@@ -195,6 +199,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+
   //Style des boutons inférieurs
   bottomButton: {
     flexDirection: 'row',

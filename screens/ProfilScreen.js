@@ -1,7 +1,7 @@
 import {ScrollView, StyleSheet, Text, View , Image, TouchableOpacity } from 'react-native';
 import React from 'react';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
-import Menu from '../component/header';
+import Menu from '../component/menu';
 import { useSelector } from 'react-redux';
 
 export default function ProfilScreen({ navigation }) {
@@ -55,16 +55,18 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'white',
   },
+
   container: {
     marginTop: 50,
     alignItems: 'center',
     justifyContent: 'center',
   },
+
   pseudoText: {
     fontSize: 25,
   },
+
   button: {
     backgroundColor: 'black',
-  }
-
+  },
 });
