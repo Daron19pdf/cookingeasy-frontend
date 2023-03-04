@@ -50,6 +50,9 @@ import {
         <TouchableOpacity style={styles.next} onPress={() => navigation.navigate('MenuScreen')}>
           <Text style={styles.buttonText}>MenuScreen</Text>
         </TouchableOpacity>
+        <TouchableOpacity style={styles.next} onPress={() => navigation.navigate('MenuScreen')}>
+          <Text style={styles.buttonText}>MenuScreen2</Text>
+        </TouchableOpacity>
         <TouchableOpacity style={styles.next} onPress={() => navigation.navigate('NewRecetteScreen')}>
           <Text style={styles.buttonText}>NewRecetteScreen</Text>
         </TouchableOpacity>
