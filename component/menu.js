@@ -91,7 +91,7 @@ export default function Menu() {
             </View>
             <View style={styles.align}>
             <FontAwesome name='book' size={20} color='#FA8C8E' style={styles.icon}/>
-            <Text style={{fontSize: 15, fontWeight: 'bold', margin:15, marginBottom:10}}>Ma liste de course</Text>
+            <Text style={{fontSize: 15, fontWeight: 'bold', margin:15, marginBottom:10}} onPress={() => navigation.navigate("ListCourse")}>Ma liste de course</Text>
             </View>
 
           </View>

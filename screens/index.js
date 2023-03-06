@@ -62,7 +62,12 @@ import {
         <TouchableOpacity style={styles.next} onPress={() => navigation.navigate('CuisineEtape1Screen')}>
           <Text style={styles.buttonText}>CuisineEtape1Screen</Text>
         </TouchableOpacity>
-
+        <TouchableOpacity style={styles.next} onPress={() => navigation.navigate('CuisineEtape2Screen')}>
+          <Text style={styles.buttonText}>CuisineEtape2Screen</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.next} onPress={() => navigation.navigate('ListCourse')}>
+          <Text style={styles.buttonText}>ListCourse</Text>
+        </TouchableOpacity>
         </ScrollView>
         </View>
     );
