@@ -12,12 +12,9 @@ export const recetteSlice = createSlice({
    addRecette: (state, action) => {
      state.value.push(action.payload);
    },
-   removeRecette: (state, action) => {
-    state.value = state.value.filter((item) => item !== action.payload);
-    },
-  
+   
  },
 });
 
-export const { addRecette, removeRecette, LikedRecette, UnlikedRecette } = recetteSlice.actions;
+export const { addRecette } = recetteSlice.actions;
 export default recetteSlice.reducer;

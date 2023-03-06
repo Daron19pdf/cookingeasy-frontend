@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import Menu from '../component/menu';
 import LikedRecetteComponent from '../component/LikedRecette';
 
+
 export default function FavorisScreen({ props }) {
 
   const Liked = useSelector((state) => state.Favoris.value);
@@ -20,6 +21,7 @@ export default function FavorisScreen({ props }) {
      <View style={styles.content}>
       <Text style={styles.title}>Mes recettes préférées</Text>
       {Recipes}
+      <LikedRecetteComponent />
       </View>
       </ScrollView>
     </View>
