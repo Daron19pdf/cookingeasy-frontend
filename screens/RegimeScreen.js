@@ -21,6 +21,7 @@ export default function RegimeScreen({ navigation }) {
   const user = useSelector((state) => state.user.value);
   console.log(user);
   const [isVegetarien, setVegetarien] = useState(false);
+  const [isVegetalien, setVegetalien] = useState(false);
   const [isPescetarien, setPescetarien] = useState(false);
   const [isPorc, setPorc] = useState(false);
   const [isLactose, setLactose] = useState(false);
@@ -69,6 +70,16 @@ export default function RegimeScreen({ navigation }) {
       <Text style={styles.title}>Mon Régime Alimentaire</Text>
       <Text style={styles.h1}>Sélectionnez votre régime alimentaire :</Text>
       <View style={styles.CheckBoxContainer}>
+
+      <BouncyCheckbox
+          text="Sans régime particulier"
+          fillColor="red"
+          marginBottom={15}
+          iconStyle={{ borderColor: "red" }}
+          textStyle={{ textDecorationLine: 'none' }}
+          onPress={isNone ? null : setNone(!isNone)}
+        />
+        
         <BouncyCheckbox
           text="Vegetarien"
           fillColor="red"
@@ -76,7 +87,8 @@ export default function RegimeScreen({ navigation }) {
           iconStyle={{ borderColor: "red" }}
           textStyle={{ textDecorationLine: 'none' }}
           onPress={isVegetarien ? null : setVegetarien(!isVegetarien)}
-      />
+        />
+        
         <BouncyCheckbox
           text="Vegetalien"
           fillColor="red"
@@ -121,19 +133,12 @@ export default function RegimeScreen({ navigation }) {
       <BouncyCheckbox
           text="Sans alcool"
           fillColor="red"
-          marginBottom={15}
           iconStyle={{ borderColor: "red" }}
           textStyle={{ textDecorationLine: 'none' }}
          onPress={isAlcool ? null : setAlcool(!isAlcool)}
       />
-      <BouncyCheckbox
-          text="Sans régime particulier"
-          fillColor="red"
-          iconStyle={{ borderColor: "red" }}
-          textStyle={{ textDecorationLine: 'none' }}
-          onPress={isNone ? null : setNone(!isNone)}
-      />
-        </View>
+      </View>
+
       <View style={styles.bottomButton}>
         <TouchableOpacity
           style={styles.previous}
@@ -186,7 +191,7 @@ const styles = StyleSheet.create({
 
   //Style container Checkbox
   CheckBoxContainer: {
-    justifyContent: "space-between",
+    justifyContent: "space-around",
   },
 
   //Style des CheckBox
@@ -194,7 +199,7 @@ const styles = StyleSheet.create({
     size: 20,
     unfillColor: "white",
     borderColor: "red",
-    borderWidth: 2,
+    borderWidth: 1,
     textDecorationLine: "none",
   },
 
