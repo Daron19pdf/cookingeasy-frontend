@@ -4,30 +4,39 @@ import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import {Picker} from "@react-native-picker/picker";
-
+import { useDispatch, useSelector } from "react-redux";
+import { LikedRecette, UnlikedRecette } from "../reducers/Favoris";
 
 export default function Recette(props) {
-    
+    const dispatch = useDispatch();
     const navigation = useNavigation();
-    const [likedRecipe, setlikedRecipe] = useState(false)
+    const [likedRecipe, setLikedRecipe] = useState(false)
     const [modalVisible, setModalVisible] = useState(false);
     const [selectedValue, setSelectedValue] = useState("2");
     const [modalRecipeVisible, setModalRecipeVisible] = useState(false);
-
-     // like coeur (attente pour ajout dans favoris)
-    const handleLike = () => {
-        if(likedRecipe) {
-        setlikedRecipe(!likedRecipe)
-    } else {
-        setlikedRecipe(!likedRecipe)
-    }
-    };
+    const Liked = useSelector((state) => state.favoris.value);
+   
+     // like coeur 
+     const handleLike = () => {
+        if (!likedRecipe) {
+          dispatch(LikedRecette());
+          setLikedRecipe(true);
+          console.log(Liked);
+        } else {
+            handleUnlike();
+        }
+      };
+      
+      const handleUnlike = () => {
+        dispatch(UnlikedRecette());
+        setLikedRecipe(false);
+      };
     if (likedRecipe) {
-        var likeHeart = 'heart'
-        var colors = 'red'
+      var likeHeart = 'heart'
+      var colors = 'red'
     } else {
-          likeHeart = 'heart-o'
-          colors = '#000'
+      likeHeart = 'heart-o'
+      colors = '#000'
     }
 
     // modal nombre de personnes

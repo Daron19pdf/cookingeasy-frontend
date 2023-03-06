@@ -159,17 +159,10 @@ export default function InscriptionScreen({ navigation }) {
         style={[
           styles.button2,
           { width: 150 },
-          !formValid && { opacity: 0.5, backgroundColor: "grey" },
-        ]}
-      >
-        <Text style={styles.buttonText2}>Valider</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={[styles.button, { width: 300 }]}>
-        <Text style={styles.buttonText}>Se connecter avec Facebook</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={[styles.button, { width: 300 }]}>
-        <Text style={styles.buttonText}>Se connecter avec Google</Text>
-      </TouchableOpacity>
+          !formValid && { opacity: 0.5, backgroundColor: 'grey' }
+        ]}>
+          <Text style={styles.buttonText2}>Valider</Text>
+    </TouchableOpacity>
     </View>
   );
 }

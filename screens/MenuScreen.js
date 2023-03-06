@@ -2,7 +2,7 @@ import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image } from 'rea
 import React, {useEffect, useState} from 'react'
 import Menu from '../component/menu';
 import Recette from '../component/recette';
-import {  useDispatch } from "react-redux";
+import {  useDispatch, useSelector } from "react-redux";
 import {addRecette} from '../reducers/recette';
 
 export default function MenuScreen({ navigation}) {
@@ -115,4 +115,3 @@ const styles = StyleSheet.create({
     margin: 5,
   },
 });
-
