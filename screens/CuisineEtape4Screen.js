@@ -3,7 +3,6 @@ import React, {useState} from 'react'
 import { useSelector } from 'react-redux';
 import Menu from '../component/menu';
 import FontAwesome from "react-native-vector-icons/FontAwesome";
-import { colors } from 'react-native-elements';
 
 export default function CuisineEtape1Screen({ navigation}) {
   const BACKEND_ADDRESS = "https://cookingeasy-backend.vercel.app/";
@@ -21,14 +20,14 @@ export default function CuisineEtape1Screen({ navigation}) {
   fetch(`http://192.168.10.137:3000/menuTer/miseenoeuvre?recettesList=[${titleList}]`)
     .then((response) => response.json())
     .then((data) => {
-      for (let x=0 ; x < data.steps.cuisson.length; x++) {
-      //console.log(data.steps.cuisson[x].step.target[0]);
+      for (let x=0 ; x < data.steps.cuisson_finale.length; x++) {
+      //console.log(data.steps.cuisson_finale[x].step.target[0]);
       const Recipe = {
-        action: data.steps.cuisson[x].step.action,
-        duration: data.steps.cuisson[x].step.duration,
-        title: data.steps.cuisson[x].recette_title,
+        action: data.steps.cuisson_finale[x].step.action,
+        duration: data.steps.cuisson_finale[x].step.duration,
+        title: data.steps.cuisson_finale[x].recette_title,
       }
-      //console.log(steps);
+      //console.log(data.steps);
       if (steps.find((steps) => steps.target === Recipe.target)) {
         return;
       } else {
@@ -48,7 +47,6 @@ export default function CuisineEtape1Screen({ navigation}) {
           <Text style={styles.texte}>{step.duration} min</Text>
         </View>
       )
-      
     })
 
   return (
@@ -56,14 +54,14 @@ export default function CuisineEtape1Screen({ navigation}) {
       <Menu  />
          <View style={styles.generalContainer}>
              <Text style={styles.title}>Je cuisine</Text>
-             <Text style={styles.title}>Etape 2 : Cuisson </Text>
+             <Text style={styles.title}>Etape 4 : Cuisson </Text>
         {renderSteps}
           <View style={styles.btnContainer}>
-             <TouchableOpacity style={styles.nextBtn} onPress={() => navigation.navigate("CuisineEtape1Screen")}>
+             <TouchableOpacity style={styles.nextBtn} onPress={() => navigation.navigate("CuisineEtape3Screen")}>
                  <FontAwesome name="toggle-left" size={16} color='#fff' style={styles.icon}/>
                  <Text style={styles.textWhite}>Etape précédente </Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.nextBtn} onPress={() => navigation.navigate("CuisineEtape3Screen")}>
+              <TouchableOpacity style={styles.nextBtn} onPress={() => navigation.navigate("CuisineEtape5Screen")}>
                   <Text style={styles.textWhite}>Etape suivante </Text>
                   <FontAwesome name="toggle-right" size={16} color='#fff' style={styles.icon}/>
              </TouchableOpacity>
