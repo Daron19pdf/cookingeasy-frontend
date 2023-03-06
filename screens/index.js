@@ -118,27 +118,34 @@ export default function Index({ navigation }) {
         >
           <Text style={styles.buttonText}>CuisineEtape1Screen</Text>
         </TouchableOpacity>
-      </ScrollView>
-    </View>
-  );
-}
+        <TouchableOpacity style={styles.next} onPress={() => navigation.navigate('CuisineEtape2Screen')}>
+          <Text style={styles.buttonText}>CuisineEtape2Screen</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.next} onPress={() => navigation.navigate('ListCourse')}>
+          <Text style={styles.buttonText}>ListCourse</Text>
+        </TouchableOpacity>
+        </ScrollView>
+        </View>
+    );
+  }
+  
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    menu: {
+        marginTop: 70,
+        },
+    next: {
+        flexDirection: 'row',
+        backgroundColor: '#FA8C8E',
+        margin: 10,
+        width: 200,
+        height: 100,
+        justifyContent: 'center',
+        alignItems: 'center',
+        },
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  menu: {
-    marginTop: 70,
-  },
-  next: {
-    flexDirection: "row",
-    backgroundColor: "#f4511e",
-    margin: 10,
-    width: 200,
-    height: 100,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-});
+  });
