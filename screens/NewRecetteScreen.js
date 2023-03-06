@@ -7,7 +7,7 @@ export default function NewRecetteScreen({ navigation}) {
     <View style={styles.container}>
       <Menu  />
      <View style={styles.container}>
-      <Text>Favoris</Text>
+      <Text>NewRecettesScreen</Text>
       </View>
     </View>
   )

@@ -5,22 +5,28 @@ import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import {Picker} from "@react-native-picker/picker";
-import { LikedRecette } from "../reducers/recette";
+import {  UnlikedRecette,LikedRecette } from "../reducers/Favoris";
 
 export default function LikedRecetteComponent(props) {
     const dispatch = useDispatch();
-    const Recette = useSelector((state) => state.liked.value);
     const navigation = useNavigation();
-    const User = useSelector((state) => state.user.value);
-    const [likedRecipe, setLikedRecipe] = useState(false)
+    const [likedRecipe, setLikedRecipe] = useState(true)
     const [modalVisible, setModalVisible] = useState(false);
+    const [isVisible, setIsVisible] = useState(true);
     const [selectedValue, setSelectedValue] = useState("2");
+    const Liked = useSelector((state) => state.favoris.value);
 
      // like coeur 
-     const handleLike = () => {
-        dispatch(LikedRecette(Recette));
-        setLikedRecipe(!likedRecipe);
+     const handleUnlike = () => {
+        dispatch(UnlikedRecette());
+        setLikedRecipe(false);
+        setIsVisible(false);
+
       };
+      if (!isVisible) {
+        return null;
+      }
+    
     
       if (likedRecipe) {
         var likeHeart = 'heart'
@@ -29,6 +35,8 @@ export default function LikedRecetteComponent(props) {
         likeHeart = 'heart-o'
         colors = '#000'
       }
+
+
 
     // modal
     const toggleModal = () => {
@@ -40,9 +48,6 @@ export default function LikedRecetteComponent(props) {
         setSelectedValue(itemValue)
         setModalVisible(!modalVisible);
         }
-        
-        //test pour ajouter une image depuis le props
-        const test = props.photo;
         
 
         
@@ -56,7 +61,7 @@ export default function LikedRecetteComponent(props) {
                     <Text style={styles.text}>{selectedValue}</Text>
                 </TouchableOpacity>
                 
-                <TouchableOpacity style={styles.userContainer} onPress={() => handleLike()}>
+                <TouchableOpacity style={styles.userContainer} onPress={handleUnlike}>
                     <FontAwesome name={likeHeart} size={16} color={colors} style={styles.icon}/>
                 </TouchableOpacity>
                 

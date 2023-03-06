@@ -1,27 +1,36 @@
 import React from "react";
-import { StyleSheet, View, Text, Image, TouchableOpacity, Modal, TextInput } from "react-native";
-import { useSelector, useDispatch } from "react-redux";
+import { StyleSheet, View, Text, Image, TouchableOpacity, Modal, ScrollView } from "react-native";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import {Picker} from "@react-native-picker/picker";
-import { removeRecette, LikedRecette } from "../reducers/recette";
+import { useDispatch, useSelector } from "react-redux";
+import { LikedRecette, UnlikedRecette } from "../reducers/Favoris";
 
 export default function Recette(props) {
     const dispatch = useDispatch();
-    const Recette = useSelector((state) => state.recette.value);
     const navigation = useNavigation();
-    const User = useSelector((state) => state.user.value);
     const [likedRecipe, setLikedRecipe] = useState(false)
     const [modalVisible, setModalVisible] = useState(false);
     const [selectedValue, setSelectedValue] = useState("2");
-    const Liked = useSelector((state) => state.liked.value);
-  
-    const handleLike = () => {
-      dispatch(LikedRecette());
-      setLikedRecipe(!likedRecipe);
-    };
-  
+    const [modalRecipeVisible, setModalRecipeVisible] = useState(false);
+    const Liked = useSelector((state) => state.favoris.value);
+   
+     // like coeur 
+     const handleLike = () => {
+        if (!likedRecipe) {
+          dispatch(LikedRecette());
+          setLikedRecipe(true);
+          console.log(Liked);
+        } else {
+            handleUnlike();
+        }
+      };
+      
+      const handleUnlike = () => {
+        dispatch(UnlikedRecette());
+        setLikedRecipe(false);
+      };
     if (likedRecipe) {
       var likeHeart = 'heart'
       var colors = 'red'
@@ -29,26 +38,71 @@ export default function Recette(props) {
       likeHeart = 'heart-o'
       colors = '#000'
     }
-    // modal
+
+    // modal nombre de personnes
     const toggleModal = () => {
         setModalVisible(!modalVisible);
       };
+      // modal recette de cuisine
+     const toggleModalRecipe = () => {
+        setModalRecipeVisible(!modalRecipeVisible);    
+        };
 
       // picker
       const handleChangePeople = (itemValue) => {
         setSelectedValue(itemValue)
         setModalVisible(!modalVisible);
         }
-        
-        //test pour ajouter une image depuis le props
-        const test = props.photo;
-        
 
-        
+        // show recipe
+        const showRecipe = () => {
+            return (
+                <Modal style={styles.container}>
+                    <Text style={styles.title}>Recette</Text>
+                </Modal>
+            )
+        }
+
+        // voir la liste entiere des ingrédients
+        //ajout fonctionalite pour changer le nombre de personnes et donc le nombre d'ingrédients
+        let ingredient = []
+        for (let i = 0; i < props.ingredients.length; i++) {
+            let ingredientWeith = Math.floor( props.ingredients[i].quantity/4 * selectedValue)
+            ingredient.push(props.ingredients[i].name + " " + ingredientWeith + " " + props.ingredients[i].unit + "  " )   
+        }
+         // .map pour afficher les ingredients ligne par lignes
+        const Ingredients = ingredient.map((ingredient, i) => {
+            return (
+                <View key={i} style={styles.text}>
+                    <Text style={styles.ingredients}>{ingredient}</Text>
+                </View>
+            )
+        })
+
+        // voir la liste entiere des etapes et faire en sorte qu'il ni est pas de doublons
+        let etapeRecipe = []
+        for (let i = 0; i < props.steps.length; i++) {
+            for (let j = 0; j < props.steps.length; j++)
+            if (!etapeRecipe.includes(props.steps[i].action + " " + props.steps[i].target + "  " )) {
+                etapeRecipe.push(props.steps[i].action + " " + props.steps[i].target + "  " )
+            } 
+        }
+        // .map pour afficher les etapes ligne par lignes
+        const Steps = etapeRecipe.map((step, i) => {
+            return (
+                <View key={i} style={styles.text}>
+                    <Text style={styles.ingredients}>{step}</Text>
+                </View>
+            )
+        })
+
     return (
+        
         <View style={styles.container}>
             <Text style={styles.title}>{props.title}</Text>
-            <Image style={styles.image} source={require('../assets/plats/lasagnes-bolo.jpg')} />
+            <TouchableOpacity onPress={ () => toggleModalRecipe()}>
+                 <Image style={styles.image} source={{uri : props.photo}} />
+            </TouchableOpacity>
             <View style={styles.bottomContainer}>
                 <TouchableOpacity style={styles.userContainer} onPress={ () => toggleModal()}>
                     <FontAwesome name='user' size={16} color='#000' style={styles.icon}/>
@@ -60,35 +114,66 @@ export default function Recette(props) {
                 <TouchableOpacity style={styles.userContainer} onPress={() => handleLike()}>
                     <FontAwesome name={likeHeart} size={16} color={colors} style={styles.icon}/>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.userContainer} onPress={() => dispatch(removeRecette())}>
+                <TouchableOpacity style={styles.userContainer} >
                     <FontAwesome name='close' size={16} color='#000' style={styles.icon}/>
                 </TouchableOpacity>
-                <Modal 
-                visible={modalVisible} 
-                animationType='slide'
-                transparent={true}
-                onRequestClose={() => setModalVisible(false)}
-                onValueChange={(itemValue) => setSelectedValue(itemValue)}
-                onBackdropPress={toggleModal}
-                onBackButtonPress={toggleModal}
-                >
-                    <View style={styles.modalView}>
-                      <Picker numberOfLines={3} style={styles.picker}  onValueChange={(itemValue) => handleChangePeople(itemValue)}>
-                        <Picker.Item label="Nombre de personnes pour cette recette :" />
-                        <Picker.Item label="1" value="1" />
-                        <Picker.Item label="2" value="2" />
-                        <Picker.Item label="3" value="3" />
-                        <Picker.Item label="4" value="4" />
-                        <Picker.Item label="5" value="5" />
-                        <Picker.Item label="6" value="6" />
-                        <Picker.Item label="7" value="7" />
-                        <Picker.Item label="8" value="8" />
-                      </Picker>
-                    </View>
-                </Modal>
+                        <Modal 
+                    visible={modalVisible} 
+                    animationType='slide'
+                    transparent={true}
+                    onRequestClose={() => setModalVisible(false)}
+                    onValueChange={(itemValue) => setSelectedValue(itemValue)}
+                    onBackdropPress={toggleModal}
+                    onBackButtonPress={toggleModal}
+                    >
+                        <View style={styles.modalView}>
+                        <Picker numberOfLines={3} style={styles.picker}  onValueChange={(itemValue) => handleChangePeople(itemValue)}>
+                            <Picker.Item label="Nombre de personnes pour cette recette :" />
+                            <Picker.Item label="1" value="1" />
+                            <Picker.Item label="2" value="2" />
+                            <Picker.Item label="3" value="3" />
+                            <Picker.Item label="4" value="4" />
+                            <Picker.Item label="5" value="5" />
+                            <Picker.Item label="6" value="6" />
+                            <Picker.Item label="7" value="7" />
+                            <Picker.Item label="8" value="8" />
+                        </Picker>
+                        </View>
+                    </Modal>
+                <View>
+                    <Modal 
+                    visible={modalRecipeVisible} 
+                    animationType='slide'
+                    transparent={false}
+                    onRequestClose={() => setModalRecipeVisible(false)}
+                    onValueChange={(itemValue) => setSelectedValue(itemValue)}
+                    onBackdropPress={toggleModalRecipe}
+                    onBackButtonPress={toggleModalRecipe}
+                    >
+                        <ScrollView >
+                             <View style={styles.modalViewRecipe}>
+                                 <Text style={styles.titleRecipe}>{props.title}</Text>
+                                 <Image style={styles.imageRecipe} source={{uri : props.photo}} />
+                                  <Text style={styles.description}>{props.description}</Text>
+                                     <View style={styles.containerTemps}>
+                                         <Text style={styles.temps}>Temps de préparation : {props.cook_duration} min</Text>
+                                         <Text style={styles.temps}>Temps de cuisson : {props.cook_duration} min</Text>
+                                      </View>
+                                      <View style={styles.ingredientContainer}>
+                                         <Text style={styles.titleRecipe}>Ingrédients</Text>
+                                        <Text style={styles.ingredients}>{Ingredients}</Text>
+                                     </View>
+                                     <View style={styles.ingredientContainer}>
+                                         <Text style={styles.titleRecipe}>Recette</Text>
+                                         <Text style={styles.ingredients}>{Steps}</Text>
+                                      </View>
+
+                                  </View>
+                         </ScrollView>
+                    </Modal>
                 </View>
-        
-            </View>
+             </View>
+        </View>       
     );
     };
 
@@ -110,7 +195,22 @@ const styles = StyleSheet.create({
         marginTop: 5,
     },
     title: {
-        fontSize: 15,
+        fontSize: 16,
+        marginTop: 5,
+        height: 42,
+        textAlign: "center",
+    },
+    titleRecipe: {
+        fontSize: 18,
+        marginTop: 5,
+        height: 42,
+        textAlign: "center",
+        fontWeight: "bold",
+        marginTop: 10,
+        height: 50,
+    },
+    description: {
+        fontSize: 16,
         marginTop: 5,
         height: 42,
         textAlign: "center",
@@ -136,15 +236,6 @@ const styles = StyleSheet.create({
         width: '100%',
         height: 50,
         backgroundColor: '#fff',
-        borderRadius: 10,
-        marginTop: 10,
-        marginBottom: 10,
-        marginLeft: 10,
-        marginRight: 10,
-        opacity: 0.8,
-    },
-    test: {
-        backgroundColor: 'red',
         borderRadius: 10,
         marginTop: 10,
         marginBottom: 10,
@@ -178,12 +269,55 @@ const styles = StyleSheet.create({
         shadowRadius: 4,
         elevation: 5
     },
-    testView: {
-        backgroundColor: 'red',
+    modalViewRecipe: {
+        marginTop: '5%',
+        alignContent: 'center',
+        justifyContent: 'center',
+        textAlign: 'center',
+        margin: 20,
+        backgroundColor: "white",
+        borderRadius: 20,
+        padding: 35,
+        alignItems: "center",
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        elevation: 5
+    },
+    imageRecipe: {
+        width: 300,
+        height: 300,
         borderRadius: 10,
+        marginTop: 5,
+    },
+    containerTemps: {
+        flexDirection: "row",
+        flexWrap: "wrap",
+        alignItems: "center",
+        justifyContent: "center",
+        width: '100%',
+        height: 40,
+        marginTop: 15,
+    },
+    temps: {
+        fontSize: 12,
+        marginLeft: 5,
+    },
+    ingredientContainer: {
+        alignItems: "center",
+        justifyContent: "center",
+        width: '100%',
         marginTop: 10,
-        marginBottom: 10,
-        marginLeft: 10,
-        marginRight: 10,
+        textAlign: "center",
+    },
+    ingredients: {
+        fontSize: 14,
+        marginBottom: 5,
+        textAlign: "center",
+        width: 320,
     },
 });

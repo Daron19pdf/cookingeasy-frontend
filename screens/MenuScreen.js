@@ -1,29 +1,38 @@
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image } from 'react-native'
 import React, {useEffect, useState} from 'react'
 import Menu from '../component/menu';
 import Recette from '../component/recette';
-import { removeRecette, addRecette, LikedRecette } from "../reducers/recette";
+import {  useDispatch, useSelector } from "react-redux";
+import {addRecette} from '../reducers/recette';
 
 export default function MenuScreen({ navigation}) {
-
+    const BACKEND_ADDRESS = 'https://cookingeasy-backend.vercel.app/';
+    const dispatch = useDispatch();
     const [recette, setRecette] = useState([]);
+    const [NbrRecette, setNbrRecette] = useState(0);
 
-useEffect(() => {
-fetch('http://192.168.0.12:3000/user/user/?token=FRtMxr4qfwowrV26PEGkbS5qNJcKK6Xq')
+useEffect(() => { 
+  fetch(`${BACKEND_ADDRESS}/user/user/?token=FRtMxr4qfwowrV26PEGkbS5qNJcKK6Xq`)
 .then((response) => response.json())
 .then((data) => {
-  console.log(data.data.preference._id);
-    fetch(`http://192.168.0.12:3000/menu/recettes?userId=${data.data.preference._id}`)
-    .then((response) => response.json())
-    .then((data) => { 
-      console.log(data);
-      for (let i = 0; i < data.recettes.length; i++) {
+  setNbrRecette(data.data.preference.foyer.nombreRecette);
+  fetch(`${BACKEND_ADDRESS}/menu/recettes?userId=${data.data.preference._id}`)
+   .then((response) => response.json())
+    .then((data) => {
+      dispatch(addRecette(data)); 
+      for (let i = 0; i < NbrRecette; i++) {
         const recettes = {
           title: data.recettes[i].title,
           photo: data.recettes[i].photo,
+          prep_duration: data.recettes[i].prep_duration,
+          cook_duration: data.recettes[i].cook_duration,
+          steps: data.recettes[i].steps,
+          ingredients: data.recettes[i].ingredients,
+          servings: data.recettes[i].servings,
+          description: data.recettes[i].description,
       }
       if (recette.find((recette) => recette.title === recettes.title)) {
-        console.log("recette déjà dans le menu");
+        return;
       } else {
         setRecette((recette) => [...recette, recettes]);
       }
@@ -33,28 +42,29 @@ fetch('http://192.168.0.12:3000/user/user/?token=FRtMxr4qfwowrV26PEGkbS5qNJcKK6X
     console.error(error);
 });
 })
-}, [NewRecettes]);
+}, [NbrRecette]);
+ 
 
-
-const NewRecettes = recette.map((data, i) => {
-  console.log(data);
-    return <Recette key={i} title={data.title}  photo={data.photo} />;
+  //génère les recettes
+const NewRecettes = recette.map((data, index) => {
+    return <Recette key={index} title={data.title} photo={data.photo} prep_duration={data.prep_duration} cook_duration={data.cook_duration} steps={data.steps} ingredients={data.ingredients} servings={data.servings} description={data.description}  />;
 });
 
   return (
     <ScrollView style={styles.container}>
       <Menu  />
+      {/* <Image style={styles.image} source={require('../assets/homer.gif')} /> */}
       <Text style={styles.title}>Menu de la semaine</Text>
-      <ScrollView contentContainerStyle={styles.contentContainer}>
-      {NewRecettes}
-      </ScrollView>
+         <ScrollView contentContainerStyle={styles.contentContainer}>
+           {NewRecettes}
+           </ScrollView>
      <View style={styles.containerView}>
-      <TouchableOpacity style={styles.moreRecette} onPress={() => navigation.navigate("NewRecetteScreen")}>
-        <Text style={styles.titleWhite}>Ajouter une recette</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.goRecette} onPress={() => navigation.navigate("CuisineEtape1Screen")} >
-        <Text style={styles.titleWhite}>GO</Text>
-      </TouchableOpacity>
+         <TouchableOpacity style={styles.moreRecette} onPress={() => navigation.navigate("NewRecetteScreen")}>
+            <Text style={styles.titleWhite}>Ajouter une recette</Text>
+         </TouchableOpacity>
+          <TouchableOpacity style={styles.goRecette} onPress={() => navigation.navigate("CuisineEtape1Screen")} >
+              <Text style={styles.titleWhite}>GO</Text>
+         </TouchableOpacity>
       </View>
     </ScrollView>
   )

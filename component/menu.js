@@ -7,7 +7,6 @@ import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 import { logout } from '../reducers/user';
-import { LikedRecette } from '../reducers/recette';
 
 export default function Menu() {
   const BACKEND_ADDRESS = 'https://cookingeasy-backend.vercel.app/';
@@ -42,7 +41,7 @@ export default function Menu() {
       console.error(error);
     });
   };
-  
+
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
@@ -67,54 +66,53 @@ export default function Menu() {
           animationOut="slideOutLeft"
           animationInTiming={500}
 
-        >
-        <View style={styles.containerModal}>
-          <View style={styles.imgContainer}>
-            <Image source={require('../assets/COOKING_EASY.png')} style={{width: 100, height: 100}} />
-          </View>
-          <View style={styles.sommaireContainer}>
-            <Text style={{fontSize: 20, fontWeight: 'bold', margin: 15, textAlign: 'center'}}>Mon tableau de bord</Text>
-            <View style={styles.align}>
-            <FontAwesome name='home' size={20} color='#FA8C8E' style={styles.icon}/>
-            <Text style={{fontSize: 15, fontWeight: 'bold', margin:15}}  onPress={() =>navigation.navigate('HomeScreen')} >Accueil</Text>
-            </View>
-            <View style={styles.align} >
-            <FontAwesome name='spoon' size={20} color='#FA8C8E' style={styles.icon}/>
-            <Text style={{fontSize: 15, fontWeight: 'bold', margin:15}} onPress={() => navigation.navigate("MenuScreen")} >Mon Menu</Text>
-            </View>
-            <View style={styles.align}>
-            <FontAwesome name='star' size={20} color='#FA8C8E' style={styles.icon}/>
-            <Text style={{fontSize: 15, fontWeight: 'bold', margin:15}} onPress={() => navigation.navigate("FavorisScreen")} >Mes Favoris</Text>
-            </View>
-            <View style={styles.align}>
-            <FontAwesome name='user' size={20} color='#FA8C8E' style={styles.icon}/>
-            <Text style={{fontSize: 15, fontWeight: 'bold', margin:15}} onPress={() => navigation.navigate("ProfilScreen")} >Mon Profil</Text>
-            </View>
-            <View style={styles.align}>
-            <FontAwesome name='book' size={20} color='#FA8C8E' style={styles.icon}/>
-            <Text style={{fontSize: 15, fontWeight: 'bold', margin:15, marginBottom:10}}>Ma liste de course</Text>
-            </View>
+    >
+    <View style={styles.containerModal}>
+      <View style={styles.imgContainer}>
+        <Image source={require('../assets/COOKING_EASY.png')} style={{width: 100, height: 100}} />
+      </View>
+      <View style={styles.sommaireContainer}>
+        <Text style={{fontSize: 20, fontWeight: 'bold', margin: 15, textAlign: 'center'}}>Mon tableau de bord</Text>
+        <View style={styles.align}>
+        <FontAwesome name='home' size={20} color='#FA8C8E' style={styles.icon}/>
+        <Text style={{fontSize: 15, fontWeight: 'bold', margin:15}}  onPress={() =>navigation.navigate('HomeScreen')} >Accueil</Text>
+        </View>
+        <View style={styles.align} >
+        <FontAwesome name='spoon' size={20} color='#FA8C8E' style={styles.icon}/>
+        <Text style={{fontSize: 15, fontWeight: 'bold', margin:15}} onPress={() => navigation.navigate("MenuScreen")} >Mon Menu</Text>
+        </View>
+        <View style={styles.align}>
+        <FontAwesome name='star' size={20} color='#FA8C8E' style={styles.icon}/>
+        <Text style={{fontSize: 15, fontWeight: 'bold', margin:15}} onPress={() => navigation.navigate("FavorisScreen")} >Mes Favoris</Text>
+        </View>
+        <View style={styles.align}>
+        <FontAwesome name='user' size={20} color='#FA8C8E' style={styles.icon}/>
+        <Text style={{fontSize: 15, fontWeight: 'bold', margin:15}} onPress={() => navigation.navigate("ProfilScreen")} >Mon Profil</Text>
+        </View>
+        <View style={styles.align}>
+        <FontAwesome name='book' size={20} color='#FA8C8E' style={styles.icon}/>
+        <Text style={{fontSize: 15, fontWeight: 'bold', margin:15, marginBottom:10}} onPress={() => navigation.navigate("ListCourse")}>Ma liste de course</Text>
+        </View>
 
-          </View>
-          <View style={styles.bottomContainer}>
-            <Image style={styles.img} source={require('../assets/cute.jpg')}  />
-            </View>
-            <View style={styles.deco}>
-              <Text style={{fontSize: 15, margin:5}} onPress={handleLogout}>Deconnexion</Text>
-              <Text style={{fontSize: 15,  margin:5}} onPress={handleDeleteAccount}>Supprimer votre compte</Text>
-            </View>
-          </View>
-        </Modal>
-        </ScrollView>
-        
-    </View>
+      </View>
+      <View style={styles.bottomContainer}>
+        <Image style={styles.img} source={require('../assets/cute.jpg')}  />
+        </View>
+        <View style={styles.deco}>
+          <Text style={{fontSize: 15, margin:5}} onPress={handleLogout}>Deconnexion</Text>
+          <Text style={{fontSize: 15,  margin:5}} onPress={handleDeleteAccount}>Supprimer votre compte</Text>
+        </View>
+      </View>
+    </Modal>
+    </ScrollView>
     
-      
-    </View>
+</View>
+
+  
+</View>
    
   )
 };
-
 
 const styles = StyleSheet.create({
   container: {
@@ -126,7 +124,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  
+
   imgContainer: {
     padding: 10,
     margin: 5,
@@ -184,4 +182,3 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 });
-

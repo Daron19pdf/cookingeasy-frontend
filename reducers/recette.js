@@ -17,10 +17,14 @@ export const recetteSlice = createSlice({
     state.value = state.value.filter((item) => item !== action.payload);
     },
     LikedRecette: (state, action) => {
-        state.value.liked = state.liked.push(action.payload);
+      state.liked.push(action.payload);
     },
+    UnlikedRecette: (state, action) => {
+      state.liked = state.liked.filter(recette => recette !== action.payload);
+    },
+    
  },
 });
 
-export const { addRecette, removeRecette, LikedRecette } = recetteSlice.actions;
+export const { addRecette, removeRecette, LikedRecette, UnlikedRecette } = recetteSlice.actions;
 export default recetteSlice.reducer;
