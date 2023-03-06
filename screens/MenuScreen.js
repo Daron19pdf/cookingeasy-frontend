@@ -10,8 +10,6 @@ export default function MenuScreen({ navigation}) {
     const dispatch = useDispatch();
     const [recette, setRecette] = useState([]);
     const [NbrRecette, setNbrRecette] = useState(0);
-    
-  
        
 useEffect(() => { 
   fetch(`${BACKEND_ADDRESS}/user/user/?token=FRtMxr4qfwowrV26PEGkbS5qNJcKK6Xq`)
@@ -61,9 +59,6 @@ useEffect(() => {
       {/* <Image style={styles.image} source={require('../assets/homer.gif')} /> */}
       <View style={[styles.container, styles.horizontal]}>
     
-    
-    
-  
   </View>
       <Text style={styles.title}>Menu de la semaine</Text>
          <ScrollView contentContainerStyle={styles.contentContainer}>

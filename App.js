@@ -8,6 +8,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import ingredient from './reducers/ingredient';
 import user from './reducers/user';
 import recette from './reducers/recette';
+import Favoris from './reducers/Favoris'; 
 
 
 //navigation attente//
@@ -39,7 +40,7 @@ import ListCourse from './screens/ListCourse';
 const Stack = createNativeStackNavigator();
 
 const store = configureStore({
-  reducer: {ingredient, user, recette},
+  reducer: {ingredient, user, recette, Favoris},
  });
 
 export default function App() {

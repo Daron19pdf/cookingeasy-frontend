@@ -8,29 +8,25 @@ import { useDispatch, useSelector } from "react-redux";
 import { LikedRecette, UnlikedRecette } from "../reducers/Favoris";
 
 export default function Recette(props) {
-    const dispatch = useDispatch();
+
+   const dispatch = useDispatch();
     const navigation = useNavigation();
     const [likedRecipe, setLikedRecipe] = useState(false)
     const [modalVisible, setModalVisible] = useState(false);
     const [selectedValue, setSelectedValue] = useState("2");
     const [modalRecipeVisible, setModalRecipeVisible] = useState(false);
-    const Liked = useSelector((state) => state.favoris.value);
-   
-     // like coeur 
-     const handleLike = () => {
-        if (!likedRecipe) {
-          dispatch(LikedRecette());
-          setLikedRecipe(true);
-          console.log(Liked);
-        } else {
-            handleUnlike();
-        }
-      };
-      
-      const handleUnlike = () => {
-        dispatch(UnlikedRecette());
-        setLikedRecipe(false);
-      };
+
+    
+     // like coeur (attente pour ajout dans favoris)
+    const handleLike = () => {
+        if(likedRecipe) {
+        dispatch(LikedRecette(props.title))
+        setLikedRecipe(!likedRecipe)
+    } else {
+        setLikedRecipe(!likedRecipe)
+        dispatch(LikedRecette(props.title))
+    }
+    };
     if (likedRecipe) {
       var likeHeart = 'heart'
       var colors = 'red'
