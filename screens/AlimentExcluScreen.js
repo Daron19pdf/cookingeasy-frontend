@@ -162,7 +162,7 @@ export default function AlimentExcluScreen({ navigation }) {
         <TouchableOpacity style={styles.validateContainer}>
           <Text style={styles.validate} onPress={() => handleClick()}>
             {" "}
-            Ok
+            OK
           </Text>
         </TouchableOpacity>
       </View>
@@ -249,6 +249,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+
   botomButon: {
     flexDirection: "row",
     justifyContent: "space-between",
@@ -257,6 +258,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     margin: 30,
   },
+
   buttonText: {
     marginRight: 10,
     color: "#fff",
@@ -285,17 +287,19 @@ const styles = StyleSheet.create({
   },
   validateContainer: {
     backgroundColor: "#f4511e",
-    width: 40,
-    height: 40,
+    width: 50,
+    height: 50,
     borderRadius: 50,
     justifyContent: "center",
     textAlign: "center",
     color: "#fff",
     margin: 5,
+    padding: 5,
   },
   validate: {
-    fontSize: 16,
+    fontSize: 15,
     color: "#fff",
+    textAlign: "center",
   },
   exemple: {
     fontSize: 16,
