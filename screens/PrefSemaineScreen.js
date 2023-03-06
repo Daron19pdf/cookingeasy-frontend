@@ -198,7 +198,7 @@ const styles = StyleSheet.create({
 
   assiette: {
     width: 120,
-    height: 10,
+    height: 120,
     marginTop: 20,
   },
   previous: {
