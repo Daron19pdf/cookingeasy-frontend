@@ -10,6 +10,7 @@ export default function MenuScreen({ navigation}) {
     const dispatch = useDispatch();
     const [recette, setRecette] = useState([]);
     const [NbrRecette, setNbrRecette] = useState(0);
+    
        
 useEffect(() => { 
   fetch(`${BACKEND_ADDRESS}/user/user/?token=FRtMxr4qfwowrV26PEGkbS5qNJcKK6Xq`)
