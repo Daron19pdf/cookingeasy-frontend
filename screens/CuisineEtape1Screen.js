@@ -45,12 +45,9 @@ export default function CuisineEtape1Screen({ navigation}) {
     const renderSteps = steps.map((step,i) => {
       return (
         <View key={i} style={styles.steps} backgroundColor={steps.colors}>
-          <Text style={styles.texte}>{step.title}</Text>
+          <Text style={styles.titleComponent}>{step.title}</Text>
           <Text style={styles.texte}>{step.action} {step.target}</Text>
-          
           <Text style={styles.texte}>{step.duration} min</Text>
-          
-          
         </View>
       )
       
@@ -65,20 +62,13 @@ export default function CuisineEtape1Screen({ navigation}) {
       <Menu  />
          <View style={styles.generalContainer}>
              <Text style={styles.title}>Je cuisine</Text>
-             <Text style={styles.title}>Etape 1 : </Text>
-    
-
-        {renderSteps}
-
-
-
-
-    <TouchableOpacity style={styles.nextBtn} onPress={() => navigation.navigate("NewRecetteScreen")}>
-      <Text style={styles.textWhite}>Etape suivante </Text>
-      <FontAwesome name="toggle-right" size={16} color='#fff' style={styles.icon}/>
-    </TouchableOpacity>
-   
-    </View>
+             <Text style={styles.title}>Etape 1 : Préparation </Text>
+                 {renderSteps}
+         <TouchableOpacity style={styles.nextBtn} onPress={() => navigation.navigate("CuisineEtape2Screen")}>
+             <Text style={styles.textWhite}>Etape suivante </Text>
+             <FontAwesome name="toggle-right" size={16} color='#fff' style={styles.icon}/>
+        </TouchableOpacity>
+     </View>
     </ScrollView>
   )
 }
@@ -105,7 +95,6 @@ const styles = StyleSheet.create({
     width: 200,
     height: 80,
     backgroundColor: '#f4511e',
-    borderRadius: 15,
     margin: 15,
   },
   textWhite: {
@@ -115,9 +104,20 @@ const styles = StyleSheet.create({
   steps: {
     width: 300,
     borderRadius: 15,
+    borderColor: '#f4511e',
+    borderWidth: 2,
+    margin: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   texte: {
     fontSize: 20,
     margin: 10,
+  },
+  titleComponent: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    margin: 10,
+    textAlign: 'center',
   },
 });
