@@ -14,8 +14,7 @@ export default function Recette(props) {
     const [selectedValue, setSelectedValue] = useState("2");
     const [modalRecipeVisible, setModalRecipeVisible] = useState(false);
 
-    console.log(props);
-
+    
      // like coeur (attente pour ajout dans favoris)
     const handleLike = () => {
         if(likedRecipe) {
@@ -45,15 +44,6 @@ export default function Recette(props) {
       const handleChangePeople = (itemValue) => {
         setSelectedValue(itemValue)
         setModalVisible(!modalVisible);
-        }
-
-        // show recipe
-        const showRecipe = () => {
-            return (
-                <Modal style={styles.container}>
-                    <Text style={styles.title}>Recette</Text>
-                </Modal>
-            )
         }
 
         // voir la liste entiere des ingrédients
@@ -142,6 +132,7 @@ export default function Recette(props) {
                     onValueChange={(itemValue) => setSelectedValue(itemValue)}
                     onBackdropPress={toggleModalRecipe}
                     onBackButtonPress={toggleModalRecipe}
+    
                     >
                         <ScrollView >
                              <View style={styles.modalViewRecipe}>

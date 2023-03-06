@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image } from 'react-native'
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, ActivityIndicator } from 'react-native'
 import React, {useEffect, useState} from 'react'
 import Menu from '../component/menu';
 import Recette from '../component/recette';
@@ -11,6 +11,7 @@ export default function MenuScreen({ navigation}) {
     const [recette, setRecette] = useState([]);
     const [NbrRecette, setNbrRecette] = useState(0);
     
+  
        
 useEffect(() => { 
   fetch(`${BACKEND_ADDRESS}/user/user/?token=FRtMxr4qfwowrV26PEGkbS5qNJcKK6Xq`)
@@ -47,14 +48,23 @@ useEffect(() => {
  
 
   //génère les recettes
-const NewRecettes = recette.map((data, index) => {
+  let NewRecettes = (<ActivityIndicator style={styles.load} size="large"  color="red" />)
+  if (recette.length > 0) {
+ NewRecettes = recette.map((data, index) => {
     return <Recette key={index} title={data.title} photo={data.photo} prep_duration={data.prep_duration} cook_duration={data.cook_duration} steps={data.steps} ingredients={data.ingredients} servings={data.servings} description={data.description}  />;
 });
+  }
 
   return (
     <ScrollView style={styles.container}>
       <Menu  />
       {/* <Image style={styles.image} source={require('../assets/homer.gif')} /> */}
+      <View style={[styles.container, styles.horizontal]}>
+    
+    
+    
+  
+  </View>
       <Text style={styles.title}>Menu de la semaine</Text>
          <ScrollView contentContainerStyle={styles.contentContainer}>
            {NewRecettes}
@@ -114,5 +124,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     margin: 5,
+  },
+  load: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
