@@ -145,12 +145,6 @@ export default function InscriptionScreen({ navigation }) {
         ]}>
           <Text style={styles.buttonText2}>Valider</Text>
     </TouchableOpacity>
-    <TouchableOpacity style={[styles.button, { width: 300 }]}>
-          <Text style={styles.buttonText}>Se connecter avec Facebook</Text>
-    </TouchableOpacity>
-    <TouchableOpacity style={[styles.button, { width: 300 }]}>
-          <Text style={styles.buttonText}>Se connecter avec Google</Text>
-    </TouchableOpacity>
     </View>
     
   );

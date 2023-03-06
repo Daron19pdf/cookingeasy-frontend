@@ -5,30 +5,31 @@ import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import {Picker} from "@react-native-picker/picker";
-import { removeRecette, LikedRecette } from "../reducers/recette";
+import { LikedRecette } from "../reducers/recette";
 
-export default function Recette(props) {
+export default function LikedRecetteComponent(props) {
     const dispatch = useDispatch();
-    const Recette = useSelector((state) => state.recette.value);
+    const Recette = useSelector((state) => state.liked.value);
     const navigation = useNavigation();
     const User = useSelector((state) => state.user.value);
     const [likedRecipe, setLikedRecipe] = useState(false)
     const [modalVisible, setModalVisible] = useState(false);
     const [selectedValue, setSelectedValue] = useState("2");
-    const Liked = useSelector((state) => state.liked.value);
-  
-    const handleLike = () => {
-      dispatch(LikedRecette());
-      setLikedRecipe(!likedRecipe);
-    };
-  
-    if (likedRecipe) {
-      var likeHeart = 'heart'
-      var colors = 'red'
-    } else {
-      likeHeart = 'heart-o'
-      colors = '#000'
-    }
+
+     // like coeur 
+     const handleLike = () => {
+        dispatch(LikedRecette(Recette));
+        setLikedRecipe(!likedRecipe);
+      };
+    
+      if (likedRecipe) {
+        var likeHeart = 'heart'
+        var colors = 'red'
+      } else {
+        likeHeart = 'heart-o'
+        colors = '#000'
+      }
+
     // modal
     const toggleModal = () => {
         setModalVisible(!modalVisible);
@@ -54,15 +55,11 @@ export default function Recette(props) {
                     <FontAwesome name='user' size={16} color='#000' style={styles.icon}/>
                     <Text style={styles.text}>{selectedValue}</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.userContainer}>
-                    <FontAwesome name='refresh' size={16} color='#000' style={styles.icon} onPress={() => navigation.navigate("NewRecetteScreen")}/>
-                </TouchableOpacity>
+                
                 <TouchableOpacity style={styles.userContainer} onPress={() => handleLike()}>
                     <FontAwesome name={likeHeart} size={16} color={colors} style={styles.icon}/>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.userContainer} onPress={() => dispatch(removeRecette())}>
-                    <FontAwesome name='close' size={16} color='#000' style={styles.icon}/>
-                </TouchableOpacity>
+                
                 <Modal 
                 visible={modalVisible} 
                 animationType='slide'

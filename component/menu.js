@@ -7,7 +7,7 @@ import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 import { logout } from '../reducers/user';
-
+import { LikedRecette } from '../reducers/recette';
 
 export default function Menu() {
   const BACKEND_ADDRESS = 'https://cookingeasy-backend.vercel.app/';
@@ -15,6 +15,7 @@ export default function Menu() {
   const User = useSelector((state) => state.user.value);
   const [isModalVisible, setModalVisible] = useState(false);
   const dispatch = useDispatch();
+ 
 
   const handleLogout = () => {
     dispatch(logout());

@@ -42,9 +42,8 @@ image: {
     height: '50%',
   },
   title: {
-    fontSize: 35,
-    fontWeight: '600',
-    fontFamily: 'Helvetica',
+    fontSize: 40,
+    fontWeight: '800',
     marginBottom: 40,
   },
   button1: {

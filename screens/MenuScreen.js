@@ -2,18 +2,18 @@ import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-nati
 import React, {useEffect, useState} from 'react'
 import Menu from '../component/menu';
 import Recette from '../component/recette';
-import { removeRecette } from "../reducers/recette";
+import { removeRecette, addRecette, LikedRecette } from "../reducers/recette";
 
 export default function MenuScreen({ navigation}) {
 
     const [recette, setRecette] = useState([]);
- 
+
 useEffect(() => {
-fetch('http://192.168.10.143:3000/user/user/?token=FRtMxr4qfwowrV26PEGkbS5qNJcKK6Xq')
+fetch('http://192.168.0.12:3000/user/user/?token=FRtMxr4qfwowrV26PEGkbS5qNJcKK6Xq')
 .then((response) => response.json())
 .then((data) => {
   console.log(data.data.preference._id);
-    fetch(`http://192.168.10.143:3000/menu/recettes?userId=${data.data.preference._id}`)
+    fetch(`http://192.168.0.12:3000/menu/recettes?userId=${data.data.preference._id}`)
     .then((response) => response.json())
     .then((data) => { 
       console.log(data);
