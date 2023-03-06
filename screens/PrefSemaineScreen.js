@@ -127,7 +127,7 @@ const styles = StyleSheet.create({
   },
   button: {
     flex: 1,
-    width:'30%',
+    width: '30%',
     alignItems: 'center',
   },
 
