@@ -149,7 +149,6 @@ const styles = StyleSheet.create({
   },
 
   containerModal: {
-    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#fff',

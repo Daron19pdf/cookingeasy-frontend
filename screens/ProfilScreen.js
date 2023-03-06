@@ -1,64 +1,31 @@
 import {ScrollView, StyleSheet, Text, View , Image, TouchableOpacity, TextInput } from 'react-native';
 import React from 'react';
-import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import Menu from '../component/menu';
+import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 export default function ProfilScreen({ navigation }) {
   
   const User = useSelector((state) => state.user.value);
+  const [text, setText] = useState("");
+  const [isPseudo, setPseudo] = useState(`${User.pseudo}`);
+  const [isNom, setNom] = useState(`${User.nom}`);
+  const [isPrenom, setPrenom] = useState(`${User.prenom}`);
+  const [isPassword, setPassword] = useState(`${User.password}`);
+  const [isEmail, setEmail] = useState(`${User.email}`); 
 
-  const handleFocus = (inputName) => {
-    setFocusedInput(inputName);
-  };
-
-  const handleBlur = () => {
-    setFocusedInput('');
-  };
-
-  const handleValidation = () => {
-    fetch(`${BACKEND_ADDRESS}/user/signup`, {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({
-        pseudo: pseudo,
-        nom: nom,
-        prenom: prenom,
-        password: password,
-        email: email
-      })
-    })
-    .then(response => response.json())
-    .then(data => {
-      dispatch(login({ pseudo: pseudo, nom: nom, prenom: prenom, password: password, email: email, token: data.token }));
-      console.log(data.token);
-          setPseudo('');
-          setNom('');
-          setPrenom('');
-          setPassword('');
-          setEmail('');
-        if (!EMAIL_REGEX.test(email)) {
-          setEmailError(true)
-        } else {
-          navigation.navigate("InfoScreen");
-        }
-    })
-    .catch(error => {
-      console.error(error);
-    });
-  }
-  
   return (
     <ScrollView style={styles.modalContainer}>
       <Menu  />
       <View style={styles.container}>
-        <View style={styles.profil}>
+        <View style={styles.pseudoContainer}>
 
         <Image style={styles.logo} source={require('../assets/profil.png')} />
         <View>
 
           <TouchableOpacity style={styles.pseudo}>
-            <TextInput style={styles.pseudoText}>   {User.pseudo}</TextInput>
+            <TextInput style={styles.pseudoText} value={isPseudo}
+                onChangeText={(value)=>setPseudo(value)} />
         </TouchableOpacity>
         </View>
         </View>
@@ -67,49 +34,56 @@ export default function ProfilScreen({ navigation }) {
             <View style={styles.InputView}>
             <Text>Nom : </Text>
         <TouchableOpacity style={styles.button}>
-            <TextInput style={styles.pseudoText}>{User.nom}</TextInput>
+            <TextInput style={styles.text} value={isNom}
+                onChangeText={(value)=>setNom(value)}/>
           </TouchableOpacity>
           </View>
 
             <View>
               <Text>Prenom : </Text>
           <TouchableOpacity style={styles.button}>
-          <TextInput style={styles.pseudoText}>{User.prenom}</TextInput>
+              <TextInput style={styles.text} value={isPrenom}
+                onChangeText={(value)=>setPrenom(value)}/>
           </TouchableOpacity>
           </View>
 
             <View>
             <Text>Mot de passe : </Text>
           <TouchableOpacity style={styles.button}>
-          <TextInput style={styles.pseudoText}>{User.password}</TextInput>
+          <TextInput style={styles.text}value={isPassword}
+                onChangeText={(value)=>setPassword(value)}/>
           </TouchableOpacity>
           </View>
 
           <View>
             <Text>Email : </Text>
           <TouchableOpacity style={styles.button}>
-          <TextInput style={styles.pseudoText}>{User.email}</TextInput>
+          <TextInput style={styles.text}value={isEmail}
+                onChangeText={(value)=>setEmail(value)}/>
         </TouchableOpacity>
           </View>
           <View style={styles.logos}>
-          <TouchableOpacity style={styles.logoText} onPress={() => navigation.navigate('FoyerScreen')}>
+          <TouchableOpacity style={styles.logoText}>
               <Image style={styles.image} source={require('../assets/accueil.gif')} />
               <Text> Foyer </Text>
-            </TouchableOpacity  >
-            <TouchableOpacity style={styles.logoText} onPress={() => navigation.navigate('EquipementScreen')}>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.logoText}>
               <Image style={styles.image} source={require('../assets/four-micro-onde.gif')} />
-              <Text> Mon Equipement </Text>
+              <Text> Aliments Exclus </Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate('RegimeScreen')}>
+            <TouchableOpacity>
               <Image style={styles.image} source={require('../assets/nourriture-vegetalienne.gif')} />
-              <Text> Mon Régime </Text>
+              <Text> Aliments Exclus </Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate('AlimentExcluScreen')}>
+            <TouchableOpacity>
               <Image style={styles.image} source={require('../assets/pas-doeuf.gif')} />
               <Text> Aliments Exclus </Text>
             </TouchableOpacity>
           </View>
         </View>
+          <TouchableOpacity style={styles.next}>
+              <Text style={styles.buttonText}> OK </Text>
+            </TouchableOpacity>
       </View>
     </ScrollView>
   )
@@ -130,21 +104,22 @@ const styles = StyleSheet.create({
   logo: {
     height: 80,
     width: 80,
-    marginBottom:5,
   },
-
-  profil: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+  pseudoContainer: {
+    flexDirection: "row",
+    alignItems: "center",
   },
-
   pseudoText: {
+    fontSize: 20,
+    fontWeight: "bold",
     height: 40,
-    width: '100%',
+    width: 150,
     borderWidth: 1,
+    marginLeft: 10,
   },
-
+  text: {
+    width: "100%",
+  },  
   button: {
     height: 40,
     width: '90%',
@@ -159,7 +134,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: 25,
+    padding: 15,
   },
   InputView: {
     flexDirection: 'column',
@@ -170,7 +145,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     alignItems: 'center',
   },
-
   image: {
     height: 100,
     width: 100,
@@ -178,5 +152,18 @@ const styles = StyleSheet.create({
   logoText: {
     flexDirection: 'column',
     alignItems: 'center',
+  },
+  buttonText: {
+    color: "#fff",
+  },
+  next: {
+    width: 50,
+    height: 40,
+    backgroundColor: "#F4511E",
+    fontSize: 15,
+    color: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: 5,
   }
 });

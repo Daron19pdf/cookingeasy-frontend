@@ -13,7 +13,7 @@ export default function BienvenueScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Bienvenue</Text>
-      <Image style={styles.image} source={require("../assets/Bienvenue.jpg")} />
+      <Image style={styles.image} source={require("../assets/Bienvenue.png")} />
       <TouchableOpacity
         style={styles.button1}
         onPress={() => navigation.navigate("ConnectionScreen")}
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 32,
     borderRadius: 4,
     elevation: 3,
-    backgroundColor: "#E3C7F9",
+    backgroundColor: "#f4511e",
     shadowColor: "rgba(0, 0, 0, 0.1)",
     shadowOpacity: 0.8,
     shadowRadius: 5,
