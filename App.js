@@ -8,7 +8,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import ingredient from './reducers/ingredient';
 import user from './reducers/user';
 import recette from './reducers/recette';
-import Favoris from './reducers/Favoris'; 
+import Favoris from './reducers/Favoris';
 
 
 //navigation attente//
