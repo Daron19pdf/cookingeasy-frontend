@@ -100,7 +100,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#f4511e",
     width: "50%",
     height: 60,
-    borderRadius: 15,
     alignItems: "center",
     justifyContent: "center",
     margin: 15,
@@ -112,8 +111,8 @@ const styles = StyleSheet.create({
   goRecette: {
     backgroundColor: "#f4511e",
     width: "20%",
-    height: 80,
-    borderRadius: 50,
+    height: 70,
+    borderRadius: 60,
     alignItems: "center",
     justifyContent: "center",
     margin: 5,

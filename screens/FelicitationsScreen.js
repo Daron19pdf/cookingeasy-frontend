@@ -18,6 +18,10 @@ export default function FelicitationScreen({ navigation }) {
         <Text style={styles.text}>
           Vous avez gagné 45 minutes avec ce Batch Cooking
         </Text>
+        <Image
+        style={styles.assiette}
+        source={require("../assets/logoFelicitation.gif")}
+      />
         <Text style={styles.text}>Vous pouvez noter votre menu </Text>
         <TouchableOpacity
           style={styles.next}
@@ -38,6 +42,7 @@ const styles = StyleSheet.create({
   textContainer: {
     alignItems: "center",
     justifyContent: "center",
+    backgroundColor:"white",
   },
   title: {
     marginTop: 40,
@@ -51,6 +56,11 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: "center",
   },
+  assiette: {
+    height: 120,
+    width: 120,
+  },
+
   next: {
     alignItems: "center",
     marginTop: 20,

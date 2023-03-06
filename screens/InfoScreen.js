@@ -15,7 +15,7 @@ export default function InfoScreen({ navigation }) {
         style={styles.previousButton}
         onPress={() => navigation.navigate("InscriptionScreen")}
       >
-        <FontAwesome name="arrow-left" size={15} color="white" />
+        <FontAwesome name="arrow-left" size={15} color="#F4511E" />
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.button2}
@@ -76,7 +76,9 @@ const styles = StyleSheet.create({
   previousButton: {
     width: 40,
     height: 40,
-    backgroundColor: "#E3C7F9",
+    backgroundColor: "white",
+    borderWidth: 1,
+    borderColor: "#f4511e",
     borderRadius: 50,
     alignItems: "center",
     justifyContent: "center",
