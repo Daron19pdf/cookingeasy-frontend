@@ -54,15 +54,6 @@ export default function Recette(props) {
         setModalVisible(!modalVisible);
         }
 
-        // show recipe
-        const showRecipe = () => {
-            return (
-                <Modal style={styles.container}>
-                    <Text style={styles.title}>Recette</Text>
-                </Modal>
-            )
-        }
-
         // voir la liste entiere des ingrédients
         //ajout fonctionalite pour changer le nombre de personnes et donc le nombre d'ingrédients
         let ingredient = []
@@ -149,6 +140,7 @@ export default function Recette(props) {
                     onValueChange={(itemValue) => setSelectedValue(itemValue)}
                     onBackdropPress={toggleModalRecipe}
                     onBackButtonPress={toggleModalRecipe}
+    
                     >
                         <ScrollView >
                              <View style={styles.modalViewRecipe}>
