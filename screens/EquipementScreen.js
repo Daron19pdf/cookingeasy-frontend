@@ -157,7 +157,6 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontWeight: "bold",
   },
-
   four: {
     width: 150,
     height: 100,
