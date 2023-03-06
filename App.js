@@ -8,6 +8,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import ingredient from './reducers/ingredient';
 import user from './reducers/user';
 import recette from './reducers/recette';
+import Favoris from './reducers/Favoris';
 
 
 //navigation attente//
@@ -32,6 +33,8 @@ import CuisineEtape1Screen from './screens/CuisineEtape1Screen';
 import CuisineEtape2Screen from './screens/CuisineEtape2Screen';
 import CuisineEtape3Screen from './screens/CuisineEtape3Screen';
 import ListCourse from './screens/ListCourse';
+import CuisineEtape4Screen from './screens/CuisineEtape4Screen';
+import CuisineEtape5Screen from './screens/CuisineEtape5Screen';
 
 
 
@@ -39,7 +42,7 @@ import ListCourse from './screens/ListCourse';
 const Stack = createNativeStackNavigator();
 
 const store = configureStore({
-  reducer: {ingredient, user, recette},
+  reducer: {ingredient, user, recette, Favoris},
  });
 
 export default function App() {
@@ -71,7 +74,8 @@ export default function App() {
         <Stack.Screen name="CuisineEtape1Screen" component={CuisineEtape1Screen} />
         <Stack.Screen name="CuisineEtape2Screen" component={CuisineEtape2Screen} />
         <Stack.Screen name="CuisineEtape3Screen" component={CuisineEtape3Screen} />
-        
+        <Stack.Screen name="CuisineEtape4Screen" component={CuisineEtape4Screen} />
+        <Stack.Screen name="CuisineEtape5Screen" component={CuisineEtape5Screen} />
        </Stack.Navigator>
        </NavigationContainer>
       </Provider>

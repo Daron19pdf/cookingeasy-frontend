@@ -1,76 +1,74 @@
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native'
-import React from 'react'
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image } from 'react-native'
+import React, {useState} from 'react'
 import { useSelector } from 'react-redux';
 import Menu from '../component/menu';
 import FontAwesome from "react-native-vector-icons/FontAwesome";
+import { colors } from 'react-native-elements';
 
 export default function CuisineEtape1Screen({ navigation}) {
-
+  const BACKEND_ADDRESS = "https://cookingeasy-backend.vercel.app/";
   const recette = useSelector((state) => state.recette.value);
-  const User = useSelector((state) => state.user);
+  const [steps, setSteps] = useState([]);
   
- // console.log(recette[0].recettes[0].steps[0]);
+  //rendre accessible le titre de la recette car on ne peut pas envoyer en l'état dans le fetch
+ let titleList = []
+ for (let x=0 ; x < recette.length; x++) {
+    titleList.push(recette[x].recettes[x].title)
+  }
+  titleList = titleList.map((e) => JSON.stringify(e));
 
-  // attente de voir si necessaire de fetch les recettes
-  // fetch(`http://192.168.1.250:3000/menu/recettes?userId=6401d2181f8665b3bd8b0e1c`)
-  // .then((response) => response.json())
-  // .then((data) => {
-  //   if(data) {
-  //    // console.log(data.recettes[0].steps);
-  //   } else {
-  //     console.log("error");
-  //   }
-  //   }
-  // ) 
-  // .catch((error) => {
-  //     console.error(error);
-  // });
+  // Recupérer les étapes de la recette
+  fetch(`http://192.168.10.137:3000/menuTer/miseenoeuvre?recettesList=[${titleList}]`)
+    .then((response) => response.json())
+    .then((data) => {
+      for (let x=0 ; x < data.steps.prep.length; x++) {
+      //console.log(data.steps.prep[x].step.target[0]);
+      const Recipe = {
+        action: data.steps.prep[x].step.action,
+        duration: data.steps.prep[x].step.duration,
+        target: data.steps.prep[x].step.target[0],
+        title: data.steps.prep[x].recette_title,
+        colors: Math.floor(Math.random()*16777215).toString(16),
+      }
+      //console.log(data.steps);
+      if (steps.find((steps) => steps.target === Recipe.target)) {
+        return;
+      } else {
+        setSteps((prev) => [...prev, Recipe]);
+      }
+    }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
 
-  // for (let i = 0; i < recette.length; i++) {
-  //   for (let j = 0; j < recette[i].recettes.length; j++) {
-  //     for (let k = 0; k < recette[i].recettes[j].steps.length; k++) {
-  //       console.log(recette[i].recettes[j].steps[k].stage);
-  //       return (
-  //         <View style={styles.generalContainer}>
-  //           <Text>{recette[i].recettes[j].steps[k].steps}</Text>
-  //         </View>
-  //       )
-  //     }
-  //   }
-  // }
-
-  let blah = []
-  const Test = recette.map((item, i) => {
-    //console.log(item.recettes[0]);
-    for (let x=0 ; x < 2; x++) {
-      //console.log(item.recettes[0].steps[x]);
-      blah.push(item.recettes[x].title)
+    const renderSteps = steps.map((step,i) => {
       return (
-        <View style={styles.generalContainer}>
-          <Text>{item.recettes[x].steps[0].steps}</Text>
+        <View key={i} style={styles.steps} backgroundColor={steps.colors}>
+          <Text style={styles.titleComponent}>{step.title}</Text>
+          <Text style={styles.texte}>{step.action} {step.target}</Text>
+          <Text style={styles.texte}>{step.duration} min</Text>
         </View>
       )
-    }
-  })
+      
+    })
 
-  //console.log(blah);
- 
-  //console.log(Test);
-
+    //renderSteps = renderSteps.filter((step) => console.log(step));
+//console.log(renderSteps);
+  
 
   return (
     <ScrollView style={styles.container}>
-    <Menu  />
-    <View style={styles.generalContainer}>
-    <Text style={styles.title}>Je cuisine</Text>
-    <Text style={styles.title}>Etape 1</Text>
-    <Text>{Test}</Text>
-    <TouchableOpacity style={styles.nextBtn} onPress={() => navigation.navigate("NewRecetteScreen")}>
-      <Text style={styles.textWhite}>Etape suivante </Text>
-      <FontAwesome name="toggle-right" size={16} color='#fff' style={styles.icon}/>
-    </TouchableOpacity>
-   
-    </View>
+      <Menu  />
+         <View style={styles.generalContainer}>
+             <Text style={styles.title}>Je cuisine</Text>
+             <Text style={styles.title}>Etape 1 : Préparation </Text>
+                 {renderSteps}
+         <TouchableOpacity style={styles.nextBtn} onPress={() => navigation.navigate("CuisineEtape2Screen")}>
+             <Text style={styles.textWhite}>Etape suivante </Text>
+             <FontAwesome name="toggle-right" size={16} color='#fff' style={styles.icon}/>
+        </TouchableOpacity>
+     </View>
     </ScrollView>
   )
 }
@@ -104,9 +102,22 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
   steps: {
-    margin: 20,
-    padding: 20,
-    backgroundColor: '#f4511e',
+    width: 300,
     borderRadius: 15,
+    borderColor: '#f4511e',
+    borderWidth: 2,
+    margin: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  texte: {
+    fontSize: 20,
+    margin: 10,
+  },
+  titleComponent: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    margin: 10,
+    textAlign: 'center',
   },
 });

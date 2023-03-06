@@ -21,14 +21,14 @@ export default function CuisineEtape1Screen({ navigation}) {
   fetch(`http://192.168.10.137:3000/menuTer/miseenoeuvre?recettesList=[${titleList}]`)
     .then((response) => response.json())
     .then((data) => {
-      for (let x=0 ; x < data.steps.cuisson.length; x++) {
-      //console.log(data.steps.cuisson[x].step.target[0]);
+      for (let x=0 ; x < data.steps.remise_en_oeuvre.length; x++) {
+      //console.log(data.steps.remise_en_oeuvre[x]);
       const Recipe = {
-        action: data.steps.cuisson[x].step.action,
-        duration: data.steps.cuisson[x].step.duration,
-        title: data.steps.cuisson[x].recette_title,
+        action: data.steps.remise_en_oeuvre[x].step.action,
+        duration: data.steps.remise_en_oeuvre[x].step.duration,
+        title: data.steps.remise_en_oeuvre[x].recette_title,
       }
-      //console.log(steps);
+      //console.log(data.steps);
       if (steps.find((steps) => steps.target === Recipe.target)) {
         return;
       } else {
@@ -56,14 +56,14 @@ export default function CuisineEtape1Screen({ navigation}) {
       <Menu  />
          <View style={styles.generalContainer}>
              <Text style={styles.title}>Je cuisine</Text>
-             <Text style={styles.title}>Etape 2 : Cuisson </Text>
+             <Text style={styles.title}>Etape 5 : Remise en oeuvre </Text>
         {renderSteps}
           <View style={styles.btnContainer}>
-             <TouchableOpacity style={styles.nextBtn} onPress={() => navigation.navigate("CuisineEtape1Screen")}>
+             <TouchableOpacity style={styles.nextBtn} onPress={() => navigation.navigate("CuisineEtape4Screen")}>
                  <FontAwesome name="toggle-left" size={16} color='#fff' style={styles.icon}/>
                  <Text style={styles.textWhite}>Etape précédente </Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.nextBtn} onPress={() => navigation.navigate("CuisineEtape3Screen")}>
+              <TouchableOpacity style={styles.nextBtn} onPress={() => navigation.navigate("ConservationScreen")}>
                   <Text style={styles.textWhite}>Etape suivante </Text>
                   <FontAwesome name="toggle-right" size={16} color='#fff' style={styles.icon}/>
              </TouchableOpacity>

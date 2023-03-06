@@ -14,6 +14,7 @@ export default function Menu() {
   const User = useSelector((state) => state.user.value);
   const [isModalVisible, setModalVisible] = useState(false);
   const dispatch = useDispatch();
+ 
 
   const handleLogout = () => {
     dispatch(logout());
