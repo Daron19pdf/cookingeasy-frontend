@@ -1,19 +1,25 @@
-import { StyleSheet, Text, View , TouchableOpacity, KeyboardAvoidingView, Platform } from 'react-native';
-import * as Progress from 'react-native-progress';
-import { useState } from 'react'; 
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  KeyboardAvoidingView,
+  Platform,
+} from "react-native";
+import * as Progress from "react-native-progress";
+import { useState } from "react";
+import FontAwesome from "react-native-vector-icons/FontAwesome";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
-import { useSelector } from 'react-redux';
-import user from '../reducers/user';
+import { useSelector } from "react-redux";
+import user from "../reducers/user";
 
 //import CheckBox from '@react-native-community/checkbox';
 
 export default function RegimeScreen({ navigation }) {
-  const BACKEND_ADDRESS = 'https://cookingeasy-backend.vercel.app';
+  const BACKEND_ADDRESS = "https://cookingeasy-backend.vercel.app";
 
   const user = useSelector((state) => state.user.value);
-  console.log(user)
-  const [isVegetalien, setVegetalien] = useState(false);
+  console.log(user);
   const [isVegetarien, setVegetarien] = useState(false);
   const [isPescetarien, setPescetarien] = useState(false);
   const [isPorc, setPorc] = useState(false);
@@ -22,32 +28,32 @@ export default function RegimeScreen({ navigation }) {
   const [isAlcool, setAlcool] = useState(false);
   const [isNone, setNone] = useState(false);
 
-    const handleValidation = () => {
+  const handleValidation = () => {
     fetch(`${BACKEND_ADDRESS}/preferences/regime`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         vegetarien: isVegetarien,
         vegetalien: isVegetalien,
         pescetarien: isPescetarien,
         gluten: isGluten,
-        porc: isPorc, 
+        porc: isPorc,
         alcool: isAlcool,
-        lactose: isLactose, 
-        sansRegimeParticulier : isNone,
-        token: user.token
+        lactose: isLactose,
+        sansRegimeParticulier: isNone,
+        token: user.token,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        navigation.navigate("AlimentExcluScreen");
       })
-    })
-    .then(response => response.json())
-    .then(data => {
-      console.log(data);
-      navigation.navigate('AlimentExcluScreen')
-    })
-    .catch(error => {
-      console.error(error);
-    });
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
     const [isPressed, setIsPressed] = useState(false);
@@ -56,7 +62,10 @@ export default function RegimeScreen({ navigation }) {
       setIsPressed(!isPressed);
     };
   return (
-    <KeyboardAvoidingView style={styles.container} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+    <KeyboardAvoidingView
+      style={styles.container}
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+    >
       <Text style={styles.title}>Mon Régime Alimentaire</Text>
       <Text style={styles.h1}>Sélectionnez votre régime alimentaire :</Text>
       <View style={styles.CheckBoxContainer}>
@@ -126,49 +135,58 @@ export default function RegimeScreen({ navigation }) {
       />
         </View>
       <View style={styles.bottomButton}>
-        <TouchableOpacity style={styles.previous} onPress={() => navigation.navigate('EquipementScreen')}>
-          <FontAwesome name='arrow-left' size={15} color='#ffff' />
+        <TouchableOpacity
+          style={styles.previous}
+          onPress={() => navigation.navigate("EquipementScreen")}
+        >
+          <FontAwesome name="arrow-left" size={15} color="#ffff" />
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.next}
+        <TouchableOpacity
+          style={styles.next}
           title="Suivant"
-          onPress={handleValidation} >
+          onPress={handleValidation}
+        >
           <Text style={styles.Suivant}>Suivant</Text>
         </TouchableOpacity>
       </View>
 
-      <Progress.Bar width={250}
+      <Progress.Bar
+        width={250}
         borderWidth={1}
         progress={0.75}
         height={15}
-        color={'#FA8C8E'}
-        indeterminateAnimationDuration={2000} />
+        color={"#f4511e"}
+        indeterminateAnimationDuration={2000}
+      />
     </KeyboardAvoidingView>
   );
-};
+}
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "space-between",
     marginTop: 5,
     marginBottom: 10,
   },
   title: {
     marginTop: 40,
-    fontSize: 20,
-    fontWeight: 'bold',
+    fontSize: 25,
+    fontWeight: "bold",
+    textAlign: "center",
+    
   },
   //Style des text (hors titre)
   h1: {
-    display: 'flex',
+    display: "flex",
     fontSize: 15,
   },
 
   //Style container Checkbox
   CheckBoxContainer: {
-    justifyContent: 'space-between',
+    justifyContent: "space-between",
   },
 
   //Style des CheckBox
@@ -177,22 +195,22 @@ const styles = StyleSheet.create({
     unfillColor: "white",
     borderColor: "red",
     borderWidth: 2,
-    textDecorationLine: 'none'
+    textDecorationLine: "none",
   },
 
   //Style du bouton Suivant
   next: {
-    width: '40%',
-    alignItems: 'center',
+    width: "40%",
+    alignItems: "center",
     marginTop: 20,
     marginBottom: 20,
-    backgroundColor: '#FA8C8E',
+    backgroundColor: "#f4511e",
   },
 
   //Style du text "suivant"
   Suivant: {
     fontSize: 20,
-    color: '#ffffff',
+    color: "#ffffff",
     padding: 10,
   },
 
@@ -200,18 +218,18 @@ const styles = StyleSheet.create({
   previous: {
     width: 40,
     height: 40,
-    backgroundColor: '#E3C7F9',
+    backgroundColor: "#E3C7F9",
     borderRadius: 50,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
   },
 
   //Style des boutons inférieurs
   bottomButton: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    width: '100%',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    width: "100%",
     paddingHorizontal: 20,
     marginBottom: 5,
   },

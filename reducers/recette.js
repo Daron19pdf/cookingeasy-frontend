@@ -13,8 +13,12 @@ export const recetteSlice = createSlice({
      state.value.push(action.payload);
    },
    removeRecette: (state, action) => {
-    state.value = state.value.filter((item) => item !== action.payload);
+    for (let x = 0; x < state.value.length; x++) {
+      state.value = state.value[x].recettes.find((data) => data.title !== action.payload);
+      //console.log(state.value);
     }
+    }
+    
  },
 });
 

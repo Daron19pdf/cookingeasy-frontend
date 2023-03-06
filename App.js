@@ -31,6 +31,7 @@ import Menu from './component/menu';
 import CuisineEtape1Screen from './screens/CuisineEtape1Screen';
 import CuisineEtape2Screen from './screens/CuisineEtape2Screen';
 import CuisineEtape3Screen from './screens/CuisineEtape3Screen';
+import ListCourse from './screens/ListCourse';
 
 
 
@@ -50,6 +51,7 @@ export default function App() {
        <Stack.Navigator screenOptions={{ headerShown: false }}>
        <Stack.Screen name="Index" component={Index} />
        <Stack.Screen name="Menu" component={Menu} />
+       <Stack.Screen name="ListCourse" component={ListCourse} />
        <Stack.Screen name="ConnectionScreen" component={ConnectionScreen} /> 
        <Stack.Screen name="AlimentExcluScreen" component={AlimentExcluScreen} /> 
         <Stack.Screen name="RegimeScreen" component={RegimeScreen} />
@@ -69,6 +71,7 @@ export default function App() {
         <Stack.Screen name="CuisineEtape1Screen" component={CuisineEtape1Screen} />
         <Stack.Screen name="CuisineEtape2Screen" component={CuisineEtape2Screen} />
         <Stack.Screen name="CuisineEtape3Screen" component={CuisineEtape3Screen} />
+        
        </Stack.Navigator>
        </NavigationContainer>
       </Provider>
