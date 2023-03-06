@@ -6,11 +6,11 @@ import LikedRecetteComponent from '../component/LikedRecette';
 
 export default function FavorisScreen({ props }) {
 
-  const Liked = useSelector((state) => state.recette.liked);
-  let Recipes = <Text>Vous n'avez encore rien enregistré</Text>;
+  const Liked = useSelector((state) => state.Favoris.value);
+  let Recipes = <Text>Vous n'avez encore rien enregistré.</Text>;
   if (Liked.length > 0) {
   Recipes = Liked.map((data, i) => {
-  return <LikedRecetteComponent key={index} title={props.title} photo={props.photo}/>;
+  return <LikedRecetteComponent key={i} title={data.title} photo={data.photo}/>;
 });
 }
   return (

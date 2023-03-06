@@ -2,7 +2,6 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
  value: [],
- liked: [],
 };
 
 export const recetteSlice = createSlice({
@@ -16,13 +15,7 @@ export const recetteSlice = createSlice({
    removeRecette: (state, action) => {
     state.value = state.value.filter((item) => item !== action.payload);
     },
-    LikedRecette: (state, action) => {
-      state.liked.push(action.payload);
-    },
-    UnlikedRecette: (state, action) => {
-      state.liked = state.liked.filter(recette => recette !== action.payload);
-    },
-    
+  
  },
 });
 

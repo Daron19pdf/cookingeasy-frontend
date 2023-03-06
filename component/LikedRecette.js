@@ -14,11 +14,11 @@ export default function LikedRecetteComponent(props) {
     const [modalVisible, setModalVisible] = useState(false);
     const [isVisible, setIsVisible] = useState(true);
     const [selectedValue, setSelectedValue] = useState("2");
-    const Liked = useSelector((state) => state.favoris.value);
+    const Liked = useSelector((state) => state.Favoris.value);
 
      // like coeur 
      const handleUnlike = () => {
-        dispatch(UnlikedRecette());
+        dispatch(UnlikedRecette({title : props.title, photo: props.photo}));
         setLikedRecipe(false);
         setIsVisible(false);
 
@@ -54,7 +54,7 @@ export default function LikedRecetteComponent(props) {
     return (
         <View style={styles.container}>
             <Text style={styles.title}>{props.title}</Text>
-            <Image style={styles.image} source={require('../assets/plats/lasagnes-bolo.jpg')} />
+            <Image style={styles.image} source={{ uri: props.photo }} />
             <View style={styles.bottomContainer}>
                 <TouchableOpacity style={styles.userContainer} onPress={ () => toggleModal()}>
                     <FontAwesome name='user' size={16} color='#000' style={styles.icon}/>
