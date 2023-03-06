@@ -150,8 +150,11 @@ const styles = StyleSheet.create({
   },
   button: {
     flex: 1,
-    width: "30%",
+    width: "100%",
+    height: 40,
     alignItems: "center",
+    textAlign: "center",
+    justifyContent:"center",
   },
 
   title: {
@@ -192,6 +195,10 @@ const styles = StyleSheet.create({
   selectedButton: {
     width: "100%",
     textAlign: "center",
+    justifyContent: "center",
+    alignItems: "center",
+    height: 40,
+    borderRadius: 20,
     fontSize: 15,
     backgroundColor: "#f4511e",
   },

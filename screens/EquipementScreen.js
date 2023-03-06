@@ -61,7 +61,9 @@ export default function EquipementScreen({ navigation }) {
       <View style={styles.equipement}>
         <TouchableOpacity onPress={() => setIsFourClicked(!isFourClicked)}>
           <Image
-            style={[styles.four, isFourClicked && styles.fourClicked]}
+            style={[styles.four,
+              isFourClicked && styles.fourClicked
+            ]}
             source={require("../assets/four.png")}
           />
           <Text style={styles.appareil}>four</Text>
@@ -255,7 +257,6 @@ const styles = StyleSheet.create({
   microOndes: {
     width: 150,
     height: 100,
-
     resizeMode: "contain",
   },
   mixeur: {
