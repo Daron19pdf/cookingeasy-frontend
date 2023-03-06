@@ -47,9 +47,8 @@ const styles = StyleSheet.create({
     height: "50%",
   },
   title: {
-    fontSize: 35,
-    fontWeight: "600",
-    fontFamily: "bold",
+    fontSize: 40,
+    fontWeight: '800',
     marginBottom: 40,
   },
   button1: {

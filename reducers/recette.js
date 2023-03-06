@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
  value: [],
+ liked: [],
 };
 
 export const recetteSlice = createSlice({
@@ -13,14 +14,17 @@ export const recetteSlice = createSlice({
      state.value.push(action.payload);
    },
    removeRecette: (state, action) => {
-    for (let x = 0; x < state.value.length; x++) {
-      state.value = state.value[x].recettes.find((data) => data.title !== action.payload);
-      //console.log(state.value);
-    }
-    }
+    state.value = state.value.filter((item) => item !== action.payload);
+    },
+    LikedRecette: (state, action) => {
+      state.liked.push(action.payload);
+    },
+    UnlikedRecette: (state, action) => {
+      state.liked = state.liked.filter(recette => recette !== action.payload);
+    },
     
  },
 });
 
-export const { addRecette, removeRecette } = recetteSlice.actions;
+export const { addRecette, removeRecette, LikedRecette, UnlikedRecette } = recetteSlice.actions;
 export default recetteSlice.reducer;
