@@ -7,12 +7,14 @@ import {Picker} from "@react-native-picker/picker";
 
 
 export default function Recette(props) {
-    
+   
     const navigation = useNavigation();
     const [likedRecipe, setlikedRecipe] = useState(false)
     const [modalVisible, setModalVisible] = useState(false);
     const [selectedValue, setSelectedValue] = useState("2");
     const [modalRecipeVisible, setModalRecipeVisible] = useState(false);
+
+    console.log(props);
 
      // like coeur (attente pour ajout dans favoris)
     const handleLike = () => {
