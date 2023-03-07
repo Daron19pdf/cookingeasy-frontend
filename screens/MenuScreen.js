@@ -10,17 +10,21 @@ export default function MenuScreen({ navigation}) {
     const dispatch = useDispatch();
     const [recette, setRecette] = useState([]);
     const [NbrRecette, setNbrRecette] = useState(0);
+    const [NbrPersonne, setNbrPersonne] = useState(0);
     const User = useSelector((state) => state.user.value);
    //console.log(User.token);
-   let Stoken = "ii8V8wTkU-YR47Tu1iIPR3kQ4_L5NPZm"
-   let userId = "640757eb627d15842471ae81"
 
+   let Stoken = "ii8V8wTkU-YR47Tu1iIPR3kQ4_L5NPZm"
+    let userId = "640757eb627d15842471ae81"
+       
 useEffect(() => { 
   fetch(`${BACKEND_ADDRESS}user/user/?token=${Stoken}`)
 .then((response) => response.json())
 .then((data) => {
+  console.log(data);
   setNbrRecette(data.data.preference.foyer.nombreRecette);
-  console.log(data.data.preference._id);
+  setNbrPersonne(data.data.preference.foyer.nombrePersonne);
+  //console.log(data.data.preference._id);
   fetch(`${BACKEND_ADDRESS}menu/recettes?userId=${userId}`)
    .then((response) => response.json())
     .then((data) => {
@@ -56,7 +60,7 @@ useEffect(() => {
   let NewRecettes = (<ActivityIndicator style={styles.load} size="large"  color="red" />)
   if (recette.length > 0) {
  NewRecettes = recette.map((data, index) => {
-    return <Recette key={index} title={data.title} photo={data.photo} prep_duration={data.prep_duration} cook_duration={data.cook_duration} steps={data.steps} ingredients={data.ingredients} servings={data.servings} description={data.description}  />;
+    return <Recette key={index} title={data.title} photo={data.photo} prep_duration={data.prep_duration} cook_duration={data.cook_duration} steps={data.steps} ingredients={data.ingredients} servings={data.servings} description={data.description} NbrPersonne={NbrPersonne}  />;
 });
   }
 
