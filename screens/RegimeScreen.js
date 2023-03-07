@@ -106,6 +106,7 @@ export default function RegimeScreen({ navigation }) {
           textStyle={{ textDecorationLine: 'none' }}
           onPress={() => setPescetarien(!false)}
         />
+
         <BouncyCheckbox
           text="Sans porc"
           fillColor="red"
@@ -150,8 +151,7 @@ export default function RegimeScreen({ navigation }) {
         <TouchableOpacity
           style={styles.next}
           title="Suivant"
-          onPress={handleValidation}
-        >
+          onPress={handleValidation}>
           <Text style={styles.Suivant}>Suivant</Text>
         </TouchableOpacity>
       </View>

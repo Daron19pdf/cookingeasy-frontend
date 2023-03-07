@@ -4,16 +4,81 @@ import Menu from '../component/menu';
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
+const EMAIL_REGEX =
+  /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
 export default function ProfilScreen({ navigation }) {
   
+  const dispatch = useDispatch();
+
   const User = useSelector((state) => state.user.value);
-  const [text, setText] = useState("");
   const [isPseudo, setPseudo] = useState(`${User.pseudo}`);
   const [isNom, setNom] = useState(`${User.nom}`);
   const [isPrenom, setPrenom] = useState(`${User.prenom}`);
   const [isPassword, setPassword] = useState(`${User.password}`);
-  const [isEmail, setEmail] = useState(`${User.email}`); 
+  const [isEmail, setEmail] = useState(`${User.email}`);
+  const [focusedInput, setFocusedInput] = useState("");
+  const [emailError, setEmailError] = useState(false);
+  const [formValid, setFormValid] = useState(true);
 
+  const handleFocus = (inputName) => {
+    setFocusedInput(inputName);
+  };
+
+  const handleBlur = () => {
+    setFocusedInput("");
+  };
+
+  const handleValidation = () => {
+    fetch(`${BACKEND_ADDRESS}/user/signup`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        pseudo: User.pseudo,
+        nom: User.nom,
+        prenom: User.prenom,
+        password: User.password,
+        email: User.email,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        dispatch(
+          login({
+            pseudo: isPseudo,
+            nom: isNom,
+            prenom: isPrenom,
+            password: isPassword,
+            email: isEmail,
+            token: data.token,
+          })
+        );
+        console.log(data.token);
+        setPseudo("");
+        setNom("");
+        setPrenom("");
+        setPassword("");
+        setEmail("");
+        if (!EMAIL_REGEX.test(isEmail)) {
+          setEmailError(true);
+        } else {
+          navigation.navigate("InfoScreen");
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  const handleFormValidation = () => {
+    if (!isPseudo || !isNom || !isPrenom || !isPassword || !isEmail) {
+      setFormValid(false);
+      alert("Tous les champs doivent être remplis");
+    } else {
+      setFormValid(true);
+      handleValidation();
+    }
+  };
   return (
     <ScrollView style={styles.modalContainer}>
       <Menu  />
@@ -34,7 +99,9 @@ export default function ProfilScreen({ navigation }) {
             <View style={styles.InputView}>
             <Text>Nom : </Text>
         <TouchableOpacity style={styles.button}>
-            <TextInput style={styles.text} value={isNom}
+              <TextInput style={styles.text} value={isNom}
+                onFocus={() => handleFocus("nom")}
+                onBlur={handleBlur}
                 onChangeText={(value)=>setNom(value)}/>
           </TouchableOpacity>
           </View>
@@ -43,6 +110,8 @@ export default function ProfilScreen({ navigation }) {
               <Text>Prenom : </Text>
           <TouchableOpacity style={styles.button}>
               <TextInput style={styles.text} value={isPrenom}
+                onFocus={() => handleFocus("prenom")}
+                onBlur={handleBlur}
                 onChangeText={(value)=>setPrenom(value)}/>
           </TouchableOpacity>
           </View>
@@ -50,7 +119,8 @@ export default function ProfilScreen({ navigation }) {
             <View>
             <Text>Mot de passe : </Text>
           <TouchableOpacity style={styles.button}>
-          <TextInput style={styles.text}value={isPassword}
+              <TextInput style={styles.text} value={isPassword}
+                onFocus={() => handleFocus("password")}
                 onChangeText={(value)=>setPassword(value)}/>
           </TouchableOpacity>
           </View>
@@ -58,7 +128,8 @@ export default function ProfilScreen({ navigation }) {
           <View>
             <Text>Email : </Text>
           <TouchableOpacity style={styles.button}>
-          <TextInput style={styles.text}value={isEmail}
+              <TextInput style={styles.text} value={isEmail}
+                onFocus={() => handleFocus("email")}
                 onChangeText={(value)=>setEmail(value)}/>
         </TouchableOpacity>
           </View>
@@ -81,7 +152,8 @@ export default function ProfilScreen({ navigation }) {
             </TouchableOpacity>
           </View>
         </View>
-          <TouchableOpacity style={styles.next}>
+        <TouchableOpacity style={styles.next}
+        onPress={handleFormValidation}>
               <Text style={styles.buttonText}> OK </Text>
             </TouchableOpacity>
       </View>
@@ -110,12 +182,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   pseudoText: {
-    fontSize: 20,
+    fontSize: 25,
     fontWeight: "bold",
     height: 40,
     width: 150,
-    borderWidth: 1,
-    marginLeft: 10,
+    marginLeft: 40,
+    marginRight: 10,
   },
   text: {
     width: "100%",
