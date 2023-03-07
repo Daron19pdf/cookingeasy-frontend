@@ -1,4 +1,4 @@
-import { StyleSheet, View, Text, Image, ScrollView } from 'react-native'
+import { StyleSheet, View, Text, Image, ScrollView, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { Header } from 'react-native-elements'
 import { useState } from 'react';
@@ -49,9 +49,14 @@ export default function Menu() {
     <View style={styles.container}>
     <Header 
         backgroundColor='#f4511e'
-        leftComponent={{ icon: 'menu', color: '#fff' , onPress:(toggleModal) }} 
-        centerComponent={{ text: 'Cooking Easy', style: { color: '#fff' } , img: require('../assets/COOKING_EASY.png'), imgStyle: {width: 100, height: 100} , onPress: () => navigation.navigate('HomeScreen') }}
+        leftComponent={{ icon: 'menu', color: '#fff' , style: {marginTop: 'auto', marginBottom: 'auto'}, onPress:(toggleModal) }} 
+        centerComponent={
+          <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')}>
+            <Image source={require('../assets/logo-orange.png')} style={{ width: 150, height: 50, marginTop: -10 }} />
+          </TouchableOpacity>
+        }
      />
+  
      <View style={styles.container}>
     </View>
     <View style={styles.container}>
@@ -69,7 +74,7 @@ export default function Menu() {
     >
     <View style={styles.containerModal}>
       <View style={styles.imgContainer}>
-        <Image source={require('../assets/COOKING_EASY.png')} style={{width: 100, height: 100}} />
+        <Image source={require('../assets/COOKING_EASY.png')} style={{width: 130, height: 130}} />
       </View>
       <View style={styles.sommaireContainer}>
         <Text style={{fontSize: 20, fontWeight: 'bold', margin: 15, textAlign: 'center'}}>Mon tableau de bord</Text>
@@ -79,15 +84,15 @@ export default function Menu() {
         </View>
         <View style={styles.align} >
         <FontAwesome name='spoon' size={20} color='#FA8C8E' style={styles.icon}/>
-        <Text style={{fontSize: 15, fontWeight: 'bold', margin:15}} onPress={() => navigation.navigate("MenuScreen")} >Mon Menu</Text>
+        <Text style={{fontSize: 15, fontWeight: 'bold', margin:15}} onPress={() => navigation.navigate("MenuScreen")} >Mon menu</Text>
         </View>
         <View style={styles.align}>
         <FontAwesome name='star' size={20} color='#FA8C8E' style={styles.icon}/>
-        <Text style={{fontSize: 15, fontWeight: 'bold', margin:15}} onPress={() => navigation.navigate("FavorisScreen")} >Mes Favoris</Text>
+        <Text style={{fontSize: 15, fontWeight: 'bold', margin:15}} onPress={() => navigation.navigate("FavorisScreen")} >Mes favoris</Text>
         </View>
         <View style={styles.align}>
         <FontAwesome name='user' size={20} color='#FA8C8E' style={styles.icon}/>
-        <Text style={{fontSize: 15, fontWeight: 'bold', margin:15}} onPress={() => navigation.navigate("ProfilScreen")} >Mon Profil</Text>
+        <Text style={{fontSize: 15, fontWeight: 'bold', margin:15}} onPress={() => navigation.navigate("ProfilScreen")} >Mon profil</Text>
         </View>
         <View style={styles.align}>
         <FontAwesome name='book' size={20} color='#FA8C8E' style={styles.icon}/>
@@ -131,9 +136,9 @@ const styles = StyleSheet.create({
     width: "90%",
     backgroundColor: '#fff',
     alignItems: 'center',
-    borderRadius: 10,
-    borderColor: '#f4511e',
-    borderWidth: 2,
+    //borderRadius: 10,
+    //borderColor: '#f4511e',
+    //borderWidth: 2,
   },
 
   sommaireContainer: {
@@ -158,11 +163,12 @@ const styles = StyleSheet.create({
   },
   bottomContainer: {
     padding: 10,
-    borderColor: '#f4511e',
+    alignItems: 'center',
+    //borderColor: '#f4511e',
     width: "90%",
-    borderWidth: 2,
+    //borderWidth: 2,
     margin: 5,
-    borderRadius: 10,
+    //borderRadius: 10,
   },
   deco: {
     justifyContent: 'center',

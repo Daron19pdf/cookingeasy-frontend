@@ -59,7 +59,7 @@ export default function InscriptionScreen({ navigation }) {
             token: data.token,
           })
         );
-        console.log(data.token);
+        //console.log(data.token);
         setPseudo("");
         setNom("");
         setPrenom("");

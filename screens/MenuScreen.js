@@ -1,22 +1,55 @@
-import {
-  View,
-  Text,
-  StyleSheet,
-  ScrollView,
-  TouchableOpacity,
-  ActivityIndicator,
-} from "react-native";
-import React, { useEffect, useState } from "react";
-import Menu from "../component/menu";
-import Recette from "../component/recette";
-import { useDispatch } from "react-redux";
-import { addRecette } from "../reducers/recette";
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, ActivityIndicator } from 'react-native'
+import React, {useEffect, useState} from 'react'
+import Menu from '../component/menu';
+import Recette from '../component/recette';
+import { useDispatch, useSelector } from "react-redux";
+import {addRecette} from '../reducers/recette';
 
-export default function MenuScreen({ navigation }) {
-  const BACKEND_ADDRESS = "https://cookingeasy-backend.vercel.app/";
-  const dispatch = useDispatch();
-  const [recette, setRecette] = useState([]);
-  const [NbrRecette, setNbrRecette] = useState(0);
+export default function MenuScreen({ navigation}) {
+    const BACKEND_ADDRESS = 'https://cookingeasy-backend.vercel.app/';
+    const dispatch = useDispatch();
+    const [recette, setRecette] = useState([]);
+    const [NbrRecette, setNbrRecette] = useState(0);
+    const User = useSelector((state) => state.user.value);
+   //console.log(recette);
+
+   sToken = 'FRtMxr4qfwowrV26PEGkbS5qNJcKK6Xq'
+       
+useEffect(() => { 
+  fetch(`${BACKEND_ADDRESS}/user/user/?token=${sToken}`)
+.then((response) => response.json())
+.then((data) => {
+  setNbrRecette(data.data.preference.foyer.nombreRecette);
+  fetch(`${BACKEND_ADDRESS}/menu/recettes?userId=${data.data.preference._id}`)
+   .then((response) => response.json())
+    .then((data) => {
+      let test = Math.floor(Math.random() * data.recettes.length);
+      //console.log(test);
+      dispatch(addRecette(data)); 
+      for (let i = 0; i < NbrRecette; i++) {
+        const recettes = {
+          title: data.recettes[i].title,
+          photo: data.recettes[i].photo,   
+          prep_duration: data.recettes[i].prep_duration,
+          cook_duration: data.recettes[i].cook_duration,
+          steps: data.recettes[i].steps,
+          ingredients: data.recettes[i].ingredients,
+          servings: data.recettes[i].servings,
+          description: data.recettes[i].description,
+      }
+      if (recette.find((recette) => recette.title === recettes.title)) {
+        return;
+      } else {
+        setRecette((recette) => [...recette, recettes]);
+      }
+    }
+    })
+.catch((error) => {
+    console.error(error);
+});
+})
+}, [NbrRecette]);
+ 
 
   useEffect(() => {
     fetch(
