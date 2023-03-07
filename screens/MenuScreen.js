@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {addRecette} from '../reducers/recette';
 
 export default function MenuScreen({ navigation}) {
-    const BACKEND_ADDRESS = 'https://cookingeasy-backend.vercel.app';
+    const BACKEND_ADDRESS = 'https://cookingeasy-backend.vercel.app/';
     const dispatch = useDispatch();
     const [recette, setRecette] = useState([]);
     const [NbrRecette, setNbrRecette] = useState(0);

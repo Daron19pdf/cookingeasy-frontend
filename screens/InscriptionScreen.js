@@ -14,7 +14,7 @@ const EMAIL_REGEX =
   /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 export default function InscriptionScreen({ navigation }) {
-  const BACKEND_ADDRESS = "https://cookingeasy-backend.vercel.app";
+  const BACKEND_ADDRESS = "https://cookingeasy-backend.vercel.app/";
   const SarahIP = "http://192.168.10.161:3000";
   const dispatch = useDispatch();
 
