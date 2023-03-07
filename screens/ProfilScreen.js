@@ -12,6 +12,7 @@ export default function ProfilScreen({ navigation }) {
   const dispatch = useDispatch();
 
   const User = useSelector((state) => state.user.value);
+
   const [isPseudo, setPseudo] = useState(`${User.pseudo}`);
   const [isNom, setNom] = useState(`${User.nom}`);
   const [isPrenom, setPrenom] = useState(`${User.prenom}`);
@@ -30,7 +31,7 @@ export default function ProfilScreen({ navigation }) {
   };
 
   const handleValidation = () => {
-    fetch(`${BACKEND_ADDRESS}/user/signup`, {
+    fetch(`${BACKEND_ADDRESS}/user/update`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
