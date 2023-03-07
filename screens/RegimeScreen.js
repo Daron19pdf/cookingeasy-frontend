@@ -77,7 +77,7 @@ export default function RegimeScreen({ navigation }) {
           marginBottom={15}
           iconStyle={{ borderColor: "red" }}
           textStyle={{ textDecorationLine: 'none' }}
-          onPress={isNone ? null : setNone(!isNone)}
+          onPress={() => setNone(!false)}
         />
         
         <BouncyCheckbox
@@ -86,7 +86,7 @@ export default function RegimeScreen({ navigation }) {
           marginBottom={15}
           iconStyle={{ borderColor: "red" }}
           textStyle={{ textDecorationLine: 'none' }}
-          onPress={isVegetarien ? null : setVegetarien(!isVegetarien)}
+          onPress={() => setVegetarien(!false)}
         />
         
         <BouncyCheckbox
@@ -95,7 +95,7 @@ export default function RegimeScreen({ navigation }) {
           marginBottom={15}
           iconStyle={{ borderColor: "red" }}
           textStyle={{ textDecorationLine: 'none' }}
-          onPress={isVegetalien ? null : setVegetalien(!isVegetalien)}
+          onPress={() => setVegetalien(!false)}
       />
       
       <BouncyCheckbox
@@ -104,7 +104,7 @@ export default function RegimeScreen({ navigation }) {
           marginBottom={15}
           iconStyle={{ borderColor: "red" }}
           textStyle={{ textDecorationLine: 'none' }}
-          onPress={isPescetarien ? null : setPescetarien(!isPescetarien)}
+          onPress={() => setPescetarien(!false)}
         />
         <BouncyCheckbox
           text="Sans porc"
@@ -112,7 +112,7 @@ export default function RegimeScreen({ navigation }) {
           marginBottom={15}
           iconStyle={{ borderColor: "red" }}
           textStyle={{ textDecorationLine: 'none' }}
-        onPress={isPorc ? null : setPorc(!isPorc)}
+          onPress={() => setPorc(!false)}
       />
       <BouncyCheckbox
           text="Sans lactose"
@@ -120,7 +120,7 @@ export default function RegimeScreen({ navigation }) {
           marginBottom={15}
           iconStyle={{ borderColor: "red" }}
           textStyle={{ textDecorationLine: 'none' }}
-        onPress={isLactose ? null : setLactose(!isLactose)}
+        onPress={() => setLactose(!false)}
       />
       <BouncyCheckbox
           text="Sans gluten"
@@ -128,14 +128,14 @@ export default function RegimeScreen({ navigation }) {
           marginBottom={15}
           iconStyle={{ borderColor: "red" }}
           textStyle={{ textDecorationLine: 'none' }}
-          onPress={isGluten ? null : setGluten(!isGluten)}
+          onPress={() => setGluten(!false)}
       />
       <BouncyCheckbox
           text="Sans alcool"
           fillColor="red"
           iconStyle={{ borderColor: "red" }}
           textStyle={{ textDecorationLine: 'none' }}
-         onPress={isAlcool ? null : setAlcool(!isAlcool)}
+         onPress={() => setAlcool(!false)}
       />
       </View>
 
@@ -177,7 +177,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   title: {
-    marginTop: 40,
+    marginTop: 50,
     fontSize: 25,
     fontWeight: "bold",
     textAlign: "center",

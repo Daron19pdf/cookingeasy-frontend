@@ -12,8 +12,11 @@ export const ingredientSlice = createSlice({
    addIngredientToStore: (state, action) => {
      state.value.push(action.payload);
    },
+   removeIngredientFromStore: (state, action) => {
+    state.value = state.value.filter(ingredient => ingredient !== action.payload);
+  },
  },
 });
 
-export const { addIngredientToStore } = ingredientSlice.actions;
+export const { addIngredientToStore, removeIngredientFromStore } = ingredientSlice.actions;
 export default ingredientSlice.reducer;

@@ -174,7 +174,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   focusedInput: {
-    borderColor: "#E3C7F9",
+    borderColor: "#f4511e",
     borderWidth: 1.5,
   },
   button: {
