@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
   moreRecette: {
     backgroundColor: '#f4511e',
     width: "50%",
-    height: 60,
+    height: 50,
     alignItems: "center",
     justifyContent: "center",
     margin: 15,
@@ -113,8 +113,8 @@ const styles = StyleSheet.create({
   goRecette: {
     backgroundColor: '#f4511e',
     width: "20%",
-    height: 70,
-    borderRadius: 60,
+    height: 50,
+    borderRadius: 50,
     alignItems: "center",
     justifyContent: "center",
     margin: 5,
@@ -124,4 +124,5 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+
 });
