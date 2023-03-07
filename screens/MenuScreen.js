@@ -16,7 +16,7 @@ export default function MenuScreen({ navigation}) {
    sToken = 'FRtMxr4qfwowrV26PEGkbS5qNJcKK6Xq'
        
 useEffect(() => { 
-  fetch(`${BACKEND_ADDRESS}/user/user/?token=${sToken}`)
+  fetch(`${BACKEND_ADDRESS}/user/user/?token=${User.Token}`)
 .then((response) => response.json())
 .then((data) => {
   setNbrRecette(data.data.preference.foyer.nombreRecette);
@@ -48,7 +48,7 @@ useEffect(() => {
     console.error(error);
 });
 })
-}, [NbrRecette]);
+}, []);
  
 
   useEffect(() => {
