@@ -31,7 +31,7 @@ export default function Recette(props) {
   const handleLike = () => {
     dispatch(LikedRecette({ title: props.title, photo: props.photo }));
     setLikedRecipe(true);
-    console.log(Liked);
+    //console.log(Liked);
   };
 
   const handleUnlike = () => {
@@ -118,7 +118,7 @@ export default function Recette(props) {
       </View>
     );
   });
-console.log(props)
+//console.log(props)
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{props.title}</Text>
