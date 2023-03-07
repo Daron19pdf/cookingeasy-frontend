@@ -20,7 +20,7 @@ export default function Recette(props) {
   const navigation = useNavigation();
   const [likedRecipe, setLikedRecipe] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
-  const [selectedValue, setSelectedValue] = useState("2");
+  const [selectedValue, setSelectedValue] = useState(props.NbrPersonne);
   const [modalRecipeVisible, setModalRecipeVisible] = useState(false);
   const Liked = useSelector((state) => {
     //console.log(state.Favoris.value);
