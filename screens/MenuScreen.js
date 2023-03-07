@@ -86,7 +86,7 @@ useEffect(() => {
             console.error(error);
           });
       });
-  }, [NbrRecette]);
+  }, []);
 
   let NewRecettes = (
     <ActivityIndicator style={styles.load} size="large" color="red"/>
