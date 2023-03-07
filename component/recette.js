@@ -145,7 +145,6 @@ export default function Recette(props) {
         <TouchableOpacity
           style={styles.userContainer}
           onPress={likedRecipe ? handleUnlike : handleLike}>
-            {likedRecipe ? "Unlike" : "Like"}
           <FontAwesome
             name={likeHeart}
             size={16}
