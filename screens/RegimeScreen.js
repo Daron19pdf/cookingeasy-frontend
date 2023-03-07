@@ -106,6 +106,7 @@ export default function RegimeScreen({ navigation }) {
           textStyle={{ textDecorationLine: 'none' }}
           onPress={isPescetarien ? null : setPescetarien(!isPescetarien)}
         />
+
         <BouncyCheckbox
           text="Sans porc"
           fillColor="red"
@@ -113,7 +114,8 @@ export default function RegimeScreen({ navigation }) {
           iconStyle={{ borderColor: "red" }}
           textStyle={{ textDecorationLine: 'none' }}
         onPress={isPorc ? null : setPorc(!isPorc)}
-      />
+        />
+
       <BouncyCheckbox
           text="Sans lactose"
           fillColor="red"
@@ -121,7 +123,8 @@ export default function RegimeScreen({ navigation }) {
           iconStyle={{ borderColor: "red" }}
           textStyle={{ textDecorationLine: 'none' }}
         onPress={isLactose ? null : setLactose(!isLactose)}
-      />
+        />
+
       <BouncyCheckbox
           text="Sans gluten"
           fillColor="red"
@@ -129,7 +132,8 @@ export default function RegimeScreen({ navigation }) {
           iconStyle={{ borderColor: "red" }}
           textStyle={{ textDecorationLine: 'none' }}
           onPress={isGluten ? null : setGluten(!isGluten)}
-      />
+        />
+
       <BouncyCheckbox
           text="Sans alcool"
           fillColor="red"
@@ -150,8 +154,7 @@ export default function RegimeScreen({ navigation }) {
         <TouchableOpacity
           style={styles.next}
           title="Suivant"
-          onPress={handleValidation}
-        >
+          onPress={handleValidation}>
           <Text style={styles.Suivant}>Suivant</Text>
         </TouchableOpacity>
       </View>
