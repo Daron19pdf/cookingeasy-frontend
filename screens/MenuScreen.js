@@ -16,11 +16,11 @@ export default function MenuScreen({ navigation}) {
    sToken = 'FRtMxr4qfwowrV26PEGkbS5qNJcKK6Xq'
        
 useEffect(() => { 
-  fetch(`${BACKEND_ADDRESS}/user/user/?token=${sToken}`)
+  fetch(`${BACKEND_ADDRESS}user/user/?token=${sToken}`)
 .then((response) => response.json())
 .then((data) => {
   setNbrRecette(data.data.preference.foyer.nombreRecette);
-  fetch(`${BACKEND_ADDRESS}/menu/recettes?userId=${data.data.preference._id}`)
+  fetch(`${BACKEND_ADDRESS}menu/recettes?userId=${data.data.preference._id}`)
    .then((response) => response.json())
     .then((data) => {
       let test = Math.floor(Math.random() * data.recettes.length);
