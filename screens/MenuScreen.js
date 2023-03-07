@@ -2,7 +2,7 @@ import { View, Text, StyleSheet, ScrollView, TouchableOpacity, ActivityIndicator
 import React, {useEffect, useState} from 'react'
 import Menu from '../component/menu';
 import Recette from '../component/recette';
-import {  useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {addRecette} from '../reducers/recette';
 
 export default function MenuScreen({ navigation}) {
@@ -10,15 +10,21 @@ export default function MenuScreen({ navigation}) {
     const dispatch = useDispatch();
     const [recette, setRecette] = useState([]);
     const [NbrRecette, setNbrRecette] = useState(0);
+    const User = useSelector((state) => state.user.value);
+   //console.log(recette);
+
+   sToken = 'FRtMxr4qfwowrV26PEGkbS5qNJcKK6Xq'
        
 useEffect(() => { 
-  fetch(`${BACKEND_ADDRESS}/user/user/?token=FRtMxr4qfwowrV26PEGkbS5qNJcKK6Xq`)
+  fetch(`${BACKEND_ADDRESS}/user/user/?token=${sToken}`)
 .then((response) => response.json())
 .then((data) => {
   setNbrRecette(data.data.preference.foyer.nombreRecette);
   fetch(`${BACKEND_ADDRESS}/menu/recettes?userId=${data.data.preference._id}`)
    .then((response) => response.json())
     .then((data) => {
+      let test = Math.floor(Math.random() * data.recettes.length);
+      //console.log(test);
       dispatch(addRecette(data)); 
       for (let i = 0; i < NbrRecette; i++) {
         const recettes = {

@@ -26,7 +26,7 @@ export default function HomeScreen({ navigation }) {
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.butomMiddle}
-          onPress={() => navigation.navigate("PrefSemaineScreen")}
+          onPress={() => navigation.navigate("ListCourse")}
         >
           <Text style={styles.middleText}>Ma liste de course</Text>
         </TouchableOpacity>

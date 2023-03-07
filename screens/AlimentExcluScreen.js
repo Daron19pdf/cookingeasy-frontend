@@ -123,7 +123,7 @@ export default function AlimentExcluScreen({ navigation }) {
   );
   if (TabIngredients.length > 0) {
     newIngredient = TabIngredients.map((data, i) => {
-      console.log(data);
+      //console.log(data);
       return (
         <TouchableOpacity
           key={i}
