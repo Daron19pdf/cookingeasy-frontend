@@ -201,6 +201,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     fontSize: 15,
     backgroundColor: "#f4511e",
+    lineHeight: 30
   },
 
   assiette: {

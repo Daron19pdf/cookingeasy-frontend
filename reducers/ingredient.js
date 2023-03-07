@@ -18,5 +18,5 @@ export const ingredientSlice = createSlice({
  },
 });
 
-export const { addIngredientToStore } = ingredientSlice.actions;
+export const { addIngredientToStore, removeIngredientFromStore } = ingredientSlice.actions;
 export default ingredientSlice.reducer;

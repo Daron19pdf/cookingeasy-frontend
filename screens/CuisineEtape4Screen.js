@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   title: {
-    fontSize: 30,
+    fontSize: 25,
     fontWeight: 'bold',
     margin:20,
     textAlign: 'center',
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     width: "45%",
-    height: 80,
+    height: 50,
     backgroundColor: '#f4511e',
     borderRadius: 15,
     margin: 5,

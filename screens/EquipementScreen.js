@@ -99,7 +99,7 @@ export default function EquipementScreen ({navigation}) {
 
       <TouchableOpacity
             style={styles.previous} onPress={() => navigation.navigate("FoyerScreen")}>
-            <FontAwesome name="arrow-left" size={15} color="white"/>
+            <FontAwesome name="arrow-left" size={15} color="#f4511e"/>
       </TouchableOpacity>
 
           <TouchableOpacity style={styles.suivant} activeOpacity={0.8} onPress={handleNextPress}>
@@ -110,7 +110,7 @@ export default function EquipementScreen ({navigation}) {
       </View>
 
       <View> 	
-        <Progress.Bar width={250} borderWidth={1} progress={0.5} height={15} color={'#FA8C8E'} indeterminateAnimationDuration={2000} />
+        <Progress.Bar width={250} borderWidth={1} progress={0.5} height={15} color={'#F4511E'} indeterminateAnimationDuration={2000} />
       </View>
 
     </View>
@@ -125,7 +125,6 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     textAlign: 'center',
   },
-
   four: {
     width: 150,
     height: 100,
@@ -262,7 +261,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 20,
     marginBottom: 20,
-    backgroundColor: '#FA8C8E',
+    backgroundColor: '#F4511E',
   },
   textButton: {
     fontSize: 20,
@@ -272,7 +271,9 @@ const styles = StyleSheet.create({
   previous: {
     width: 40,
     height: 40,
-    backgroundColor: "#E3C7F9",
+    backgroundColor: "white",
+    borderWidth: 1,
+    borderColor: "#f4511e",
     borderRadius: 50,
     alignItems: "center",
     justifyContent: "center",
@@ -283,7 +284,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     width: "100%",
     paddingHorizontal: 20,
-    margin: 20,
+    margin: 5,
   },
   boutonsbasContainer: {
     width: "100%",

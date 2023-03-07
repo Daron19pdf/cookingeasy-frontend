@@ -74,7 +74,7 @@ export default function ConnectionScreen({ navigation }) {
         <FontAwesome
           name="arrow-left"
           size={20}
-          color="#E3C7F9"
+          color="#f4511e"
           style={styles.icon}
           onPress={() => navigation.navigate("BienvenueScreen")}
         />
@@ -120,7 +120,7 @@ export default function ConnectionScreen({ navigation }) {
       </TouchableOpacity>
       <Image
         style={styles.image}
-        source={require("../assets/ConnexionScreen.jpg")}
+        source={require("../assets/ConnexionScreen.png")}
       />
     </View>
   );
@@ -131,7 +131,6 @@ const styles = StyleSheet.create({
     width: "100%",
     height: 90,
     paddingVertical: 12,
-    borderRadius: 4,
     elevation: 6,
     backgroundColor: "white",
     marginTop: 6,
@@ -174,14 +173,13 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   focusedInput: {
-    borderColor: "#E3C7F9",
+    borderColor: "#f4511e",
     borderWidth: 1.5,
   },
   button: {
     alignItems: "center",
     justifyContent: "center",
     paddingVertical: 12,
-    borderRadius: 4,
     elevation: 3,
     backgroundColor: "white",
     marginTop: 30,
@@ -194,9 +192,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     paddingVertical: 12,
-    borderRadius: 4,
     elevation: 3,
-    backgroundColor: "#E3C7F9",
+    backgroundColor: "#f4511e",
     marginTop: 30,
     shadowColor: "rgba(0, 0, 0, 0.1)",
     shadowOpacity: 0.8,

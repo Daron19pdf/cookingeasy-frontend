@@ -107,10 +107,9 @@ const styles = StyleSheet.create({
   moreRecette: {
     backgroundColor: '#f4511e',
     width: "50%",
-    height: 60,
-    borderRadius: 15,
-    alignItems: 'center',
-    justifyContent: 'center',
+    height: 50,
+    alignItems: "center",
+    justifyContent: "center",
     margin: 15,
   },
   titleWhite: {
@@ -120,10 +119,10 @@ const styles = StyleSheet.create({
   goRecette: {
     backgroundColor: '#f4511e',
     width: "20%",
-    height: 80,
+    height: 50,
     borderRadius: 50,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
     margin: 5,
   },
   load: {
@@ -131,4 +130,5 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+
 });

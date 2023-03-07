@@ -90,7 +90,7 @@ export default function FoyerScreen({ navigation }) {
           style={styles.previous}
           onPress={() => navigation.navigate("InfoScreen")}
         >
-          <FontAwesome name="arrow-left" size={15} color="#ffff" />
+          <FontAwesome name="arrow-left" size={15} color="#f4511e" />
         </TouchableOpacity>
 
         <TouchableOpacity
@@ -188,7 +188,9 @@ const styles = StyleSheet.create({
   previous: {
     width: 40,
     height: 40,
-    backgroundColor: "#E3C7F9",
+    backgroundColor: "white",
+    borderWidth: 1,
+    borderColor: "#f4511e",
     borderRadius: 50,
     alignItems: "center",
     justifyContent: "center",

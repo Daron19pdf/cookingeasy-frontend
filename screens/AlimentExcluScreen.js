@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addIngredientToStore,
-  removeIngredientToStore,
+  removeIngredientFromStore,
 } from "../reducers/ingredient";
 import {
   Platform,
@@ -128,7 +128,7 @@ export default function AlimentExcluScreen({ navigation }) {
         <TouchableOpacity
           key={i}
           style={styles.item}
-          onPress={() => dispatch(removeIngredientToStore(data))}
+          onPress={() => dispatch(removeIngredientFromStore(data))}
         >
           <View>
             <Text style={styles.dataText}>{data}</Text>
@@ -193,7 +193,7 @@ export default function AlimentExcluScreen({ navigation }) {
             style={styles.previous}
             onPress={() => navigation.navigate("RegimeScreen")}
           >
-            <FontAwesome name="arrow-left" size={15} color={"#fff"} />
+            <FontAwesome name="arrow-left" size={15} color={"#f4511e"} />
           </TouchableOpacity>
           <TouchableOpacity style={styles.next} onPress={() => next()}>
             <Text style={styles.buttonText}>Fin</Text>
@@ -274,7 +274,9 @@ const styles = StyleSheet.create({
   previous: {
     width: 40,
     height: 40,
-    backgroundColor: "#E3C7F9",
+    backgroundColor: "white",
+    borderWidth: 1,
+    borderColor: "#f4511e",
     borderRadius: 50,
     alignItems: "center",
     justifyContent: "center",
@@ -294,7 +296,6 @@ const styles = StyleSheet.create({
     textAlign: "center",
     color: "#fff",
     margin: 5,
-    padding: 5,
   },
   validate: {
     fontSize: 15,
