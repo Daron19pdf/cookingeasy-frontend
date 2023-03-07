@@ -118,19 +118,19 @@ export default function Recette(props) {
       </View>
     );
   });
-
+console.log(props)
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{props.title}</Text>
       <TouchableOpacity onPress={() => toggleModalRecipe()}>
-        <Image style={styles.image} source={{ uri: props.photo }} />
+        <Image style={styles.image} source={{ uri: props.photo }}/>
       </TouchableOpacity>
       <View style={styles.bottomContainer}>
         <TouchableOpacity
           style={styles.userContainer}
           onPress={() => toggleModal()}
         >
-          <FontAwesome name="user" size={16} color="#000" style={styles.icon} />
+          <FontAwesome name="user" size={16} color="#000" style={styles.icon}/>
           <Text style={styles.text}>{selectedValue}</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.userContainer}>
@@ -145,7 +145,6 @@ export default function Recette(props) {
         <TouchableOpacity
           style={styles.userContainer}
           onPress={likedRecipe ? handleUnlike : handleLike}>
-            {likedRecipe ? "Unlike" : "Like"}
           <FontAwesome
             name={likeHeart}
             size={16}
@@ -216,11 +215,11 @@ export default function Recette(props) {
                 </View>
                 <View style={styles.ingredientContainer}>
                   <Text style={styles.titleRecipe}>Ingrédients</Text>
-                  <Text style={styles.ingredients}>{Ingredients}</Text>
+                  <View style={styles.ingredients}>{Ingredients}</View>
                 </View>
                 <View style={styles.ingredientContainer}>
                   <Text style={styles.titleRecipe}>Recette</Text>
-                  <Text style={styles.ingredients}>{Steps}</Text>
+                  <View style={styles.ingredients}>{Steps}</View>
                 </View>
               </View>
             </ScrollView>
