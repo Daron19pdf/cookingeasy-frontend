@@ -17,7 +17,7 @@ export default function CuisineEtape1Screen({ navigation}) {
   titleList = titleList.map((e) => JSON.stringify(e));
 
   // Recupérer les étapes de la recette
-  fetch(`http://192.168.10.137:3000/menuTer/miseenoeuvre?recettesList=[${titleList}]`)
+  fetch(`http://192.168.1.250:3000/menuTer/miseenoeuvre?recettesList=[${titleList}]`)
     .then((response) => response.json())
     .then((data) => {
       for (let x=0 ; x < data.steps.cuisson_finale.length; x++) {
@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   title: {
-    fontSize: 30,
+    fontSize: 25,
     fontWeight: 'bold',
     margin:20,
     textAlign: 'center',
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     width: "45%",
-    height: 80,
+    height: 50,
     backgroundColor: '#f4511e',
     borderRadius: 15,
     margin: 5,

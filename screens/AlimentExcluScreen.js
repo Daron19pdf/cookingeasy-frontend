@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addIngredientToStore,
-  removeIngredientToStore,
+  removeIngredientFromStore,
 } from "../reducers/ingredient";
 import {
   Platform,
@@ -123,12 +123,12 @@ export default function AlimentExcluScreen({ navigation }) {
   );
   if (TabIngredients.length > 0) {
     newIngredient = TabIngredients.map((data, i) => {
-      console.log(data);
+      //console.log(data);
       return (
         <TouchableOpacity
           key={i}
           style={styles.item}
-          onPress={() => dispatch(removeIngredientToStore(data))}
+          onPress={() => dispatch(removeIngredientFromStore(data))}
         >
           <View>
             <Text style={styles.dataText}>{data}</Text>

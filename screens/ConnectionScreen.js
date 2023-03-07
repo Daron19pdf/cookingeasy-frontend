@@ -143,7 +143,6 @@ const styles = StyleSheet.create({
   headerText: {
     marginLeft: 70,
     marginTop: -25,
-    fontFamily: "bold",
     fontWeight: "bold",
     color: "#636363",
     fontSize: 25,
@@ -174,7 +173,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   focusedInput: {
-    borderColor: "#E3C7F9",
+    borderColor: "#f4511e",
     borderWidth: 1.5,
   },
   button: {

@@ -45,7 +45,7 @@ export default function EquipementScreen ({navigation}) {
     })
     .then(response => response.json())
     .then(data => {
-      console.log(data);
+     // console.log(data);
     })
     .catch(error => {
       console.error(error);
@@ -125,7 +125,6 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     textAlign: 'center',
   },
-
   four: {
     width: 150,
     height: 100,

@@ -23,7 +23,7 @@ export default function Recette(props) {
   const [selectedValue, setSelectedValue] = useState("2");
   const [modalRecipeVisible, setModalRecipeVisible] = useState(false);
   const Liked = useSelector((state) => {
-    console.log(state.Favoris.value);
+    //console.log(state.Favoris.value);
     return state.Favoris.value;
   });
 
@@ -144,8 +144,7 @@ export default function Recette(props) {
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.userContainer}
-          onPress={() => handleLike()}
-        >
+          onPress={likedRecipe ? handleUnlike : handleLike}>
           <FontAwesome
             name={likeHeart}
             size={16}
