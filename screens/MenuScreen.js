@@ -18,7 +18,7 @@ export default function MenuScreen({ navigation}) {
     let userId = "640757eb627d15842471ae81"
        
 useEffect(() => { 
-  fetch(`${BACKEND_ADDRESS}user/user/?token=${Stoken}`)
+  fetch(`${BACKEND_ADDRESS}user/user/?token=${User.token}`)
 .then((response) => response.json())
 .then((data) => {
   console.log(data);

@@ -49,7 +49,7 @@ export default function ConnectionScreen({ navigation }) {
               token: data.token,
             })
           );
-          console.log(data);
+          //console.log(data);
           navigation.navigate("HomeScreen");
         }
       })
