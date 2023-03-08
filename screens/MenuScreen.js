@@ -6,7 +6,9 @@ import {  useDispatch, useSelector } from "react-redux";
 import {addRecette} from '../reducers/recette';
 
 export default function MenuScreen({ navigation}) {
-    const BACKEND_ADDRESS = 'https://cookingeasy-backend.vercel.app/';
+    //const BACKEND_ADDRESS = 'https://cookingeasy-backend.vercel.app/';
+    const BACKEND_ADDRESS = 'http://192.168.1.15:3000/';
+
     const dispatch = useDispatch();
     const [recette, setRecette] = useState([]);
     const [NbrRecette, setNbrRecette] = useState(0);
@@ -21,7 +23,7 @@ useEffect(() => {
   fetch(`${BACKEND_ADDRESS}user/user/?token=${Stoken}`)
 .then((response) => response.json())
 .then((data) => {
-  console.log(data);
+  //console.log(data);
   setNbrRecette(data.data.preference.foyer.nombreRecette);
   setNbrPersonne(data.data.preference.foyer.nombrePersonne);
   //console.log(data.data.preference._id);
@@ -29,7 +31,7 @@ useEffect(() => {
    .then((response) => response.json())
     .then((data) => {
       let test = Math.floor(Math.random() * data.recettes.length);
-      console.log(data);
+     // console.log(data);
       dispatch(addRecette(data)); 
       for (let i = 0; i < NbrRecette; i++) {
         const recettes = {
