@@ -26,9 +26,8 @@ export default function ConnectionScreen({ navigation }) {
   const handleBlur = () => {
     setFocusedInput("");
   };
-
   const handleConnection = () => {
-    fetch(`${BACKEND_ADDRESS}/user/signin`, {
+    fetch(`${BACKEND_ADDRESS}user/signin`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -38,7 +37,7 @@ export default function ConnectionScreen({ navigation }) {
     })
       .then((response) => response.json())
       .then((data) => {
-        if (data) {
+        if (data.result) {
           dispatch(
             login({
               pseudo: pseudo,

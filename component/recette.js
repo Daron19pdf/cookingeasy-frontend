@@ -20,7 +20,7 @@ export default function Recette(props) {
   const navigation = useNavigation();
   const [likedRecipe, setLikedRecipe] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
-  const [selectedValue, setSelectedValue] = useState("2");
+  const [selectedValue, setSelectedValue] = useState(props.NbrPersonne);
   const [modalRecipeVisible, setModalRecipeVisible] = useState(false);
   const Liked = useSelector((state) => {
     //console.log(state.Favoris.value);
@@ -31,12 +31,13 @@ export default function Recette(props) {
   const handleLike = () => {
     dispatch(LikedRecette({ title: props.title, photo: props.photo }));
     setLikedRecipe(true);
-    //console.log(Liked);
+    console.log(Liked);
   };
 
   const handleUnlike = () => {
-    dispatch(UnlikedRecette());
+    dispatch(UnlikedRecette({ title: props.title, photo: props.photo }));
     setLikedRecipe(false);
+    console.log(Liked)
   };
 
   if (likedRecipe) {
