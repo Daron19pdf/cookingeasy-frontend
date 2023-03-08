@@ -12,7 +12,7 @@ import {
 export default function BienvenueScreen({ navigation }) {
   return (
     <View style={styles.container}>
-      <Image source={require('../assets/COOKING_EASY.png')} style={{width: 130, height: 130}} />
+      {/* <Image source={require('../assets/COOKING_EASY.png')} style={{width: 130, height: 130}} /> */}
       <Text style={styles.title}>Bienvenue</Text> 
       {/*<Image style={styles.image} source={require("../assets/COOKING_EASY.png")} />*/}
       <Image style={styles.image} source={require("../assets/Bienvenue.png")} />
