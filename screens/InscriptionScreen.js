@@ -185,11 +185,12 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.8,
     shadowRadius: 5,
     shadowOffset: { width: 1, height: 13 },
+    resizeMode: "auto"
   },
   image: {
     width: 300,
     height: 300,
-    resizeMode: "auto",
+ 
   },
   headerText: {
     marginLeft: 70,

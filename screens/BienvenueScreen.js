@@ -1,23 +1,48 @@
+import { StatusBar } from 'expo-status-bar';
+import { StyleSheet, Text, View } from 'react-native';
 import {
   Image,
   ImageBackground,
   Platform,
-  StyleSheet,
-  Text,
   TextInput,
   TouchableOpacity,
-  View,
+  Dimensions,
+
 } from "react-native";
 
+import { Video } from "expo-av";
+import React, { useRef, useEffect } from "react";
+
 export default function BienvenueScreen({ navigation }) {
+ 
+  const video1 = useRef(null);
+  useEffect(() => {
+    (async () => {
+      if (video1.current !== null) {
+        await video1.current.playAsync();
+      }
+       
+    })();
+  }, []);
+
   return (
-    <View style={styles.container}>
-      <View style={styles.header}><Image style={styles.image1} source={require("../assets/Cooking-easy.png")} /></View>
-      
-      {/* <Image source={require('../assets/COOKING_EASY.png')} style={{width: 130, height: 130}} /> */}
-      <Text style={styles.title}>Bienvenue</Text>
-      <Image style={styles.image} source={require("../assets/Bienvenue.png")} />
-      <TouchableOpacity
+<View style={styles.container}>
+  <Video
+    ref={video1}
+    source={require("../assets/video.mp4")}
+    style={styles.video}
+    resizeMode="cover"
+    isLooping
+  />
+  <View style={styles.content}>
+    <View style={styles.logoContainer}>
+      <Image
+        source={require('../assets/COOKING_EASY1.png')}
+        style={styles.logo}
+      />
+    </View>
+    <Text style={styles.title}>Bienvenue</Text>
+    <TouchableOpacity
         style={styles.button1}
         onPress={() => navigation.navigate("ConnectionScreen")}
       >
@@ -27,82 +52,91 @@ export default function BienvenueScreen({ navigation }) {
         style={styles.button2}
         onPress={() => navigation.navigate("InscriptionScreen")}
       >
-        <Text style={styles.text2}>S'inscrire</Text>
-      </TouchableOpacity>
-    </View>
+      <Text style={styles.text2}>S'inscrire</Text>
+    </TouchableOpacity>
+  </View>
+</View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "white",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  background: {
-    width: "100%",
-    height: "100%",
-    backgroundColor: "white",
+  video: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
+    zIndex: -1,
+    opacity: 0.9,
   },
-  header: {
-    marginTop: - 15,
+  content: {
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  image1: {
-    width: 100,
-    height: 25,
-    resizeMode: "auto",
+  logoContainer: {
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    marginTop: 50,
+    marginBottom: 50,
   },
-  image: {
-    width: "100%",
-    height: "50%",
-    resizeMode: "auto",
+  logo: {
+    width: 130,
+    height: 130,
   },
   title: {
     fontSize: 40,
     fontWeight: '800',
-    marginBottom: 15,
+   
+    color : "white"
   },
   button1: {
     alignItems: "center",
     justifyContent: "center",
     paddingVertical: 12,
     paddingHorizontal: 32,
-    borderRadius: 4,
+    
     elevation: 3,
     backgroundColor: "#f4511e",
     shadowColor: "rgba(0, 0, 0, 0.1)",
     shadowOpacity: 0.8,
     shadowRadius: 5,
     shadowOffset: { width: 1, height: 13 },
-    marginTop: 25,
+    marginTop : 50
   },
   button2: {
     alignItems: "center",
     justifyContent: "center",
     paddingVertical: 12,
     paddingHorizontal: 32,
-    borderRadius: 4,
+    
     elevation: 3,
     backgroundColor: "white",
     marginTop: 15,
     shadowColor: "rgba(0, 0, 0, 0.1)",
     shadowOpacity: 0.8,
     shadowRadius: 5,
-    shadowOffset: { width: 1, height: 13 },
-  },
-  text: {
-    fontSize: 16,
-    lineHeight: 21,
-    fontWeight: "bold",
-    letterSpacing: 0.25,
-    color: "white",
-  },
-  text2: {
-    fontSize: 16,
-    lineHeight: 21,
-    fontWeight: "bold",
-    letterSpacing: 0.25,
-    color: "#f4511e",
-  },
+   
+
+shadowOffset: { width: 1, height: 13 },
+},
+text: {
+fontSize: 16,
+lineHeight: 21,
+fontWeight: "bold",
+letterSpacing: 0.25,
+color: "white",
+},
+text2: {
+fontSize: 16,
+lineHeight: 21,
+fontWeight: "bold"
+,
+letterSpacing: 0.25,
+color: "#f4511e",
+},
 });

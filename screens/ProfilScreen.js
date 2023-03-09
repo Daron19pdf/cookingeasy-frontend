@@ -134,22 +134,23 @@ export default function ProfilScreen({ navigation }) {
                 onChangeText={(value)=>setEmail(value)}/>
         </TouchableOpacity>
           </View>
+
           <View style={styles.logos}>
           <TouchableOpacity style={styles.logoText}>
               <Image style={styles.image} source={require('../assets/accueil.gif')} />
-              <Text> Foyer </Text>
+              <Text> Mon Foyer </Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.logoText}>
               <Image style={styles.image} source={require('../assets/four-micro-onde.gif')} />
-              <Text> Aliments Exclus </Text>
+              <Text> Mon Equipement </Text>
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity style={styles.logoText}>
               <Image style={styles.image} source={require('../assets/nourriture-vegetalienne.gif')} />
-              <Text> Aliments Exclus </Text>
+              <Text>Mon Régime </Text>
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity style={styles.logoText}>
               <Image style={styles.image} source={require('../assets/pas-doeuf.gif')} />
-              <Text> Aliments Exclus </Text>
+              <Text>Mes Aliments Exclus </Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -200,27 +201,27 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     textAlign: 'center',
     backgroundColor:'#C0C0C0',
-
   },
   info: {
-    flexWrap: 'wrap',
-    flexDirection: 'row',
+    flexDirection: 'column',
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: 15,
+    margin: 10,
   },
   InputView: {
     flexDirection: 'column',
   },
   logos: {
-    flexDirection: 'row',
     flexWrap: 'wrap',
+    flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
+    margin : 10,
   },
   image: {
-    height: 100,
-    width: 100,
+    height: 80,
+    width: 80,
   },
   logoText: {
     flexDirection: 'column',
@@ -237,6 +238,6 @@ const styles = StyleSheet.create({
     color: "#fff",
     alignItems: "center",
     justifyContent: "center",
-    marginTop: 5,
+    marginBottom: 10,
   }
 });
