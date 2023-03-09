@@ -1,10 +1,11 @@
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image } from 'react-native'
-import React, {useState} from 'react'
+import React, {useState , useEffect} from 'react'
 import { useSelector } from 'react-redux';
 import Menu from '../component/menu';
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 
 export default function CuisineEtape1Screen({ navigation}) {
+  
   const BACKEND_ADDRESS = "https://cookingeasy-backend.vercel.app/";
   const recette = useSelector((state) => state.recette.value);
   const [steps, setSteps] = useState([]);
@@ -17,7 +18,8 @@ export default function CuisineEtape1Screen({ navigation}) {
   titleList = titleList.map((e) => JSON.stringify(e));
 
   // Recupérer les étapes de la recette
-  fetch(`http://192.168.1.250:3000/menuTer/miseenoeuvre?recettesList=[${titleList}]`)
+  useEffect(() => {
+  fetch(`${BACKEND_ADDRESS}menuTer/miseenoeuvre?recettesList=[${titleList}]`)
     .then((response) => response.json())
     .then((data) => {
       for (let x=0 ; x < data.steps.cuisson_finale.length; x++) {
@@ -38,6 +40,7 @@ export default function CuisineEtape1Screen({ navigation}) {
     .catch((error) => {
       console.error(error);
     });
+  }, []);
 
     const renderSteps = steps.map((step,i) => {
       return (

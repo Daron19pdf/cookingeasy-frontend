@@ -1,16 +1,12 @@
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image } from 'react-native'
-import React, {useState} from 'react'
+import React from 'react'
 import { useSelector } from 'react-redux';
 import Menu from '../component/menu';
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 
 export default function CuisineEtape1Screen({ navigation}) {
  
-  const BACKEND_ADDRESS = "https://cookingeasy-backend.vercel.app/";
   const recette = useSelector((state) => state.recette.value);
-  const [ right, setRight ] = useState(false)
-  
-  sToken = 'FRtMxr4qfwowrV26PEGkbS5qNJcKK6Xq'
   
   let conservationElement = []
   for (let i = 0; i < recette[0].recettes.length; i++) {
@@ -20,15 +16,9 @@ export default function CuisineEtape1Screen({ navigation}) {
      conservation: recette[0].recettes[i].preservation_duration,
     }
     conservationElement.push(encart)
-  }
+  };
   
-
-  console.log(conservationElement);
-
     const renderConservation = conservationElement.map((data,i) => {
-      console.log(data);
-      
-       
       return (
         <View key={i} style={styles.containerConservation} >
           <Image source={{uri: data.photo}} style={styles.image} />
@@ -38,8 +28,7 @@ export default function CuisineEtape1Screen({ navigation}) {
           </View>
         </View>
       )
-      
-    })
+    });
 
   return (
     <ScrollView style={styles.container}>
