@@ -6,9 +6,7 @@ import {  useDispatch, useSelector } from "react-redux";
 import {addRecette} from '../reducers/recette';
 
 export default function MenuScreen({ navigation}) {
-    //const BACKEND_ADDRESS = 'https://cookingeasy-backend.vercel.app/';
-    const BACKEND_ADDRESS = 'http://192.168.1.15:3000/';
-
+    const BACKEND_ADDRESS = 'https://cookingeasy-backend.vercel.app/';
     const dispatch = useDispatch();
     const [recette, setRecette] = useState([]);
     const [NbrRecette, setNbrRecette] = useState(0);
@@ -17,21 +15,21 @@ export default function MenuScreen({ navigation}) {
    //console.log(User.token);
 
    let Stoken = "ii8V8wTkU-YR47Tu1iIPR3kQ4_L5NPZm"
-    let userId = "640757eb627d15842471ae81"
+   let userId = "640757eb627d15842471ae81"
        
 useEffect(() => { 
   fetch(`${BACKEND_ADDRESS}user/user/?token=${User.token}`)
 .then((response) => response.json())
 .then((data) => {
-  //console.log(data);
+  console.log(data);
   setNbrRecette(data.data.preference.foyer.nombreRecette);
   setNbrPersonne(data.data.preference.foyer.nombrePersonne);
   //console.log(data.data.preference._id);
-  fetch(`${BACKEND_ADDRESS}menu/recettes?userId=${userId}`)
+  fetch(`${BACKEND_ADDRESS}menu/recettes?userId=${data.data.preference._id}`)
    .then((response) => response.json())
     .then((data) => {
       let test = Math.floor(Math.random() * data.recettes.length);
-     // console.log(data);
+      //console.log(data);
       dispatch(addRecette(data)); 
       for (let i = 0; i < NbrRecette; i++) {
         const recettes = {
@@ -55,7 +53,7 @@ useEffect(() => {
     console.error(error);
 });
 })
-}, []);
+}, [NbrRecette]);
  
 
   //génère les recettes
