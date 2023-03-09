@@ -9,6 +9,7 @@ import ingredient from './reducers/ingredient';
 import user from './reducers/user';
 import recette from './reducers/recette';
 import Favoris from './reducers/Favoris';
+//import { LogBox } from 'react-native';
 
 
 //navigation attente//
@@ -35,6 +36,7 @@ import CuisineEtape3Screen from './screens/CuisineEtape3Screen';
 import ListCourse from './screens/ListCourse';
 import CuisineEtape4Screen from './screens/CuisineEtape4Screen';
 import CuisineEtape5Screen from './screens/CuisineEtape5Screen';
+// LogBox.ignoreAllLogs();
 
 
 
