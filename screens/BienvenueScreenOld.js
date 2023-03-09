@@ -12,9 +12,10 @@ import {
 export default function BienvenueScreen({ navigation }) {
   return (
     <View style={styles.container}>
-      <Image source={require('../assets/COOKING_EASY.png')} style={{width: 130, height: 130}} />
-      <Text style={styles.title}>Bienvenue</Text> 
-      {/*<Image style={styles.image} source={require("../assets/COOKING_EASY.png")} />*/}
+      <View style={styles.header}><Image style={styles.image1} source={require("../assets/Cooking-easy.png")} /></View>
+      
+      {/* <Image source={require('../assets/COOKING_EASY.png')} style={{width: 130, height: 130}} /> */}
+      <Text style={styles.title}>Bienvenue</Text>
       <Image style={styles.image} source={require("../assets/Bienvenue.png")} />
       <TouchableOpacity
         style={styles.button1}
@@ -44,6 +45,15 @@ const styles = StyleSheet.create({
     height: "100%",
     backgroundColor: "white",
   },
+  header: {
+    marginTop: - 15,
+    resizeMode: "auto",
+  },
+  image1: {
+    width: 100,
+    height: 25,
+  },
+
   image: {
     width: "100%",
     height: "50%",
@@ -51,7 +61,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 40,
     fontWeight: '800',
-    marginBottom: 40,
+    marginBottom: 15,
   },
   button1: {
     alignItems: "center",
@@ -65,6 +75,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.8,
     shadowRadius: 5,
     shadowOffset: { width: 1, height: 13 },
+    marginTop: 25,
   },
   button2: {
     alignItems: "center",

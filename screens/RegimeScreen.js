@@ -177,16 +177,16 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   title: {
-    marginTop: 50,
-    fontSize: 25,
-    fontWeight: "bold",
-    textAlign: "center",
-    
+    fontSize: 30,
+    fontWeight: '700',
+    marginTop: 65,
+    textAlign: 'center',
   },
   //Style des text (hors titre)
   h1: {
     display: "flex",
     fontSize: 15,
+    marginTop: -50,
   },
 
   //Style container Checkbox

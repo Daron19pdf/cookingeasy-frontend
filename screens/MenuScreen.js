@@ -25,11 +25,11 @@ useEffect(() => {
   setNbrRecette(data.data.preference.foyer.nombreRecette);
   setNbrPersonne(data.data.preference.foyer.nombrePersonne);
   //console.log(data.data.preference._id);
-  fetch(`${BACKEND_ADDRESS}menu/recettes?userId=${data.data.preference._id}`)
+  fetch(`${BACKEND_ADDRESS}menu/recettes?userId=${User.preference}`)
    .then((response) => response.json())
     .then((data) => {
       let test = Math.floor(Math.random() * data.recettes.length);
-      //console.log(data);
+      console.log(data);
       dispatch(addRecette(data)); 
       for (let i = 0; i < NbrRecette; i++) {
         const recettes = {
