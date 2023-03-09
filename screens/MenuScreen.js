@@ -14,6 +14,7 @@ export default function MenuScreen({ navigation}) {
     const [NbrPersonne, setNbrPersonne] = useState(0);
     const User = useSelector((state) => state.user.value);
     const recette = useSelector((state) => state.recette.value);
+    const Favoris = useSelector((state) => state.Favoris.value); 
 
    let Stoken = "ii8V8wTkU-YR47Tu1iIPR3kQ4_L5NPZm"
    let userId = "640757eb627d15842471ae81"
@@ -21,10 +22,11 @@ export default function MenuScreen({ navigation}) {
 
    //console.log(NbrRecette);
 
-  //récupère les recettes
+  
   useEffect(() => {
 
-  fetch(`${BACKEND_ADDRESS}user/user/?token=${User.token}`)
+    //récupère les recettes
+  fetch(`${BACKEND_ADDRESS}user/user/?token=${Stoken}`)
   .then((response) => response.json())
     .then((data) => { 
       for (let i = 0; i < 5; i++) {
@@ -57,18 +59,15 @@ export default function MenuScreen({ navigation}) {
 
   if (recette.length > 0) {
 NewRecettes = recette.map((data, index) => {
-const isLiked = Favoris.some(recette => recette.title === data.title);
 
-let Fav;
   if (Favoris.some(recette => recette.title === data.title)) {
     return <LikedRecetteComponent title={data.title} photo={data.photo} isliked={true}/>
   } else {
-    return <Recette key={index} title={data.title} photo={data.photo} prep_duration={data.prep_duration} cook_duration={data.cook_duration} steps={data.steps} ingredients={data.ingredients} servings={data.servings} description={data.description} NbrPersonne={NbrPersonne}  isliked={false} />;
+    return <Recette key={index} title={data.title} photo={data.photo} prep_duration={data.prep_duration} cook_duration={data.cook_duration} steps={data.steps} ingredients={data.ingredients} servings={data.servings} description={data.description} NbrPersonne={2}  isliked={false} />;
   }
  
 });
   }
-
   return (
     <ScrollView style={styles.container}>
       <Menu  />
