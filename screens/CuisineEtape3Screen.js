@@ -40,7 +40,7 @@ export default function CuisineEtape1Screen({ navigation}) {
     .catch((error) => {
       console.error(error);
     });
-  }, []);
+  }, [recette]);
 
     const renderSteps = steps.map((step,i) => {
       return (

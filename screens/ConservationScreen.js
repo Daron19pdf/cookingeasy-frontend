@@ -7,6 +7,8 @@ import FontAwesome from "react-native-vector-icons/FontAwesome";
 export default function CuisineEtape1Screen({ navigation}) {
  
   const recette = useSelector((state) => state.recette.value);
+  console.log(recette.length);
+
   
   let conservationElement = []
   for (let i = 0; i < recette[0].recettes.length; i++) {
@@ -17,7 +19,7 @@ export default function CuisineEtape1Screen({ navigation}) {
     }
     conservationElement.push(encart)
   };
-  
+
     const renderConservation = conservationElement.map((data,i) => {
       return (
         <View key={i} style={styles.containerConservation} >

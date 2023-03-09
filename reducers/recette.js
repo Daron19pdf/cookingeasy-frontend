@@ -11,6 +11,7 @@ export const recetteSlice = createSlice({
  reducers: {
    addRecette: (state, action) => {
      state.value.push(action.payload);
+     console.log(state.value);
    },
    
  },
