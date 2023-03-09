@@ -4,6 +4,7 @@ import Menu from '../component/menu';
 import Recette from '../component/recette';
 import {  useDispatch, useSelector } from "react-redux";
 import {addRecette} from '../reducers/recette';
+import LikedRecetteComponent from '../component/LikedRecette';
 
 export default function MenuScreen({ navigation}) {
     const BACKEND_ADDRESS = 'https://cookingeasy-backend.vercel.app/';
@@ -12,6 +13,7 @@ export default function MenuScreen({ navigation}) {
     const [NbrRecette, setNbrRecette] = useState(0);
     const [NbrPersonne, setNbrPersonne] = useState(0);
     const User = useSelector((state) => state.user.value);
+    const Favoris = useSelector((state) => state.Favoris.value);
    //console.log(User.token);
 
    let Stoken = "ii8V8wTkU-YR47Tu1iIPR3kQ4_L5NPZm"
@@ -56,9 +58,18 @@ useEffect(() => {
 
   //génère les recettes
   let NewRecettes = (<ActivityIndicator style={styles.load} size="large"  color="red" />)
+
   if (recette.length > 0) {
- NewRecettes = recette.map((data, index) => {
-    return <Recette key={index} title={data.title} photo={data.photo} prep_duration={data.prep_duration} cook_duration={data.cook_duration} steps={data.steps} ingredients={data.ingredients} servings={data.servings} description={data.description} NbrPersonne={NbrPersonne}  />;
+NewRecettes = recette.map((data, index) => {
+const isLiked = Favoris.some(recette => recette.title === data.title);
+
+let Fav;
+  if (Favoris.some(recette => recette.title === data.title)) {
+    return <LikedRecetteComponent title={data.title} photo={data.photo} isliked={true}/>
+  } else {
+    return <Recette key={index} title={data.title} photo={data.photo} prep_duration={data.prep_duration} cook_duration={data.cook_duration} steps={data.steps} ingredients={data.ingredients} servings={data.servings} description={data.description} NbrPersonne={NbrPersonne}  isliked={false} />;
+  }
+ 
 });
   }
 

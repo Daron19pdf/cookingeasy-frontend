@@ -14,6 +14,8 @@ import { useNavigation } from "@react-navigation/native";
 import { Picker } from "@react-native-picker/picker";
 import { useDispatch, useSelector } from "react-redux";
 import { LikedRecette, UnlikedRecette } from "../reducers/Favoris";
+import LikedRecetteComponent from "./LikedRecette";
+import recette from "../reducers/recette";
 
 export default function Recette(props) {
   const dispatch = useDispatch();
@@ -40,7 +42,8 @@ export default function Recette(props) {
     console.log(Liked)
   };
 
-  if (likedRecipe) {
+
+  if (props.isliked === true) {
     var likeHeart = "heart";
     var colors = "red";
   } else {
@@ -233,7 +236,7 @@ export default function Recette(props) {
 
 const styles = StyleSheet.create({
   container: {
-    width: 180,
+    width: "45%",
     height: 270,
     alignItems: "center",
     backgroundColor: "#fff",
