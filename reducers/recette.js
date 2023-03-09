@@ -10,11 +10,9 @@ export const recetteSlice = createSlice({
   initialState,
  reducers: {
    addRecette: (state, action) => {
-     state.value.push(action.payload);
-     console.log(state.value);
-   },
-   
- },
+      state.value.push(action.payload);
+  },
+  }
 });
 
 export const { addRecette } = recetteSlice.actions;

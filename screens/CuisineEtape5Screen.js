@@ -12,7 +12,7 @@ export default function CuisineEtape1Screen({ navigation}) {
   //rendre accessible le titre de la recette car on ne peut pas envoyer en l'état dans le fetch
  let titleList = []
  for (let x=0 ; x < recette.length; x++) {
-    titleList.push(recette[x].recettes[x].title)
+    titleList.push(recette[x].title)
   }
   titleList = titleList.map((e) => JSON.stringify(e));
 

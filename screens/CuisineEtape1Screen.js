@@ -10,10 +10,11 @@ export default function CuisineEtape1Screen({ navigation}) {
   const recette = useSelector((state) => state.recette.value);
   const [steps, setSteps] = useState([]);
 
+  
   //rendre accessible le titre de la recette car on ne peut pas envoyer en l'état dans le fetch
  let titleList = []
  for (let x=0 ; x < recette.length; x++) {
-    titleList.push(recette[x].recettes[x].title)
+    titleList.push(recette[x].title)
   }
   titleList = titleList.map((e) => JSON.stringify(e));
 
@@ -22,15 +23,16 @@ export default function CuisineEtape1Screen({ navigation}) {
    fetch(`${BACKEND_ADDRESS}menuTer/miseenoeuvre?recettesList=[${titleList}]`)
     .then((response) => response.json())
     .then((data) => {
-      for (let x=0 ; x < data.steps.prep.length; x++) {
-      //console.log(data.steps.prep[x].recette_title);
+      console.log(data);
+      for (let x=0 ; x < 5; x++) {
+      console.log(data);
       const Recipe = {
         action: data.steps.prep[x].step.action,
         duration: data.steps.prep[x].step.duration,
         target: data.steps.prep[x].step.target[0],
         title: data.steps.prep[x].recette_title,
       }
-      //console.log(data.steps);
+      console.log(data.steps);
       if (steps.find((steps) => steps.target === Recipe.target)) {
         return;
       } else {
@@ -41,7 +43,7 @@ export default function CuisineEtape1Screen({ navigation}) {
     .catch((error) => {
       console.error(error);
     });
-  }, [recette]);
+  }, []); 
 
     const renderSteps = steps.map((step,i) => {
       return (

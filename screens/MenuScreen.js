@@ -8,27 +8,24 @@ import {addRecette} from '../reducers/recette';
 export default function MenuScreen({ navigation}) {
     const BACKEND_ADDRESS = 'https://cookingeasy-backend.vercel.app/';
     const dispatch = useDispatch();
-    const [recette, setRecette] = useState([]);
+    
     const [NbrRecette, setNbrRecette] = useState(0);
     const [NbrPersonne, setNbrPersonne] = useState(0);
     const User = useSelector((state) => state.user.value);
-   //console.log(User.token);
+    const recette = useSelector((state) => state.recette.value);
 
    let Stoken = "ii8V8wTkU-YR47Tu1iIPR3kQ4_L5NPZm"
    let userId = "640757eb627d15842471ae81"
-   let blah = "http://192.168.30.111:3000/"
-      
+   let blahh = "http://192.168.30.111:3000/"
+
+   console.log(NbrRecette);
+
   //récupère les recettes
-
-
-
-useEffect(() => { 
+  useEffect(() => {
 
   fetch(`${BACKEND_ADDRESS}user/user/?token=ii8V8wTkU-YR47Tu1iIPR3kQ4_L5NPZm`)
   .then((response) => response.json())
-    .then((data) => {
-      //console.log(data);
-      dispatch(addRecette(data)); 
+    .then((data) => { 
       for (let i = 0; i < 5; i++) {
         const recettes = {
           title: data.recettes[i].title,
@@ -39,26 +36,26 @@ useEffect(() => {
           ingredients: data.recettes[i].ingredients,
           servings: data.recettes[i].servings,
           description: data.recettes[i].description,
-      }
+          conservation: data.recettes[i].preservation_duration,
+         }
       if (recette.find((recette) => recette.title === recettes.title)) {
-        return;
+        console.log("recette déjà présente");
       } else {
-        setRecette((recette) => [...recette, recettes]);
+        console.log("recette ajoutée");
+        dispatch(addRecette(recettes));
       }
     }
     })
 .catch((error) => {
     console.error(error);
-});
-}
-);
- 
+  });
+}, []);
 
   //génère les recettes
   let NewRecettes = (<ActivityIndicator style={styles.load} size="large"  color="red" />)
   if (recette.length > 0) {
  NewRecettes = recette.map((data, index) => {
-    return <Recette key={index} title={data.title} photo={data.photo} prep_duration={data.prep_duration} cook_duration={data.cook_duration} steps={data.steps} ingredients={data.ingredients} servings={data.servings} description={data.description} NbrPersonne={NbrPersonne}  />;
+    return <Recette key={index} title={data.title} photo={data.photo} prep_duration={data.prep_duration} cook_duration={data.cook_duration} steps={data.steps} ingredients={data.ingredients} servings={data.servings} description={data.description} NbrPersonne={2}  />;
 });
   }
 

@@ -7,15 +7,15 @@ import FontAwesome from "react-native-vector-icons/FontAwesome";
 export default function CuisineEtape1Screen({ navigation}) {
  
   const recette = useSelector((state) => state.recette.value);
-  console.log(recette.length);
+  console.log(recette[0]);
 
   
   let conservationElement = []
-  for (let i = 0; i < recette[0].recettes.length; i++) {
+  for (let i = 0; i < recette.length; i++) {
     const encart = {
-     title: recette[0].recettes[i].title,
-     photo: recette[0].recettes[i].photo,
-     conservation: recette[0].recettes[i].preservation_duration,
+     title: recette[i].title,
+     photo: recette[i].photo,
+     conservation: recette[i].conservation,
     }
     conservationElement.push(encart)
   };
@@ -41,7 +41,7 @@ export default function CuisineEtape1Screen({ navigation}) {
              <Text >Laissez refroidir (pas plus de 2h). On ferme tout hermétiquement ou on met sous vide</Text>
         {renderConservation}
           <View style={styles.btnContainer}>
-             <TouchableOpacity style={styles.nextBtn} onPress={() => navigation.navigate("CuisineEtape4Screen")}>
+             <TouchableOpacity style={styles.nextBtn} onPress={() => navigation.navigate("CuisineEtape5Screen")}>
                  <FontAwesome name="toggle-left" size={16} color='#fff' style={styles.icon}/>
                  <Text style={styles.textWhite}>Etape précédente </Text>
               </TouchableOpacity>
