@@ -15,7 +15,7 @@ export default function MenuScreen({ navigation}) {
    //console.log(User.token);
 
    let Stoken = "ii8V8wTkU-YR47Tu1iIPR3kQ4_L5NPZm"
-    let userId = "640757eb627d15842471ae81"
+   let userId = "640757eb627d15842471ae81"
        
 useEffect(() => { 
   fetch(`${BACKEND_ADDRESS}user/user/?token=${User.token}`)
@@ -24,8 +24,8 @@ useEffect(() => {
   console.log(data);
   setNbrRecette(data.data.preference.foyer.nombreRecette);
   setNbrPersonne(data.data.preference.foyer.nombrePersonne);
-  console.log(data.data.preference._id);
-  fetch(`${BACKEND_ADDRESS}menu/recettes?userId=${data.data.preference._id}`)
+  //console.log(data.data.preference._id);
+  fetch(`${BACKEND_ADDRESS}menu/recettes?userId=${User.preference}`)
    .then((response) => response.json())
     .then((data) => {
       let test = Math.floor(Math.random() * data.recettes.length);

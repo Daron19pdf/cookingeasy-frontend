@@ -7,7 +7,7 @@ import {
   Image,
 } from "react-native";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
-import { useDispatch, useSelector, useEffect } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { login } from "../reducers/user";
 
@@ -46,6 +46,7 @@ export default function ConnectionScreen({ navigation }) {
               prenom: data.prenom,
               email: data.email,
               token: data.token,
+              preference: data.preference,
             })
           );
           console.log(data);
