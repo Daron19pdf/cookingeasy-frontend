@@ -7,7 +7,7 @@ import {
   Image,
 } from "react-native";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
-import { useDispatch, useSelector, useEffect } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { login } from "../reducers/user";
 
@@ -28,7 +28,7 @@ export default function ConnectionScreen({ navigation }) {
   };
 
   const handleConnection = () => {
-    fetch(`${BACKEND_ADDRESS}/user/signin`, {
+    fetch(`${BACKEND_ADDRESS}user/signin`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -38,7 +38,8 @@ export default function ConnectionScreen({ navigation }) {
     })
       .then((response) => response.json())
       .then((data) => {
-        if (data) {
+        console.log(data);
+        if (data.result) {
           dispatch(
             login({
               pseudo: pseudo,
@@ -47,9 +48,9 @@ export default function ConnectionScreen({ navigation }) {
               prenom: data.prenom,
               email: data.email,
               token: data.token,
+              preference: data.preference,
             })
           );
-          //console.log(data);
           navigation.navigate("HomeScreen");
         }
       })

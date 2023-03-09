@@ -36,7 +36,7 @@ export default function InscriptionScreen({ navigation }) {
   };
 
   const handleValidation = () => {
-    fetch(`${BACKEND_ADDRESS}/user/signup`, {
+    fetch(`${BACKEND_ADDRESS}user/signup`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

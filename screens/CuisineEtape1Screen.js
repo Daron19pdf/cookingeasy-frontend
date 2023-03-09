@@ -1,15 +1,15 @@
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image } from 'react-native'
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { useSelector } from 'react-redux';
 import Menu from '../component/menu';
 import FontAwesome from "react-native-vector-icons/FontAwesome";
-import { colors } from 'react-native-elements';
 
 export default function CuisineEtape1Screen({ navigation}) {
+
   const BACKEND_ADDRESS = "https://cookingeasy-backend.vercel.app/";
   const recette = useSelector((state) => state.recette.value);
   const [steps, setSteps] = useState([]);
-  
+
   //rendre accessible le titre de la recette car on ne peut pas envoyer en l'état dans le fetch
  let titleList = []
  for (let x=0 ; x < recette.length; x++) {
@@ -18,17 +18,17 @@ export default function CuisineEtape1Screen({ navigation}) {
   titleList = titleList.map((e) => JSON.stringify(e));
 
   // Recupérer les étapes de la recette
-  fetch(`${BACKEND_ADDRESS}menuTer/miseenoeuvre?recettesList=[${titleList}]`)
+  useEffect(() => {
+   fetch(`${BACKEND_ADDRESS}menuTer/miseenoeuvre?recettesList=[${titleList}]`)
     .then((response) => response.json())
     .then((data) => {
       for (let x=0 ; x < data.steps.prep.length; x++) {
-      //console.log(data.steps.prep[x].step.target[0]);
+      //console.log(data.steps.prep[x].recette_title);
       const Recipe = {
         action: data.steps.prep[x].step.action,
         duration: data.steps.prep[x].step.duration,
         target: data.steps.prep[x].step.target[0],
         title: data.steps.prep[x].recette_title,
-        colors: Math.floor(Math.random()*16777215).toString(16),
       }
       //console.log(data.steps);
       if (steps.find((steps) => steps.target === Recipe.target)) {
@@ -41,6 +41,7 @@ export default function CuisineEtape1Screen({ navigation}) {
     .catch((error) => {
       console.error(error);
     });
+  }, []);
 
     const renderSteps = steps.map((step,i) => {
       return (
@@ -52,10 +53,6 @@ export default function CuisineEtape1Screen({ navigation}) {
       )
       
     })
-
-    //renderSteps = renderSteps.filter((step) => console.log(step));
-//console.log(renderSteps);
-  
 
   return (
     <ScrollView style={styles.container}>
