@@ -109,7 +109,7 @@ navigation.navigate("RegimeScreen");
             style={{ width: 110, height: 110 }}
         source={require("../assets/robot.png")}
       />
-      <Text style={styles.appareil}>robot</Text>
+      <Text style={styles.appareil}>Robot</Text>
     </TouchableOpacity>
     
   </View>

@@ -58,16 +58,14 @@ export default function CuisineEtape1Screen({ navigation}) {
       <Menu  />
          <View style={styles.generalContainer}>
              <Text style={styles.title}>Je cuisine</Text>
-             <Text style={styles.title}>Etape 2 : Cuisson </Text>
+             <Text style={styles.title}>Cuisson </Text>
         {renderSteps}
           <View style={styles.btnContainer}>
              <TouchableOpacity style={styles.nextBtn} onPress={() => navigation.navigate("CuisineEtape1Screen")}>
-                 <FontAwesome name="toggle-left" size={16} color='#fff' style={styles.icon}/>
                  <Text style={styles.textWhite}>Etape précédente </Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.nextBtn} onPress={() => navigation.navigate("CuisineEtape3Screen")}>
                   <Text style={styles.textWhite}>Etape suivante </Text>
-                  <FontAwesome name="toggle-right" size={16} color='#fff' style={styles.icon}/>
              </TouchableOpacity>
            </View>
           </View>
@@ -97,13 +95,12 @@ const styles = StyleSheet.create({
     width: "45%",
     height: 50,
     backgroundColor: '#f4511e',
-    borderRadius: 15,
     margin: 5,
   
   },
   textWhite: {
     color: '#fff',
-    fontSize: 18,
+    fontSize: 15,
     margin: 5,
   },
   steps: {

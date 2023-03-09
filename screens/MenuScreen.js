@@ -4,6 +4,7 @@ import Menu from '../component/menu';
 import Recette from '../component/recette';
 import {  useDispatch, useSelector } from "react-redux";
 import {addRecette} from '../reducers/recette';
+import LikedRecetteComponent from '../component/LikedRecette';
 
 export default function MenuScreen({ navigation}) {
     const BACKEND_ADDRESS = 'https://cookingeasy-backend.vercel.app/';
@@ -18,12 +19,12 @@ export default function MenuScreen({ navigation}) {
    let userId = "640757eb627d15842471ae81"
    let blahh = "http://192.168.30.111:3000/"
 
-   console.log(NbrRecette);
+   //console.log(NbrRecette);
 
   //récupère les recettes
   useEffect(() => {
 
-  fetch(`${BACKEND_ADDRESS}user/user/?token=ii8V8wTkU-YR47Tu1iIPR3kQ4_L5NPZm`)
+  fetch(`${BACKEND_ADDRESS}user/user/?token=${User.token}`)
   .then((response) => response.json())
     .then((data) => { 
       for (let i = 0; i < 5; i++) {
@@ -53,9 +54,18 @@ export default function MenuScreen({ navigation}) {
 
   //génère les recettes
   let NewRecettes = (<ActivityIndicator style={styles.load} size="large"  color="red" />)
+
   if (recette.length > 0) {
- NewRecettes = recette.map((data, index) => {
-    return <Recette key={index} title={data.title} photo={data.photo} prep_duration={data.prep_duration} cook_duration={data.cook_duration} steps={data.steps} ingredients={data.ingredients} servings={data.servings} description={data.description} NbrPersonne={2}  />;
+NewRecettes = recette.map((data, index) => {
+const isLiked = Favoris.some(recette => recette.title === data.title);
+
+let Fav;
+  if (Favoris.some(recette => recette.title === data.title)) {
+    return <LikedRecetteComponent title={data.title} photo={data.photo} isliked={true}/>
+  } else {
+    return <Recette key={index} title={data.title} photo={data.photo} prep_duration={data.prep_duration} cook_duration={data.cook_duration} steps={data.steps} ingredients={data.ingredients} servings={data.servings} description={data.description} NbrPersonne={NbrPersonne}  isliked={false} />;
+  }
+ 
 });
   }
 

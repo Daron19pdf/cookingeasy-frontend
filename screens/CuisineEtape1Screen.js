@@ -61,11 +61,10 @@ export default function CuisineEtape1Screen({ navigation}) {
       <Menu  />
          <View style={styles.generalContainer}>
              <Text style={styles.title}>Je cuisine</Text>
-             <Text style={styles.title}>Etape 1 : Préparation </Text>
+             <Text style={styles.title}>Préparation </Text>
                  {renderSteps}
          <TouchableOpacity style={styles.nextBtn} onPress={() => navigation.navigate("CuisineEtape2Screen")}>
              <Text style={styles.textWhite}>Etape suivante </Text>
-             <FontAwesome name="toggle-right" size={16} color='#fff' style={styles.icon}/>
         </TouchableOpacity>
      </View>
     </ScrollView>
@@ -91,14 +90,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    width: 200,
+    width: '45%',
     height: 50,
     backgroundColor: '#f4511e',
     margin: 15,
   },
   textWhite: {
     color: '#fff',
-    fontSize: 18,
+    fontSize: 15,
   },
   steps: {
     width: 300,
