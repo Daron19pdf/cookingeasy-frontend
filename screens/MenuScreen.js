@@ -16,22 +16,20 @@ export default function MenuScreen({ navigation}) {
 
    let Stoken = "ii8V8wTkU-YR47Tu1iIPR3kQ4_L5NPZm"
    let userId = "640757eb627d15842471ae81"
-       
+   let blah = "http://192.168.30.111:3000/"
+      
+  //récupère les recettes
+
+
+
 useEffect(() => { 
-  fetch(`${BACKEND_ADDRESS}user/user/?token=${User.token}`)
-.then((response) => response.json())
-.then((data) => {
-  console.log(data);
-  setNbrRecette(data.data.preference.foyer.nombreRecette);
-  setNbrPersonne(data.data.preference.foyer.nombrePersonne);
-  //console.log(data.data.preference._id);
-  fetch(`${BACKEND_ADDRESS}menu/recettes?userId=${User.preference}`)
-   .then((response) => response.json())
+
+  fetch(`${BACKEND_ADDRESS}user/user/?token=ii8V8wTkU-YR47Tu1iIPR3kQ4_L5NPZm`)
+  .then((response) => response.json())
     .then((data) => {
-      let test = Math.floor(Math.random() * data.recettes.length);
-      console.log(data);
+      //console.log(data);
       dispatch(addRecette(data)); 
-      for (let i = 0; i < NbrRecette; i++) {
+      for (let i = 0; i < 5; i++) {
         const recettes = {
           title: data.recettes[i].title,
           photo: data.recettes[i].photo,   
@@ -52,8 +50,8 @@ useEffect(() => {
 .catch((error) => {
     console.error(error);
 });
-})
-}, [NbrRecette]);
+}
+);
  
 
   //génère les recettes

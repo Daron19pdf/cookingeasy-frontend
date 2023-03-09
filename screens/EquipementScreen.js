@@ -26,7 +26,7 @@ export default function EquipementScreen({ navigation }) {
   if (isRobotClicked) selectedEquipements.push("robot");
 
   const handleNextPress = () => {
-    fetch(`${BACKEND_ADDRESS}/preferences/equipement)`, {
+    fetch(`${BACKEND_ADDRESS}/preferences/equipement`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -60,68 +60,81 @@ navigation.navigate("RegimeScreen");
 
   <View style={styles.equipement}>
 
-     <TouchableOpacity
-      style={[styles.four, isFourClicked && styles.fourClicked]}
-      onPress={() => setIsFourClicked(!isFourClicked)}
-    >
-          <Image style={{ width: 110, height: 110 }}
-            source={require("../assets/four.png")} />
-      <Text style={styles.appareil}>Four</Text>
-    </TouchableOpacity> 
-
-    <TouchableOpacity style={[styles.friteuse, isFriteuseClicked && styles.friteuseClicked]} onPress={() => setIsFriteuseClicked(!isFriteuseClicked)}>
-      <Image
-       style={{ width: 110, height: 110 }}
-        source={require("../assets/friteuse.png")}
-      />
-      <Text style={styles.appareil}>Friteuse</Text>
-    </TouchableOpacity>
+         <TouchableOpacity
+          style={[styles.four, isFourClicked && styles.fourClicked]}
+          onPress={() => setIsFourClicked(!isFourClicked)}
+        >
+          <Image style={{ width: 120, height: 120 }} source={require("../assets/four.png")} />
+          <Text style={styles.appareil}>four</Text>
+        </TouchableOpacity> 
 
 
-    <TouchableOpacity 
-    style={[styles.microOndes, isMicroOndesClicked && styles.microOndesClicked]}
-    onPress={() => setIsMicroOndesClicked(!isMicroOndesClicked)}
-    >
-          <Image style={{ width: 110, height: 110 }}
-            source={require("../assets/micro-ondes.png")} />
-      <Text style={styles.appareil}>Micro-ondes</Text>
-    </TouchableOpacity>
 
-    <TouchableOpacity  style={[styles.mixeur, isMixeurClicked && styles.MixeurClicked]} onPress={() => setIsMixeurClicked(!isMixeurClicked)}>
+        <TouchableOpacity onPress={() => setIsFriteuseClicked(!isFriteuseClicked)}>
           <Image
-            style={{ width: 110, height: 110 }}
-        source={require("../assets/mixeur.png")}
-      />
-      <Text style={styles.appareil}>Mixeur</Text>
-    </TouchableOpacity>
-
-    <TouchableOpacity style={[styles.plaque, isPlaqueClicked && styles.PlaqueClicked]} onPress={() => setIsPlaqueClicked(!isPlaqueClicked)}>
-      <Image
-       style={{ width: 110, height: 110 }}
-        source={require("../assets/plaquesCuisson.png")}
-      />
-      <Text style={styles.appareil}>Plaques</Text>
-    </TouchableOpacity>
+            style={[styles.friteuse, isFriteuseClicked && styles.friteuseClicked]}
+            source={require("../assets/friteuse.png")}
+          />
+          <Text style={styles.appareil}>friteuse</Text>
+        </TouchableOpacity>
 
 
-    <TouchableOpacity style={[styles.robot, isRobotClicked && styles.RobotClicked]} onPress={() => setIsRobotClicked(!isRobotClicked)}>
-      <Image
-            style={{ width: 110, height: 110 }}
-        source={require("../assets/robot.png")}
-      />
-      <Text style={styles.appareil}>robot</Text>
-    </TouchableOpacity>
-    
-  </View>
-  <View style={styles.boutonsbasContainer}>
-    <View style={styles.boutonsbas}>
-      <TouchableOpacity style={styles.previous} onPress={() => navigation.navigate("FoyerScreen")}>
-        <FontAwesome name="arrow-left" size={15} color="#f4511e" />
-      </TouchableOpacity>
+        <TouchableOpacity 
+        style={[styles.microOndes, isMicroOndesClicked && styles.microOndesClicked]}
+        onPress={() => setIsMicroOndesClicked(!isMicroOndesClicked)}
+        >
+          <Image style={{ width: 120, height: 120 }} source={require("../assets/micro-ondes.png")}/>
+          <Text style={styles.appareil}>micro-ondes</Text>
+        </TouchableOpacity>
 
-      <TouchableOpacity style={styles.suivant} activeOpacity={0.8} onPress={handleNextPress}>
-        <Text style={styles.textButton}>Suivant</Text>
-      </TouchableOpacity>
+        <TouchableOpacity onPress={() => setIsMixeurClicked(!isMixeurClicked)}>
+          <Image
+            style={[styles.mixeur, isMixeurClicked && styles.MixeurClicked]}
+            source={require("../assets/mixeur.png")}
+          />
+          <Text style={styles.appareil}>mixeur</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={() => setIsPlaqueClicked(!isPlaqueClicked)}>
+          <Image
+            style={[styles.plaque, isPlaqueClicked && styles.PlaqueClicked]}
+            source={require("../assets/plaquesCuisson.png")}
+          />
+          <Text style={styles.appareil}>plaques de cuisson</Text>
+        </TouchableOpacity>
+
+
+        <TouchableOpacity onPress={() => setIsRobotClicked(!isRobotClicked)}>
+          <Image
+            style={[styles.robot, isRobotClicked && styles.RobotClicked]}
+            source={require("../assets/robot.png")}
+          />
+          <Text style={styles.appareil}>robot</Text>
+        </TouchableOpacity>
+
+      </View>
+      <View style={styles.boutonsbasContainer}>
+        <View style={styles.boutonsbas}>
+          <TouchableOpacity style={styles.previous} onPress={() => navigation.navigate("FoyerScreen")}>
+            <FontAwesome name="arrow-left" size={15} color="#f4511e" />
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.suivant} activeOpacity={0.8} onPress={handleNextPress}>
+            <Text style={styles.textButton}>Suivant</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+
+      <View>
+        <Progress.Bar
+          width={250}
+          borderWidth={1}
+          progress={0.5}
+          height={15}
+          color={"#F4511E"}
+          indeterminateAnimationDuration={2000}
+        />
+      </View>
     </View>
   </View>
 
@@ -143,8 +156,9 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 30,
     fontWeight: "700",
-    marginTop: 50,
+    marginTop: 65,
     marginBottom: 40,
+    textAlign: "center",
   },
  
   fourClicked: {
@@ -190,54 +204,130 @@ const styles = StyleSheet.create({
   },
 
   four: {
-    padding: 10,
-    margin: 2,
+    // width: 150,
+    //height: 100,
+    resizeMode: "contain",
+    padding: 5,
+  },
+  fourClicked: {
+    // Ajout du style pour la bordure ombrée
+    borderColor: "#f4511e",
+    //backgroundColor: "white",
     borderWidth: 2,
-    borderColor: "white",
+    //shadowColor: '#f4511e',
+    //shadowOffset: { width: 5, height: 5 },
+    //shadowOpacity: 0.8,
+    //shadowRadius: 10,
+    //shadowOpacity: 0.3,
+    //shadowRadius: 5,
+    //shadowOffset: { width: 1, height: 13 }
+  },
+  microOndes: {
+    //width: 150,
+    //height: 100,
+    resizeMode: "contain",
+    padding: 5,
+  },
+  microOndesClicked: {
+    // Ajout du style pour la bordure ombrée
+    borderColor: "#f4511e",
+    borderWidth: 2,
+    //shadowColor: "#f4511e",
+    //shadowOffset: { width: 5, height: 5 },
+    //shadowOpacity: 0.8,
+    //shadowRadius: 10,
+    //shadowOpacity: 0.3,
+    //shadowRadius: 5,
+    //shadowOffset: { width: 1, height: 13 },
   },
 
-  microOndes: {
-    padding: 10,
-    margin: 2,
+  friteuseClicked: {
+    // Ajout du style pour la bordure ombrée
+    borderColor: "#f4511e",
     borderWidth: 2,
-    borderColor: "white",
+    //shadowColor: "#f4511e",
+    //shadowOffset: { width: 5, height: 5 },
+    //shadowOpacity: 0.8,
+    //shadowRadius: 10,
+    shadowOpacity: 0.3,
+    shadowRadius: 5,
+    shadowOffset: { width: 1, height: 13 },
+  },
 
+  
+
+  MixeurClicked: {
+    // Ajout du style pour la bordure ombrée
+    borderColor: "#f4511e",
+    borderWidth: 2,
+    borderRadius: 10,
+    shadowColor: "#f4511e",
+    //shadowOffset: { width: 5, height: 5 },
+    //shadowOpacity: 0.8,
+    //shadowRadius: 10,
+    shadowOpacity: 0.3,
+    shadowRadius: 5,
+    shadowOffset: { width: 1, height: 13 },
+  },
+
+  PlaqueClicked: {
+    // Ajout du style pour la bordure ombrée
+    borderColor: "#f4511e",
+    borderWidth: 2,
+    borderRadius: 10,
+    shadowColor: "#f4511e",
+    //shadowOffset: { width: 5, height: 5 },
+    //shadowOpacity: 0.8,
+    //shadowRadius: 10,
+    shadowOpacity: 0.3,
+    shadowRadius: 5,
+    shadowOffset: { width: 1, height: 13 },
+  },
+
+  RobotClicked: {
+    // Ajout du style pour la bordure ombrée
+    borderColor: "#f4511e",
+    borderWidth: 2,
+    borderRadius: 10,
+    shadowColor: "#f4511e",
+    //shadowOffset: { width: 5, height: 5 },
+    //shadowOpacity: 0.8,
+    //shadowRadius: 10,
+    shadowOpacity: 0.3,
+    shadowRadius: 5,
+    shadowOffset: { width: 1, height: 13 },
   },
 
   friteuse: {
-    padding: 10,
-    margin: 2,
-    borderWidth: 2,
-    borderColor: "white",
-
+    width: 150,
+    height: 100,
+    resizeMode: "contain",
+    //resizeMode: "contain",
+    padding: 20,
   },
 
   mixeur: {
-    padding: 10,
-    margin: 2,
-    borderWidth: 2,
-    borderColor: "white",
-
+    width: 150,
+    height: 100,
+    resizeMode: "contain",
   },
   plaque: {
-    padding: 10,
-    margin: 2,
-    borderWidth: 2,
-    borderColor: "white",
-
+    width: 150,
+    height: 100,
+    resizeMode: "contain",
   },
   robot: {
-    padding: 10,
-    margin: 2,
-    borderWidth: 2,
-    borderColor: "white",
-
+    width: 150,
+    height: 100,
+    resizeMode: "contain",
   },
   equipement: {
     flexDirection: "row",
     flexWrap: "wrap",
-    justifyContent: "space-around",
+    justifyContent: "space-between",
     alignItems: "center",
+    padding: 10,
+    marginTop: 10,
   },
 
   container: {
@@ -249,12 +339,14 @@ const styles = StyleSheet.create({
   appareil: {
     fontSize: 15,
     fontWeight: "600",
+    //marginTop: 5,
+    //marginBottom: 20,
     textAlign: "center",
   },
   suivant: {
     width: "40%",
     alignItems: "center",
-    marginTop: 10,
+    marginTop: 20,
     marginBottom: 20,
     backgroundColor: "#F4511E",
   },
