@@ -49,7 +49,7 @@ export default function EquipementScreen({ navigation }) {
         console.error(error);
       });
 
-    navigation.navigate("RegimeScreen");
+navigation.navigate("RegimeScreen");
   };
 
   return (
@@ -58,7 +58,7 @@ export default function EquipementScreen({ navigation }) {
         <Text style={styles.title}>Mes équipements</Text>
       </View>
 
-      <View style={styles.equipement}>
+  <View style={styles.equipement}>
 
          <TouchableOpacity
           style={[styles.four, isFourClicked && styles.fourClicked]}
@@ -136,6 +136,19 @@ export default function EquipementScreen({ navigation }) {
         />
       </View>
     </View>
+  </View>
+
+  <View>
+    <Progress.Bar
+      width={250}
+      borderWidth={1}
+      progress={0.5}
+      height={15}
+      color={"#F4511E"}
+      indeterminateAnimationDuration={2000}
+    />
+  </View>
+</View>
   );
 }
 
@@ -147,6 +160,49 @@ const styles = StyleSheet.create({
     marginBottom: 40,
     textAlign: "center",
   },
+ 
+  fourClicked: {
+    // Ajout du style pour la bordure ombrée
+    borderColor: "#f4511e",
+    borderWidth: 2,
+    borderRadius: 10,
+  },
+  
+  microOndesClicked: {
+    // Ajout du style pour la bordure ombrée
+    borderColor: "#f4511e",
+    borderWidth: 2,
+    borderRadius: 10,
+  },
+
+  friteuseClicked: {
+    // Ajout du style pour la bordure ombrée
+    borderColor: "#f4511e",
+    borderWidth: 2,
+    borderRadius: 10,
+  },
+
+  MixeurClicked: {
+    // Ajout du style pour la bordure ombrée
+    borderColor: "#f4511e",
+    borderWidth: 2,
+    borderRadius: 10,
+  },
+
+  PlaqueClicked: {
+    // Ajout du style pour la bordure ombrée
+    borderColor: "#f4511e",
+    borderWidth: 2,
+    borderRadius: 10,
+  },
+
+  RobotClicked: {
+    // Ajout du style pour la bordure ombrée
+    borderColor: "#f4511e",
+    borderWidth: 2,
+    borderRadius: 10,
+  },
+
   four: {
     // width: 150,
     //height: 100,
