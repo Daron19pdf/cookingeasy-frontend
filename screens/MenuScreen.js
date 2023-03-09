@@ -2,17 +2,19 @@ import { View, Text, StyleSheet, ScrollView, TouchableOpacity, ActivityIndicator
 import React, {useEffect, useState} from 'react'
 import Menu from '../component/menu';
 import Recette from '../component/recette';
-import {  useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {addRecette} from '../reducers/recette';
 import LikedRecetteComponent from '../component/LikedRecette';
 
 export default function MenuScreen({ navigation}) {
     const BACKEND_ADDRESS = 'https://cookingeasy-backend.vercel.app/';
     const dispatch = useDispatch();
+
+    
     
     const [NbrRecette, setNbrRecette] = useState(0);
     const [NbrPersonne, setNbrPersonne] = useState(0);
-    const User = useSelector((state) => state.user.value);
+    const user = useSelector((state) => state.user.value);
     const recette = useSelector((state) => state.recette.value);
     const Favoris = useSelector((state) => state.Favoris.value); 
 
@@ -22,11 +24,13 @@ export default function MenuScreen({ navigation}) {
 
    //console.log(NbrRecette);
 
-  
+   console.log(user.token);
+
+
   useEffect(() => {
 
     //récupère les recettes
-  fetch(`${BACKEND_ADDRESS}user/user/?token=${Stoken}`)
+  fetch(`${BACKEND_ADDRESS}user/user/?token=${user.token}`)
   .then((response) => response.json())
     .then((data) => { 
       for (let i = 0; i < 5; i++) {
