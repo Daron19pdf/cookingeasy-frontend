@@ -286,6 +286,7 @@ const styles = StyleSheet.create({
 
   buttonText: {
     marginRight: 10,
+    fontSize: 15,
     color: "#fff",
   },
   input: {
