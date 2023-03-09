@@ -194,7 +194,7 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     elevation: 3,
     backgroundColor: "#f4511e",
-    marginTop: 30,
+    marginTop: 50,
     shadowColor: "rgba(0, 0, 0, 0.1)",
     shadowOpacity: 0.8,
     shadowRadius: 5,
@@ -237,6 +237,6 @@ const styles = StyleSheet.create({
   image: {
     width: 250,
     height: 250,
-    marginTop: 30,
+    marginTop: 50,
   },
 });

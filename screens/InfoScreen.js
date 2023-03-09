@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
   },
   title: {
-    fontSize: 40,
+    fontSize: 30,
     fontWeight: '700',
     marginBottom: 40,
     alignItems: "center",
@@ -88,12 +88,12 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   bottomBotton: {
-    marginTop: 40,
+    marginTop: "15%",
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
     width: "100%",
     paddingHorizontal: 20,
-    marginBottom: 5,
+    marginBottom: "5%",
   },
 });
