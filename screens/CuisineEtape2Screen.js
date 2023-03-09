@@ -58,7 +58,7 @@ export default function CuisineEtape1Screen({ navigation}) {
       <Menu  />
          <View style={styles.generalContainer}>
              <Text style={styles.title}>Je cuisine</Text>
-             <Text style={styles.title}>Etape 2 : Cuisson </Text>
+             <Text style={styles.title}>Cuisson </Text>
         {renderSteps}
           <View style={styles.btnContainer}>
              <TouchableOpacity style={styles.nextBtn} onPress={() => navigation.navigate("CuisineEtape1Screen")}>

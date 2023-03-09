@@ -42,12 +42,6 @@ export default function Recette(props) {
     console.log(Liked)
   };
 
-  let Fav;
-  if (Favoris.some(recette => recette.title === recette.title)) {
-    LikedRecette = <LikedRecetteComponent {...recette} isliked={true} />
-  } else {
-    LikedRecette = <LikedRecetteComponent {...recette} isliked={false} />
-  }
 
   if (props.isliked === true) {
     var likeHeart = "heart";
