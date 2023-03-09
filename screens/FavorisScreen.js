@@ -11,7 +11,7 @@ export default function FavorisScreen({ navigation }) {
   let Recipes = <Text style={{ marginTop: 200,}}>Vous n'avez encore rien enregistré.</Text>;
   if (Liked.length > 0) {
   Recipes = Liked.map((data, i) => {
-  return <LikedRecetteComponent key={i} title={data.title} photo={data.photo}/>;
+  return <LikedRecetteComponent key={i} title={data.title} photo={data.photo} isliked />;
 });
 }
   return (

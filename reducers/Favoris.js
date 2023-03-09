@@ -23,7 +23,7 @@ export const FavorisSlice = createSlice({
         // }
       },
     UnlikedRecette: (state, action) => {
-      state.value = state.value.filter(recette => !(recette.title === action.payload.title && recette.photo === action.payload.photo));
+      state.value = state.value.filter(recette => recette.title !== action.payload.title );
     },
     
  },

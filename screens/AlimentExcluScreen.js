@@ -26,86 +26,86 @@ export default function AlimentExcluScreen({ navigation }) {
 
   //ligne de data pour test autocomplete
   const data = [
-    "pomme",
-    "poire",
-    "banane",
-    "citron",
-    "orange",
-    "kiwi",
-    "ananas",
-    "mangue",
-    "pêche",
-    "fraise",
-    "framboise",
-    "cerise",
-    "raisin",
-    "melon",
-    "pastèque",
-    "tomate",
-    "courgette",
-    "aubergine",
-    "poivron",
-    "carotte",
-    "oignon",
-    "ail",
-    "poireau",
-    "chou",
-    "brocoli",
-    "champignon",
-    "pomme de terre",
-    "haricot",
-    "laitue",
-    "salade",
-    "choux",
-    "chou-fleur",
-    "navet",
-    "betterave",
-    "radis",
-    "concombre",
-    "asperge",
-    "épinard",
-    "cresson",
-    "mâche",
-    "endive",
-    "chicorée",
-    "cresson",
-    "ciboulette",
-    "persil",
-    "basilic",
-    "thym",
-    "romarin",
-    "sauge",
-    "menthe",
-    "coriandre",
-    "piment",
-    "poivre",
-    "sel",
-    "sucre",
-    "farine",
-    "riz",
-    "pâtes",
-    "pâte",
-    "pomme de terre",
-    "oeuf",
-    "lait",
-    "beurre",
-    "crème",
-    "fromage",
-    "yaourt",
-    "jambon",
-    "saucisse",
-    "viande",
-    "poisson",
-    "thon",
-    "saumon",
-    "sardine",
-    "huile",
-    "vinaigre",
-    "vin",
-    "bière",
-    "chocolat",
-    "cacao",
-    "café",
+    "Pomme",
+    "Poire",
+    "Banane",
+    "Citron",
+    "Orange",
+    "Kiwi",
+    "Ananas",
+    "Mangue",
+    "Pêche",
+    "Fraise",
+    "Framboise",
+    "Cerise",
+    "Raisin",
+    "Melon",
+    "Pastèque",
+    "Tomate",
+    "Courgette",
+    "Aubergine",
+    "Poivron",
+    "Carotte",
+    "Oignon",
+    "Ail",
+    "Poireau",
+    "Chou",
+    "Brocoli",
+    "Champignon",
+    "Pomme de terre",
+    "Haricot",
+    "Laitue",
+    "Salade",
+    "Choux",
+    "Chou-fleur",
+    "Navet",
+    "Betterave",
+    "Radis",
+    "Concombre",
+    "Asperge",
+    "Épinard",
+    "Cresson",
+    "Mâche",
+    "Endive",
+    "Chicorée",
+    "Cresson",
+    "Ciboulette",
+    "Persil",
+    "Basilic",
+    "Thym",
+    "Romarin",
+    "Sauge",
+    "Menthe",
+    "Coriandre",
+    "Piment",
+    "Poivre",
+    "Sel",
+    "Sucre",
+    "Farine",
+    "Riz",
+    "Pâtes",
+    "Pâte",
+    "Pomme de terre",
+    "Oeuf",
+    "Lait",
+    "Beurre",
+    "Crème",
+    "Fromage",
+    "Yaourt",
+    "Jambon",
+    "Saucisse",
+    "Viande",
+    "Poisson",
+    "Thon",
+    "Saumon",
+    "Sardine",
+    "Huile",
+    "Vinaigre",
+    "Vin",
+    "Bière",
+    "Chocolat",
+    "Cacao",
+    "Café",
   ];
 
   //click sur le bouton ok pour ajouter l'ingrédient dans le store
@@ -154,7 +154,7 @@ export default function AlimentExcluScreen({ navigation }) {
           <View>
             <Text style={styles.dataText}>{data}</Text>
           </View>
-          <FontAwesome style={styles.cross} name="times" />
+          <FontAwesome style={styles.cross} color="white" name="times" />
         </TouchableOpacity>
       );
     });
@@ -166,11 +166,12 @@ export default function AlimentExcluScreen({ navigation }) {
   );
 
   return (
-    <KeyboardAvoidingView
-      style={styles.container}
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
-    >
-      <Text style={styles.title}>Mes ingrédients à exclure</Text>
+    // <KeyboardAvoidingView
+    //   style={styles.container}
+    //   behavior={Platform.OS === "ios" ? "padding" : "height"}
+    // >
+    <View style={styles.container}>
+      <Text style={styles.title}>Aliments à exclure</Text>
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.input}
@@ -206,7 +207,7 @@ export default function AlimentExcluScreen({ navigation }) {
       <View style={styles.items}>{newIngredient}</View>
       <Image
         style={styles.assiette}
-        source={require("../assets/excluAssiette.png")}
+        source={require("../assets/Peach-pana.png")}
       />
       <View style={styles.botomContainer}>
         <View style={styles.botomButon}>
@@ -230,31 +231,34 @@ export default function AlimentExcluScreen({ navigation }) {
           indeterminateAnimationDuration={2000}
         />
       </View>
-    </KeyboardAvoidingView>
+      </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "white",
+    backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "space-between",
+    marginTop: 5,
+    marginBottom: 10,
   },
   title: {
-    marginTop: 40,
-    fontSize: 25,
-    fontWeight: "bold",
-    textAlign: "center",
+    fontSize: 30,
+    fontWeight: '700',
+    marginTop: 65,
+    textAlign: 'center',
   },
   inputContainer: {
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#fff",
     zIndex: 1,
-    borderWidth: 1,
+    borderWidth: 0.5,
     borderColor: "#ccc",
     borderRadius: 5,
+    padding: 10,
   },
   assiette: {
     width: 250,
@@ -287,10 +291,11 @@ const styles = StyleSheet.create({
   input: {
     height: 40,
     margin: 12,
-    borderWidth: 1,
+    borderWidth: 0.5,
     width: 300,
     padding: 10,
     borderRadius: 5,
+    borderColor: "#f4511e"
   },
   previous: {
     width: 40,
@@ -340,7 +345,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     fontSize: 18,
-    backgroundColor: "#E3C7F9",
+    backgroundColor: "#f4511e",
     margin: 10,
     padding: 5,
     borderRadius: 15,
@@ -352,6 +357,7 @@ const styles = StyleSheet.create({
   dataText: {
     fontSize: 18,
     margin: 2,
+    color: "white",
   },
   containerList: {
     width: 300,

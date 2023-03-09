@@ -12,6 +12,7 @@ export default function MenuScreen({ navigation}) {
     const [NbrRecette, setNbrRecette] = useState(0);
     const [NbrPersonne, setNbrPersonne] = useState(0);
     const User = useSelector((state) => state.user.value);
+    const Liked = useSelector((state) => state.Favoris.value);
    //console.log(User.token);
 
    let Stoken = "ii8V8wTkU-YR47Tu1iIPR3kQ4_L5NPZm"
@@ -60,8 +61,16 @@ useEffect(() => {
   let NewRecettes = (<ActivityIndicator style={styles.load} size="large"  color="red" />)
   if (recette.length > 0) {
  NewRecettes = recette.map((data, index) => {
-    return <Recette key={index} title={data.title} photo={data.photo} prep_duration={data.prep_duration} cook_duration={data.cook_duration} steps={data.steps} ingredients={data.ingredients} servings={data.servings} description={data.description} NbrPersonne={NbrPersonne}  />;
+  const isLiked = Favoris.some(recette => recette.title === data.title);
+    return <Recette key={index} title={data.title} photo={data.photo} prep_duration={data.prep_duration} cook_duration={data.cook_duration} steps={data.steps} ingredients={data.ingredients} servings={data.servings} description={data.description} NbrPersonne={NbrPersonne}  isliked={isLiked} />;
 });
+let Fav;
+  if (Favoris.some(recette => recette.title === recette.title)) {
+    Fav = <Recette {...recette} isliked={true} />
+  } else {
+    Fav = <Recette {...recette} isliked={false} />
+  }
+
   }
 
   return (
