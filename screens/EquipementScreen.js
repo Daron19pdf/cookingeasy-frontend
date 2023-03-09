@@ -26,7 +26,7 @@ export default function EquipementScreen({ navigation }) {
   if (isRobotClicked) selectedEquipements.push("robot");
 
   const handleNextPress = () => {
-    fetch(`${BACKEND_ADDRESS}/preferences/equipement`, {
+    fetch(`${BACKEND_ADDRESS}/preferences/equipement`,{
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -60,81 +60,68 @@ navigation.navigate("RegimeScreen");
 
   <View style={styles.equipement}>
 
-         <TouchableOpacity
-          style={[styles.four, isFourClicked && styles.fourClicked]}
-          onPress={() => setIsFourClicked(!isFourClicked)}
-        >
-          <Image style={{ width: 120, height: 120 }} source={require("../assets/four.png")} />
-          <Text style={styles.appareil}>four</Text>
-        </TouchableOpacity> 
+     <TouchableOpacity
+      style={[styles.four, isFourClicked && styles.fourClicked]}
+      onPress={() => setIsFourClicked(!isFourClicked)}
+    >
+      <Image style={{ width: 100, height: 100 }} source={require("../assets/four.png")} />
+      <Text style={styles.appareil}>four</Text>
+    </TouchableOpacity> 
 
 
 
-        <TouchableOpacity onPress={() => setIsFriteuseClicked(!isFriteuseClicked)}>
-          <Image
-            style={[styles.friteuse, isFriteuseClicked && styles.friteuseClicked]}
-            source={require("../assets/friteuse.png")}
-          />
-          <Text style={styles.appareil}>friteuse</Text>
-        </TouchableOpacity>
+    <TouchableOpacity onPress={() => setIsFriteuseClicked(!isFriteuseClicked)}>
+      <Image
+        style={[styles.friteuse, isFriteuseClicked && styles.friteuseClicked]}
+        source={require("../assets/friteuse.png")}
+      />
+      <Text style={styles.appareil}>friteuse</Text>
+    </TouchableOpacity>
 
 
-        <TouchableOpacity 
-        style={[styles.microOndes, isMicroOndesClicked && styles.microOndesClicked]}
-        onPress={() => setIsMicroOndesClicked(!isMicroOndesClicked)}
-        >
-          <Image style={{ width: 120, height: 120 }} source={require("../assets/micro-ondes.png")}/>
-          <Text style={styles.appareil}>micro-ondes</Text>
-        </TouchableOpacity>
+    <TouchableOpacity 
+    style={[styles.microOndes, isMicroOndesClicked && styles.microOndesClicked]}
+    onPress={() => setIsMicroOndesClicked(!isMicroOndesClicked)}
+    >
+      <Image style={{ width: 120, height: 120 }} source={require("../assets/micro-ondes.png")}/>
+      <Text style={styles.appareil}>micro-ondes</Text>
+    </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => setIsMixeurClicked(!isMixeurClicked)}>
-          <Image
-            style={[styles.mixeur, isMixeurClicked && styles.MixeurClicked]}
-            source={require("../assets/mixeur.png")}
-          />
-          <Text style={styles.appareil}>mixeur</Text>
-        </TouchableOpacity>
+    <TouchableOpacity onPress={() => setIsMixeurClicked(!isMixeurClicked)}>
+      <Image
+        style={[styles.mixeur, isMixeurClicked && styles.MixeurClicked]}
+        source={require("../assets/mixeur.png")}
+      />
+      <Text style={styles.appareil}>mixeur</Text>
+    </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => setIsPlaqueClicked(!isPlaqueClicked)}>
-          <Image
-            style={[styles.plaque, isPlaqueClicked && styles.PlaqueClicked]}
-            source={require("../assets/plaquesCuisson.png")}
-          />
-          <Text style={styles.appareil}>plaques de cuisson</Text>
-        </TouchableOpacity>
+    <TouchableOpacity onPress={() => setIsPlaqueClicked(!isPlaqueClicked)}>
+      <Image
+        style={[styles.plaque, isPlaqueClicked && styles.PlaqueClicked]}
+        source={require("../assets/plaquesCuisson.png")}
+      />
+      <Text style={styles.appareil}>plaques de cuisson</Text>
+    </TouchableOpacity>
 
 
-        <TouchableOpacity onPress={() => setIsRobotClicked(!isRobotClicked)}>
-          <Image
-            style={[styles.robot, isRobotClicked && styles.RobotClicked]}
-            source={require("../assets/robot.png")}
-          />
-          <Text style={styles.appareil}>robot</Text>
-        </TouchableOpacity>
+    <TouchableOpacity onPress={() => setIsRobotClicked(!isRobotClicked)}>
+      <Image
+        style={[styles.robot, isRobotClicked && styles.RobotClicked]}
+        source={require("../assets/robot.png")}
+      />
+      <Text style={styles.appareil}>robot</Text>
+    </TouchableOpacity>
+    
+  </View>
+  <View style={styles.boutonsbasContainer}>
+    <View style={styles.boutonsbas}>
+      <TouchableOpacity style={styles.previous} onPress={() => navigation.navigate("FoyerScreen")}>
+        <FontAwesome name="arrow-left" size={15} color="#f4511e" />
+      </TouchableOpacity>
 
-      </View>
-      <View style={styles.boutonsbasContainer}>
-        <View style={styles.boutonsbas}>
-          <TouchableOpacity style={styles.previous} onPress={() => navigation.navigate("FoyerScreen")}>
-            <FontAwesome name="arrow-left" size={15} color="#f4511e" />
-          </TouchableOpacity>
-
-          <TouchableOpacity style={styles.suivant} activeOpacity={0.8} onPress={handleNextPress}>
-            <Text style={styles.textButton}>Suivant</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
-
-      <View>
-        <Progress.Bar
-          width={250}
-          borderWidth={1}
-          progress={0.5}
-          height={15}
-          color={"#F4511E"}
-          indeterminateAnimationDuration={2000}
-        />
-      </View>
+      <TouchableOpacity style={styles.suivant} activeOpacity={0.8} onPress={handleNextPress}>
+        <Text style={styles.textButton}>Suivant</Text>
+      </TouchableOpacity>
     </View>
   </View>
 
@@ -160,49 +147,6 @@ const styles = StyleSheet.create({
     marginBottom: 40,
     textAlign: "center",
   },
- 
-  fourClicked: {
-    // Ajout du style pour la bordure ombrée
-    borderColor: "#f4511e",
-    borderWidth: 2,
-    borderRadius: 10,
-  },
-  
-  microOndesClicked: {
-    // Ajout du style pour la bordure ombrée
-    borderColor: "#f4511e",
-    borderWidth: 2,
-    borderRadius: 10,
-  },
-
-  friteuseClicked: {
-    // Ajout du style pour la bordure ombrée
-    borderColor: "#f4511e",
-    borderWidth: 2,
-    borderRadius: 10,
-  },
-
-  MixeurClicked: {
-    // Ajout du style pour la bordure ombrée
-    borderColor: "#f4511e",
-    borderWidth: 2,
-    borderRadius: 10,
-  },
-
-  PlaqueClicked: {
-    // Ajout du style pour la bordure ombrée
-    borderColor: "#f4511e",
-    borderWidth: 2,
-    borderRadius: 10,
-  },
-
-  RobotClicked: {
-    // Ajout du style pour la bordure ombrée
-    borderColor: "#f4511e",
-    borderWidth: 2,
-    borderRadius: 10,
-  },
-
   four: {
     // width: 150,
     //height: 100,
@@ -380,3 +324,4 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
 });
+
