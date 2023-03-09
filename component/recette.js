@@ -31,12 +31,13 @@ export default function Recette(props) {
   const handleLike = () => {
     dispatch(LikedRecette({ title: props.title, photo: props.photo }));
     setLikedRecipe(true);
-    //console.log(Liked);
+    console.log(Liked);
   };
 
   const handleUnlike = () => {
-    dispatch(UnlikedRecette());
+    dispatch(UnlikedRecette({ title: props.title, photo: props.photo }));
     setLikedRecipe(false);
+    console.log(Liked)
   };
 
   if (likedRecipe) {

@@ -4,6 +4,7 @@ import {
   TextInput,
   View,
   TouchableOpacity,
+  Image
 } from "react-native";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { useDispatch, useSelector, useEffect } from "react-redux";
@@ -163,6 +164,10 @@ export default function InscriptionScreen({ navigation }) {
         ]}>
           <Text style={styles.buttonText2}>Valider</Text>
     </TouchableOpacity>
+    <Image
+        style={styles.image}
+        source={require("../assets/Mobile-login.png")}
+      />
     </View>
   );
 }
@@ -180,6 +185,12 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.8,
     shadowRadius: 5,
     shadowOffset: { width: 1, height: 13 },
+    resizeMode: "auto"
+  },
+  image: {
+    width: 300,
+    height: 300,
+ 
   },
   headerText: {
     marginLeft: 70,

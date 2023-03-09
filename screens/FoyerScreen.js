@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
 
   title: {
     marginTop: 40,
-    fontSize: 25,
+    fontSize: 30,
     fontWeight: "bold",
     textAlign: "center",
   },
@@ -197,11 +197,12 @@ const styles = StyleSheet.create({
   },
   //Style des boutons inférieurs
   botomButon: {
+    marginTop: "15%",
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
     width: "100%",
     paddingHorizontal: 20,
-    marginBottom: 5,
+    marginBottom: "15%",
   },
 });

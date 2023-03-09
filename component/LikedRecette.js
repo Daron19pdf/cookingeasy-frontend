@@ -21,6 +21,7 @@ export default function LikedRecetteComponent(props) {
         dispatch(UnlikedRecette({title : props.title, photo: props.photo}));
         setLikedRecipe(false);
         setIsVisible(false);
+        console.log(Liked)
 
       };
       if (!isVisible) {
@@ -64,30 +65,6 @@ export default function LikedRecetteComponent(props) {
                 <TouchableOpacity style={styles.userContainer} onPress={handleUnlike}>
                     <FontAwesome name={likeHeart} size={16} color={colors} style={styles.icon}/>
                 </TouchableOpacity>
-                
-                <Modal 
-                visible={modalVisible} 
-                animationType='slide'
-                transparent={true}
-                onRequestClose={() => setModalVisible(false)}
-                onValueChange={(itemValue) => setSelectedValue(itemValue)}
-                onBackdropPress={toggleModal}
-                onBackButtonPress={toggleModal}
-                >
-                    <View style={styles.modalView}>
-                      <Picker numberOfLines={3} style={styles.picker}  onValueChange={(itemValue) => handleChangePeople(itemValue)}>
-                        <Picker.Item label="Nombre de personnes pour cette recette :" />
-                        <Picker.Item label="1" value="1" />
-                        <Picker.Item label="2" value="2" />
-                        <Picker.Item label="3" value="3" />
-                        <Picker.Item label="4" value="4" />
-                        <Picker.Item label="5" value="5" />
-                        <Picker.Item label="6" value="6" />
-                        <Picker.Item label="7" value="7" />
-                        <Picker.Item label="8" value="8" />
-                      </Picker>
-                    </View>
-                </Modal>
                 </View>
         
             </View>

@@ -65,7 +65,6 @@ useEffect(() => {
   return (
     <ScrollView style={styles.container}>
       <Menu  />
-      {/* <Image style={styles.image} source={require('../assets/homer.gif')} /> */}
       <View style={[styles.container, styles.horizontal]}>
     
   </View>
@@ -111,7 +110,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#f4511e',
     width: "50%",
     height: 60,
-    borderRadius: 15,
     alignItems: 'center',
     justifyContent: 'center',
     margin: 15,
