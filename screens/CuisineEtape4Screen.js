@@ -96,13 +96,11 @@ const styles = StyleSheet.create({
     width: "45%",
     height: 50,
     backgroundColor: '#f4511e',
-    borderRadius: 15,
     margin: 5,
-  
   },
   textWhite: {
     color: '#fff',
-    fontSize: 18,
+    fontSize: 15,
     margin: 5,
   },
   steps: {
